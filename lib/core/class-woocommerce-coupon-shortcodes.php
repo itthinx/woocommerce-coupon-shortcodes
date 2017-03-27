@@ -35,16 +35,20 @@ class WooCommerce_Coupon_Shortcodes {
 		//register_uninstall_hook( WOO_CODES_FILE, array( __CLASS__, 'uninstall' ) );
 		add_action( 'admin_notices', array( __CLASS__, 'admin_notices' ) );
 		add_action( 'init', array( __CLASS__, 'wp_init' ) );
-		if ( self::check_dependencies() ) {
-			require_once( WOO_CODES_VIEWS_LIB . '/class-woocommerce-coupon-shortcodes-views.php' );
-		}
 	}
 	
 	/**
-	 * Loads translations.
+	 * Loads translations and shortcode handler.
 	 */
 	public static function wp_init() {
 		load_plugin_textdomain( WOO_CODES_PLUGIN_DOMAIN, null, 'woocommerce-coupon-shortcodes/languages' );
+		if ( self::check_dependencies() ) {
+			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.0.0' ) >= 0 ) {
+				require_once( WOO_CODES_VIEWS_LIB . '/class-woocommerce-coupon-shortcodes-views.php' );
+			} else {
+				require_once( WOO_CODES_VIEWS_LIB . '/class-woocommerce-coupon-shortcodes-views-pre-3.0.php' );
+			}
+		}
 	}
 
 	/**

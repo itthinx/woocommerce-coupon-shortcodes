@@ -1,8 +1,8 @@
 <?php
 /**
- * class-woocommerce-coupon-shortcodes-views.php
+ * class-woocommerce-coupon-shortcodes-views-pre-3.0.php
  *
- * Copyright (c) 2013 "kento" Karim Rahimpur www.itthinx.com
+ * Copyright (c) 2013 - 2017 "kento" Karim Rahimpur www.itthinx.com
  *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
@@ -16,11 +16,11 @@
  * 
  * @author Karim Rahimpur
  * @package woocommerce-coupon-shortcodes
- * @since woocommerce-coupon-shortcodes 1.0.0
+ * @since woocommerce-coupon-shortcodes 1.4.0
  */
 
 /**
- * Shortcodes.
+ * Shortcodes ... used with WooCommerce < 3.0
  */
 class WooCommerce_Coupon_Shortcodes_Views {
 
@@ -302,8 +302,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			foreach ( $_coupons as $coupon ) {
 				$coupon_code = $coupon->post_title;
 				$coupon = new WC_Coupon( $coupon_code );
-				if ( $coupon->get_id() ) {
-					$coupon_codes[] = $coupon->get_code();
+				if ( $coupon->id ) {
+					$coupon_codes[] = $coupon->code;
 				}
 			}
 		}
@@ -345,7 +345,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		$validities = array();
 		foreach ( $codes as $code ) {
 			$coupon = new WC_Coupon( $code );
-			if ( $coupon->get_id() ) {
+			if ( $coupon->id ) {
 				$validities[] = $coupon->is_valid();
 			}
 		}
@@ -611,9 +611,9 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		$codes = self::get_codes( $options );
 		foreach ( $codes as $code ) {
 			$coupon = new WC_Coupon( $code );
-			if ( $coupon->get_id() ) {
-				$output .= sprintf( '<span class="coupon code %s">', stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) );
-				$output .= stripslashes( wp_strip_all_tags( $coupon->get_code() ) );
+			if ( $coupon->id ) {
+				$output .= sprintf( '<span class="coupon code %s">', stripslashes( wp_strip_all_tags( $coupon->code ) ) );
+				$output .= stripslashes( wp_strip_all_tags( $coupon->code ) );
 				$output .= '</span>';
 				$output .= stripslashes( wp_filter_kses( $options['separator'] ) );
 			}
@@ -662,21 +662,21 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		$codes = self::get_codes( $options );
 		foreach ( $codes as $code ) {
 			$coupon = new WC_Coupon( $code );
-			if ( $coupon->get_id() ) {
-				if ( $post = get_post( $coupon->get_id() ) ) {
+			if ( $coupon->id ) {
+				if ( $post = get_post( $coupon->id ) ) {
 					if ( !empty( $post->post_excerpt ) ) {
 
 						$element_prefix = '';
 						if ( $prefix_code ) {
-							$element_prefix .= sprintf( '<span class="coupon code %s">', stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) );
-							$element_prefix .= stripslashes( wp_strip_all_tags( $coupon->get_code() ) );
+							$element_prefix .= sprintf( '<span class="coupon code %s">', stripslashes( wp_strip_all_tags( $coupon->code ) ) );
+							$element_prefix .= stripslashes( wp_strip_all_tags( $coupon->code ) );
 							$element_prefix .= '</span>';
 							$element_prefix .= stripslashes( wp_filter_kses( $options['prefix_separator'] ) );
 						}
 
 						$elements[] =
 							$element_prefix .
-							sprintf( '<%s class="coupon description %s">', stripslashes( wp_strip_all_tags( $element_tag ) ), stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) ) .
+							sprintf( '<%s class="coupon description %s">', stripslashes( wp_strip_all_tags( $element_tag ) ), stripslashes( wp_strip_all_tags( $coupon->code ) ) ) .
 							stripslashes( wp_filter_kses( $post->post_excerpt ) ) .
 							sprintf( '</%s>', stripslashes( wp_strip_all_tags( $element_tag ) ) );
 					}
@@ -738,8 +738,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		foreach ( $codes as $code ) {
 			$element_output = '';
 			$coupon = new WC_Coupon( $code );
-			if ( $coupon->get_id() ) {
-				$element_output .= sprintf( '<%s class="coupon discount %s">', stripslashes( wp_strip_all_tags( $element_tag ) ), stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) );
+			if ( $coupon->id ) {
+				$element_output .= sprintf( '<%s class="coupon discount %s">', stripslashes( wp_strip_all_tags( $element_tag ) ), stripslashes( wp_strip_all_tags( $coupon->code ) ) );
 
 				$renderer = null;
 				if ( $options['renderer'] == 'auto' ) {
@@ -752,8 +752,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 					// WooCommerce_Volume_Discount_Coupons_Shortcodes
 					if ( class_exists( 'WooCommerce_Volume_Discount_Coupons_Shortcodes' ) ) {
-						$min = get_post_meta( $coupon->get_id(), '_vd_min', true );
-						$max = get_post_meta( $coupon->get_id(), '_vd_max', true );
+						$min = get_post_meta( $coupon->id, '_vd_min', true );
+						$max = get_post_meta( $coupon->id, '_vd_max', true );
 						if ( ( $min > 0 ) || ( $max > 0 ) ) {
 							$renderer = 'WooCommerce_Volume_Discount_Coupons_Shortcodes';
 						}
@@ -762,8 +762,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				}
 
 				if ( $prefix_code ) {
-					$element_output .= sprintf( '<span class="coupon code %s">', stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) );
-					$element_output .= stripslashes( wp_strip_all_tags( $coupon->get_code() ) );
+					$element_output .= sprintf( '<span class="coupon code %s">', stripslashes( wp_strip_all_tags( $coupon->code ) ) );
+					$element_output .= stripslashes( wp_strip_all_tags( $coupon->code ) );
 					$element_output .= '</span>';
 					$element_output .= stripslashes( wp_filter_kses( $options['prefix_separator'] ) );
 				}
@@ -808,7 +808,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		if ( function_exists( 'wc_price' ) ) {
 			$amount_suffix = null;
 		}
-		switch( $coupon->get_discount_type() ) {
+		switch( $coupon->type ) {
 			case 'percent' :
 			case 'percent_product' :
 			case 'sign_up_fee_percent' :
@@ -819,15 +819,15 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 		$products = array();
 		$categories = array();
-		switch ( $coupon->get_discount_type() ) {
+		switch ( $coupon->type ) {
 			case 'fixed_product' :
 			case 'percent_product' :
 			case 'sign_up_fee' :
 			case 'sign_up_fee_percent' :
 			case 'recurring_fee' :
 			case 'recurring_percent' :
-				if ( sizeof( $coupon->get_product_ids() ) > 0 ) {
-					foreach( $coupon->get_product_ids() as $product_id ) {
+				if ( sizeof( $coupon->product_ids ) > 0 ) {
+					foreach( $coupon->product_ids as $product_id ) {
 						$product = get_product( $product_id );
 						if ( $product ) {
 							$products[] = sprintf(
@@ -838,8 +838,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 						}
 					}
 				}
-				if ( sizeof( $coupon->get_product_categories() ) > 0 ) {
-					foreach( $coupon->get_product_categories() as $term_id ) {
+				if ( sizeof( $coupon->product_categories ) > 0 ) {
+					foreach( $coupon->product_categories as $term_id ) {
 						if ( $term = get_term_by( 'id', $term_id, 'product_cat' ) ) {
 							$categories[] = sprintf(
 								'<span class="product-link"><a href="%s">%s</a></span>',
@@ -852,24 +852,24 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				break;
 		}
 
-		$amount = $coupon->get_amount();
+		$amount = $coupon->amount;
 		if ( $amount_suffix === null ) {
 			$amount = wc_price( $amount );
 			$amount_suffix = '';
 		}
-		switch ( $coupon->get_discount_type() ) {
+		switch ( $coupon->type ) {
 
 			case 'fixed_product' :
 			case 'percent_product' :
-				if ( sizeof( $coupon->get_product_ids() ) > 0 ) {
+				if ( sizeof( $coupon->product_ids ) > 0 ) {
 					if ( count( $products ) > 0 ) {
 						$result = sprintf( __( '%s%s Discount on %s', WOO_CODES_PLUGIN_DOMAIN ), $amount, $amount_suffix, implode( $product_delimiter, $products ) );
 					} else {
 						$result = sprintf( __( '%s%s Discount on selected products', WOO_CODES_PLUGIN_DOMAIN ), $amount, $amount_suffix );
 					}
-				} else if ( sizeof( $coupon->get_product_categories() ) > 0 ) {
+				} else if ( sizeof( $coupon->product_categories ) > 0 ) {
 					$result = sprintf( __( '%s%s Discount in %s', WOO_CODES_PLUGIN_DOMAIN ), $amount, $amount_suffix, implode( $category_delimiter, $categories ) );
-				} else if ( sizeof( $coupon->get_exclude_product_ids() ) > 0 || sizeof( $coupon->get_exclude_product_categories() ) > 0 ) {
+				} else if ( sizeof( $coupon->exclude_product_ids ) > 0 || sizeof( $coupon->exclude_product_categories ) > 0 ) {
 					$result = sprintf( __( '%s%s Discount on selected products', WOO_CODES_PLUGIN_DOMAIN ), $amount, $amount_suffix );
 				} else {
 					$result = sprintf( __( '%s%s Discount', WOO_CODES_PLUGIN_DOMAIN ), $amount, $amount_suffix );
@@ -887,18 +887,18 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			case 'recurring_fee' :
 			case 'recurring_percent' :
 				$discount_name = __( 'Subscription Discount', WOO_CODES_PLUGIN_DOMAIN );
-				if ( $coupon->get_discount_type() == 'sign_up_fee' || $coupon->get_discount_type() == 'sign_up_fee_percent' ) {
+				if ( $coupon->type == 'sign_up_fee' || $coupon->type == 'sign_up_fee_percent' ) {
 					$discount_name = __( 'Sign Up Discount', WOO_CODES_PLUGIN_DOMAIN );
 				}
-				if ( sizeof( $coupon->get_product_ids() ) > 0 ) {
+				if ( sizeof( $coupon->product_ids ) > 0 ) {
 					if ( count( $products ) > 0 ) {
 						$result = sprintf( __( '%s%s %s on %s', WOO_CODES_PLUGIN_DOMAIN ), $amount, $amount_suffix, $discount_name, implode( $product_delimiter, $products ) );
 					} else {
 						$result = sprintf( __( '%s%s %s on selected products', WOO_CODES_PLUGIN_DOMAIN ), $amount, $amount_suffix, $discount_name );
 					}
-				} else if ( sizeof( $coupon->get_product_categories() ) > 0 ) {
+				} else if ( sizeof( $coupon->product_categories ) > 0 ) {
 					$result = sprintf( __( '%s%s %s in %s', WOO_CODES_PLUGIN_DOMAIN ), $amount, $amount_suffix, $discount_name, implode( $category_delimiter, $categories ) );
-				} else if ( sizeof( $coupon->get_exclude_product_ids() ) > 0 || sizeof( $coupon->get_exclude_product_categories() ) > 0 ) {
+				} else if ( sizeof( $coupon->exclude_product_ids ) > 0 || sizeof( $coupon->exclude_product_categories ) > 0 ) {
 					$result = sprintf( __( '%s%s %s on selected products', WOO_CODES_PLUGIN_DOMAIN ), $amount, $amount_suffix, $discount_name );
 				} else {
 					$result = sprintf( __( '%s%s %s', WOO_CODES_PLUGIN_DOMAIN ), $amount, $amount_suffix, $discount_name );
