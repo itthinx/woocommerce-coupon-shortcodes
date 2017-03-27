@@ -36,7 +36,11 @@ class WooCommerce_Coupon_Shortcodes {
 		add_action( 'admin_notices', array( __CLASS__, 'admin_notices' ) );
 		add_action( 'init', array( __CLASS__, 'wp_init' ) );
 		if ( self::check_dependencies() ) {
-			require_once( WOO_CODES_VIEWS_LIB . '/class-woocommerce-coupon-shortcodes-views.php' );
+			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.0' ) >= 0 ) {
+				require_once( WOO_CODES_VIEWS_LIB . '/class-woocommerce-coupon-shortcodes-views.php' );
+			} else {
+				require_once( WOO_CODES_VIEWS_LIB . '/class-woocommerce-coupon-shortcodes-views-pre-3.0.php' );
+			}
 		}
 	}
 	
