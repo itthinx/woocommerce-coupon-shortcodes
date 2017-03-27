@@ -808,7 +808,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		if ( function_exists( 'wc_price' ) ) {
 			$amount_suffix = null;
 		}
-		switch( $coupon->get_type() ) {
+		switch( $coupon->get_discount_type() ) {
 			case 'percent' :
 			case 'percent_product' :
 			case 'sign_up_fee_percent' :
@@ -819,7 +819,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 		$products = array();
 		$categories = array();
-		switch ( $coupon->get_type() ) {
+		switch ( $coupon->get_discount_type() ) {
 			case 'fixed_product' :
 			case 'percent_product' :
 			case 'sign_up_fee' :
@@ -857,7 +857,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$amount = wc_price( $amount );
 			$amount_suffix = '';
 		}
-		switch ( $coupon->get_type() ) {
+		switch ( $coupon->get_discount_type() ) {
 
 			case 'fixed_product' :
 			case 'percent_product' :
@@ -887,7 +887,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			case 'recurring_fee' :
 			case 'recurring_percent' :
 				$discount_name = __( 'Subscription Discount', WOO_CODES_PLUGIN_DOMAIN );
-				if ( $coupon->get_type() == 'sign_up_fee' || $coupon->get_type() == 'sign_up_fee_percent' ) {
+				if ( $coupon->get_discount_type() == 'sign_up_fee' || $coupon->get_discount_type() == 'sign_up_fee_percent' ) {
 					$discount_name = __( 'Sign Up Discount', WOO_CODES_PLUGIN_DOMAIN );
 				}
 				if ( sizeof( $coupon->get_product_ids() ) > 0 ) {
