@@ -3,8 +3,8 @@ Contributors: itthinx
 Donate link: http://www.itthinx.com/plugins/woocommerce-coupon-shortcodes
 Tags: conditional, coupon, coupons, discount, discounts, display, info, information, marketing, promotion, shortcode, shortcodes, subscription, subscriptions, woocommerce
 Requires at least: 4.0
-Tested up to: 4.7.3
-Stable tag: 1.4.0
+Tested up to: 4.8
+Stable tag: 1.5.0
 License: GPLv3
 
 Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally, based on the validity of coupons.
@@ -93,47 +93,10 @@ See the plugin page [WooCommerce Coupon Shortcodes](http://www.itthinx.com/plugi
 
 == Changelog ==
 
-= 1.4.0 =
-* Tested with WordPress 4.7.3 and prepared for WooCommerce 3.0
-
-= 1.3.0 =
-* Tested with WordPress 4.4 and WooCommerce 2.4.10.
-* Added the `[coupon_is_not_applied]` shortcode.
-
-= 1.2.6 =
-* Tested with WordPress 4.3 and WooCommerce 2.4.6.
-* Updated the documentation links.
-
-= 1.2.5 =
-* WordPress 4.1 and WooCommerce 2.3.x compatibility checked
-* Updated the version required
-
-= 1.2.4 =
-* WordPress 3.9 compatibility checked
-
-= 1.2.3 =
-* Improved coupon currency symbol rendering, now using wp_price() to render amount and currency when available.
-
-= 1.2.2 =
-* WordPress 3.8 compatibility checked
-
-= 1.2.1 =
-* Fixed a PHP Warning when no codes are supplied to a shortcode.
-
-= 1.2.0 =
-* Added [coupon_enumerate] shortcode
-* Added support for subscription coupons
-* Added the option to display the coupon code as prefix with the [coupon_description] and [coupon_discount] shortcodes.
-* Fixed bug caused by undeclared variable used to check excluded product IDs
-
-= 1.1.0 =
-* Added: [coupon_is_applied] shortcode
-* Improved: allow more flexible description and discount listings, the `element_tag` attribute can be used to specify enclosing tags other than the default `span`
-
-= 1.0.0 =
-* Initial release.
+= 1.5.0 =
+* Tested with WordPress 4.8.
 
 == Upgrade Notice ==
 
-= 1.3.0 =
-* WordPress 4.4 compatibility checked and added the `[coupon_is_applied]` shortcode.
+= 1.5.0 =
+* This release has been tested for WordPress 4.8.
