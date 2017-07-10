@@ -96,6 +96,8 @@ See the plugin page [WooCommerce Coupon Shortcodes](http://www.itthinx.com/plugi
 = 1.5.0 =
 * Tested with WordPress 4.8.
 
+[Complete Changelog](https://github.com/itthinx/woocommerce-coupon-shortcodes/blob/master/changelog.txt)
+
 == Upgrade Notice ==
 
 = 1.5.0 =
