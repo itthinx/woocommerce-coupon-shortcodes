@@ -5,7 +5,7 @@ Tags: woocommerce, shortcode, coupon, discount, marketing, theme, conditional, c
 Requires at least: 4.6
 Requires PHP: 5.5.38
 Tested up to: 4.9
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 License: GPLv3
 
 Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally, based on the validity of coupons.
@@ -94,6 +94,9 @@ See the plugin page [WooCommerce Coupon Shortcodes](http://www.itthinx.com/plugi
 
 == Changelog ==
 
+= 1.6.1 =
+* Updated compatibility with WooCommerce 3.4
+
 = 1.6.0 =
 * Tested with WordPress 4.9.
 * Tested with WooCommerce 3.3.5
@@ -103,5 +106,4 @@ See the plugin page [WooCommerce Coupon Shortcodes](http://www.itthinx.com/plugi
 
 == Upgrade Notice ==
 
-This release has been tested with WordPress 4.9 and the current stable WooCommerce 3.3.5 as well
-as WooCommerce 3.4.0-beta.1
+This release has been tested with the latest versions of WordPress and WooCommerce.

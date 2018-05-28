@@ -2,7 +2,7 @@
 /**
  * class-woocommerce-coupon-shortcodes-views-pre-3.0.php
  *
- * Copyright (c) 2013 - 2017 "kento" Karim Rahimpur www.itthinx.com
+ * Copyright (c) "kento" Karim Rahimpur www.itthinx.com
  *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
@@ -18,6 +18,10 @@
  * @package woocommerce-coupon-shortcodes
  * @since woocommerce-coupon-shortcodes 1.4.0
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Shortcodes ... used with WooCommerce < 3.0
