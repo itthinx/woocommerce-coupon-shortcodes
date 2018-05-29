@@ -1,5 +1,8 @@
 == WooCommerce Coupon Shortcodes by itthinx                       Changelog ==
 
+= 1.6.2 =
+* Added the Woo plugin header tag.
+
 = 1.6.1 =
 * Updated compatibility with WooCommerce 3.4.
 * Fixed missing ABSPATH checks.
