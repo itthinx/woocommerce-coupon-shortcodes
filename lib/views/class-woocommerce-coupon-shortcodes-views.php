@@ -40,6 +40,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		add_shortcode( 'coupon_code', array( __CLASS__, 'coupon_code' ) );
 		add_shortcode( 'coupon_description', array( __CLASS__, 'coupon_description' ) );
 		add_shortcode( 'coupon_discount', array( __CLASS__, 'coupon_discount' ) );
+		add_shortcode( 'coupon_show', array( __CLASS__, 'coupon_show' ) );
 	}
 
 	/**
@@ -181,9 +182,13 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	 * 
 	 * - type (coupon type) : fixed_cart, percent, fixed_product, percent_product, sign_up_fee, sign_up_fee_percent, recurring_fee, recurring_percent
 	 * - type (sets) : cart, fixed, percent, product, recurring, sign_up, subscription
-	 * - order : ID, code
-	 * - orderby : ASC, DESC
-	 * 
+	 * - orderby : code/post_title, ID, rand (*)
+	 * - order   : ASC/DESC (*)
+	 * - number  : int
+	 *
+	 * (*) PRE 1.7.0 - order : ID, code
+	 * (*) PRE 1.7.0 - orderby : ASC, DESC
+	 *
 	 * @return array of string with coupon codes
 	 */
 	private static function _get_coupon_codes( $options = array() ) {
@@ -265,31 +270,78 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			}
 		}
 
-		$order = 'post_title';
+		// prior to 1.7.0 the options order and orderby were mistakenly swapped; cover for cases where these are used (*)
+
+		$_order = null;
+		$_orderby = null;
+
+		$order = 'ASC';
 		if ( isset( $options['order'] ) ) {
 			switch( $options['order'] ) {
-				case 'ID' :
-					$order = 'ID';
-					break;
-			}
-		}
-
-		$orderby = 'ASC';
-		if ( isset( $options['orderby'] ) ) {
-			switch( $options['orderby'] ) {
+				// correct values as of 1.7.0
 				case 'asc' :
 				case 'ASC' :
 				case 'desc' :
 				case 'DESC' :
+					$order = $options['order'];
+					break;
+				// (*) old swapped values which are for orderby
+				case 'ID' :
+				case 'post_title' :
+				case 'code' :
+					$_orderby = $options['order'];
+					break;
+				default :
+					$order = 'ASC';
+			}
+		}
+
+		$randomize = false;
+		$orderby   = 'post_title';
+		if ( isset( $options['orderby'] ) ) {
+			switch( $options['orderby'] ) {
+				// correct values as of 1.7.0
+				case 'ID' :
+				case 'post_title' :
 					$orderby = $options['orderby'];
 					break;
+				case 'code' :
+					$orderby = 'post_title';
+					break;
+				case 'rand' :
+				case 'RAND' :
+					// avoid doing a RAND DB query
+					$orderby = 'post_title';
+					$randomize = true;
+					break;
+				// (*) old swapped values which are for order
+				case 'asc' :
+				case 'ASC' :
+				case 'desc' :
+				case 'DESC' :
+					$_order = $options['orderby'];
+					break;
+				default :
+					$orderby = 'post_title';
 			}
+		}
+
+		if ( $_order !== null ) {
+			$order = $_order;
+		}
+		if ( $_orderby !== null ) {
+			$orderby = $_orderby;
+		}
+
+		$number = null;
+		if ( $options['number'] !== null ) {
+			$number = max( 1, intval( $options['number'] ) );
 		}
 
 		$coupon_codes = array();
 		if ( count( $types ) == 0 ) {
 			$_coupons = $wpdb->get_results(
-				"SELECT DISTINCT ID, post_title FROM $wpdb->posts WHERE post_type = 'shop_coupon' AND post_status = 'publish' ORDER BY $order $orderby"
+				"SELECT DISTINCT ID, post_title FROM $wpdb->posts WHERE post_type = 'shop_coupon' AND post_status = 'publish' ORDER BY $orderby $order"
 			);
 		} else {
 			$types = esc_sql( $types );
@@ -299,10 +351,19 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			}
 			$_types = ' (' . implode(',', $ts ) . ') ';
 			$_coupons = $wpdb->get_results(
-				"SELECT DISTINCT ID, post_title FROM $wpdb->posts p LEFT JOIN $wpdb->postmeta pm ON p.ID = pm.post_id WHERE p.post_type = 'shop_coupon' AND p.post_status = 'publish' AND pm.meta_key = 'discount_type' AND pm.meta_value IN $_types ORDER BY $order $orderby"
+				"SELECT DISTINCT ID, post_title FROM $wpdb->posts p LEFT JOIN $wpdb->postmeta pm ON p.ID = pm.post_id WHERE p.post_type = 'shop_coupon' AND p.post_status = 'publish' AND pm.meta_key = 'discount_type' AND pm.meta_value IN $_types ORDER BY $orderby $order"
 			);
 		}
 		if ( $_coupons && ( count( $_coupons ) > 0 ) ) {
+
+			if ( $randomize ) {
+				shuffle( $_coupons );
+			}
+
+			if ( $number !== null ) {
+				$_coupons = array_slice( $_coupons, 0, $number );
+			}
+
 			foreach ( $_coupons as $coupon ) {
 				$coupon_code = $coupon->post_title;
 				$coupon = new WC_Coupon( $coupon_code );
@@ -426,7 +487,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				'code'    => null,
 				'type'    => null,
 				'order'   => null,
-				'orderby' => null
+				'orderby' => null,
+				'number'  => null
 			),
 			$atts
 		);
@@ -439,6 +501,10 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		}
 		if ( $code === null ) {
 			return '';
+		}
+
+		if ( $options['number'] !== null ) {
+			$options['number'] = max( 1, intval( $options['number'] ) );
 		}
 
 		$coupon_codes = self::_get_coupon_codes( $options );
@@ -913,5 +979,74 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		return apply_filters( 'woocommerce_coupon_shortcodes_info', $result, $coupon );
 	}
 
+	/**
+	 * Renders coupon info.
+	 *
+	 * @param array $atts
+	 * @param string $content not used
+	 * @return string
+	 */
+	public static function coupon_show( $atts, $content = null ) {
+
+		$output = '';
+		$options = shortcode_atts(
+			array(
+				'show'         => 'code,discount',
+				'code'         => null,
+				'before'       => '<div>',
+				'after'        => '</div>',
+				'before_entry' => '',
+				'after_entry'  => '',
+				'separator'    => ' '
+			),
+			$atts
+		);
+
+		$show = array();
+		$_show = array_map( 'trim', explode( ',', trim( $options['show'] ) ) );
+		foreach ( $_show as $what ) {
+			switch ( $what ) {
+				case 'code' :
+				case 'description' :
+				case 'discount' :
+					$show[] = $what;
+					break;
+			}
+		}
+
+		if ( count( $show ) > 0 ) {
+			$codes = self::get_codes( $options );
+			foreach ( $codes as $code ) {
+				$coupon = new WC_Coupon( $code );
+				if ( $coupon->get_id() ) {
+					$output .= $options['before'];
+					for ( $i = 0; $i < count( $show ); $i++ ) {
+						$html = '';
+						switch ( $show[$i] ) {
+							case 'code' :
+								$html = self::coupon_code( array( 'code' => $code ) );
+								break;
+							case 'description' :
+								$html = self::coupon_description( array( 'code' => $code ) );
+								break;
+							case 'discount' :
+								$html = self::coupon_discount( array( 'code' => $code ) );
+								break;
+						}
+						if ( strlen( $html ) > 0 ) {
+							$output .= stripslashes( wp_filter_kses( $options['before_entry'] ) );
+							$output .= $html;
+							$output .= stripslashes( wp_filter_kses( $options['after_entry'] ) );
+							if ( $i < count( $show ) - 1 ) {
+								$output .= stripslashes( wp_filter_kses( $options['separator'] ) );
+							}
+						}
+					}
+					$output .= $options['after'];
+				}
+			}
+		}
+		return $output;
+	}
 }
 WooCommerce_Coupon_Shortcodes_Views::init();

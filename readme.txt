@@ -4,8 +4,8 @@ Donate link: http://www.itthinx.com/shop/
 Tags: woocommerce, shortcode, coupon, discount, marketing, theme, conditional, coupons, discounts, display, info, information, promotion, subscription, subscriptions
 Requires at least: 4.6
 Requires PHP: 5.5.38
-Tested up to: 4.9
-Stable tag: 1.6.2
+Tested up to: 5.0
+Stable tag: 1.7.0
 License: GPLv3
 
 Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally, based on the validity of coupons.
@@ -20,7 +20,7 @@ so they can use a coupon.
 
 Extended coupon discount info for volume discounts is shown automatically, if the [WooCommerce Volume Discount Coupons](http://www.itthinx.com/plugins/woocommerce-volume-discount-coupons) is installed.
 
-It also works with [WooCommerce Coupons Countdown](http://www.itthinx.com/plugins/woocommerce-coupons-countdown).
+It also works with [WooCommerce Group Coupons](https://www.itthinx.com/shop/woocommerce-group-coupons) and [WooCommerce Coupons Countdown](http://www.itthinx.com/plugins/woocommerce-coupons-countdown).
 
 = Conditional Shortcodes =
 
@@ -38,8 +38,10 @@ It also provides shortcodes that allow to render the coupon code, its descriptio
 `[coupon_code]` (this one makes sense mostly when used inside one of the conditional shortcodes).
 `[coupon_description]`
 `[coupon_discount]`
+`[coupon_show]`
 
-A coupon enumerator shortcode allows to list all or a set of coupons, to show their code, description or discount information:
+A coupon enumerator shortcode allows to list all or a set of coupons, to show their code, description or discount information,
+(or combinations of those using the `[coupon_show]` shortcode):
 
 `[coupon_enumerate]`
 
@@ -62,6 +64,18 @@ Showing a coupon that is not valid for the current cart and motivating to add it
 `[coupon_is_not_valid code="25off"]
 If you purchase 5 Widgets, you can use the coupon [coupon_code] to get 25% off your purchase!
 [/coupon_is_not_valid]`
+
+Show information about three random coupons, including the coupon code, its description and discount info together on each entry:
+
+`[coupon_enumerate code="*" orderby="rand" number="3"]
+[coupon_show show="code,description,discount"]
+[/coupon_enumerate]`
+
+Show a single random coupon code:
+
+`[coupon_enumerate code="*" orderby="rand" number="1"]
+[coupon_code]
+[/coupon_enumerate]`
 
 = Documentation and Support =
 
@@ -94,19 +108,18 @@ See the plugin page [WooCommerce Coupon Shortcodes](http://www.itthinx.com/plugi
 
 == Changelog ==
 
-= 1.6.2 =
-* Added the Woo plugin header tag.
-
-= 1.6.1 =
-* Updated compatibility with WooCommerce 3.4
-
-= 1.6.0 =
-* Tested with WordPress 4.9.
-* Tested with WooCommerce 3.3.5
-* Tested with WooCommerce 3.4.0-beta.1
+= 1.7.0 =
+* Added the [coupon_show] shortcode which allows to render coupon
+  code, description and discount info together for each discount,
+  also in enumerations with [coupon_enumerate].
+* Updated and tested for WordPress 5.0 compatibility.
+* Updated and tested for WooCommerce 3.5 compatibility.
+* Added the option to randomize a coupon enumeration.
+* Fixed swapped options used in coupon enumerations (order and orderby).
+* Updated the readme.txt with additional examples.
 
 [Complete Changelog](https://github.com/itthinx/woocommerce-coupon-shortcodes/blob/master/changelog.txt)
 
 == Upgrade Notice ==
 
-This release has been tested with the latest versions of WordPress and WooCommerce.
+This release adds a new shortcode [coupon_show], a new randomization option to enumerate coupons, fixes swapped options and has been tested with the latest versions of WordPress and WooCommerce.
