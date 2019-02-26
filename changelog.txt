@@ -1,5 +1,10 @@
 == WooCommerce Coupon Shortcodes by itthinx                       Changelog ==
 
+
+= 1.8.0 =
+* WordPress 5.1 compatibility tested.
+* WooCommerce 3.5 compatibility tested.
+
 = 1.7.0 =
 * Added the [coupon_show] shortcode which allows to render coupon
   code, description and discount info together for each discount,
