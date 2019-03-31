@@ -23,6 +23,71 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( class_exists( 'WC_Discounts' ) ) {
+	/**
+	 * Extends the WC_Discounts class and uses native methods to evaluate coupon useability.
+	 * @since 1.9.0
+	 */
+	class WooCommerce_Coupon_Shortcodes_WC_Discounts extends WC_Discounts {
+
+		/**
+		 * Check if the coupon exists.
+		 *
+		 * @param WC_Coupon $coupon
+		 *
+		 * @return boolean
+		 */
+		public function _wcs_coupon_exists( $coupon ) {
+			try {
+				$exists = $this->validate_coupon_exists( $coupon );
+			} catch ( Exception $exception ) {
+				$exists = false;
+			}
+			return $exists;
+		}
+
+		/**
+		 * Check if the coupon has expired.
+		 *
+		 * @param WC_Coupon $coupon
+		 *
+		 * @return boolean
+		 */
+		public function _wcs_coupon_is_expired( $coupon ) {
+			try {
+				$is_expired = !$this->validate_coupon_expiry_date( $coupon );
+			} catch ( Exception $exception ) {
+				$is_expired = true;
+			}
+			return $is_expired;
+		}
+
+		/**
+		 * Check whether the coupon can be used yet,
+		 * based on its usage limit and its per user usage limit for the current user.
+		 *
+		 * @param WC_Coupon $coupon
+		 *
+		 * @return boolean
+		 */
+		public function _wcs_coupon_is_useable( $coupon ) {
+			try {
+				$is_useable = $this->validate_coupon_usage_limit( $coupon );
+			} catch ( Exception $exception ) {
+				$is_useable = false;
+			}
+			if ( $is_useable ) {
+				try {
+					$is_useable = $this->validate_coupon_user_usage_limit( $coupon );
+				} catch ( Exception $exception ) {
+					$is_useable = false;
+				}
+			}
+			return $is_useable;
+		}
+	}
+}
+
 /**
  * Shortcodes.
  */
@@ -41,6 +106,11 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		add_shortcode( 'coupon_description', array( __CLASS__, 'coupon_description' ) );
 		add_shortcode( 'coupon_discount', array( __CLASS__, 'coupon_discount' ) );
 		add_shortcode( 'coupon_show', array( __CLASS__, 'coupon_show' ) );
+		// WC >= 3.2
+		if ( class_exists( 'WC_Discounts' ) ) {
+			add_shortcode( 'coupon_is_active', array( __CLASS__, 'coupon_is_active' ) );
+			add_shortcode( 'coupon_is_not_active', array( __CLASS__, 'coupon_is_not_active' ) );
+		}
 	}
 
 	/**
@@ -376,6 +446,61 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	}
 
 	/**
+	 * Evaluates to true if the set of coupons is considered as active.
+	 * Active means: the coupon exists, it has not expired and its usage limit has not been exceeded.
+	 *
+	 * @param array $atts
+	 * @return boolean
+	 */
+	private static function _is_active( $atts ) {
+
+		global $woocommerce_coupon_shortcodes_codes;
+
+		$options = shortcode_atts(
+			array(
+				'coupon' => null,
+				'code'   => null,
+				'op'     => 'and'
+			),
+			$atts
+		);
+
+		$code = null;
+		if ( !empty( $options['code'] ) ) {
+			$code = $options['code'];
+		} else if ( !empty( $options['coupon'] ) ) {
+			$code = $options['coupon'];
+		}
+		if ( $code === null ) {
+			return '';
+		}
+
+		$codes = array_map( 'trim', explode( ',', $code ) );
+		$woocommerce_coupon_shortcodes_codes = $codes;
+
+		$wcs_discounts = new WooCommerce_Coupon_Shortcodes_WC_Discounts();
+
+		$actives = array();
+		foreach ( $codes as $code ) {
+			$coupon = new WC_Coupon( $code );
+			$actives[] =
+				$wcs_discounts->_wcs_coupon_exists( $coupon ) &&
+				!$wcs_discounts->_wcs_coupon_is_expired( $coupon ) &&
+				$wcs_discounts->_wcs_coupon_is_useable( $coupon );
+		}
+
+		switch( strtolower( $options['op'] ) ) {
+			case 'and' :
+				$active = self::conj( $actives );
+				break;
+			default :
+				$active = self::disj( $actives );
+		}
+
+		return $active;
+	}
+
+	/**
 	 * Evaluate common validity based on op and coupon codes.
 	 * 
 	 * @param array $atts
@@ -573,6 +698,59 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				remove_shortcode( 'coupon_is_not_applied' );
 				$content = do_shortcode( $content );
 				add_shortcode( 'coupon_is_not_applied', array( __CLASS__, 'coupon_is_not_applied' ) );
+				$output = $content;
+			}
+		}
+		return $output;
+	}
+
+	/**
+	 * Conditionally render content if the coupon(s) is (are) active, i.e. existing, not expired and
+	 * below general and per user usage limits.
+	 *
+	 * Takes a comma-separated list of coupon codes as coupon or code attribute.
+	 *
+	 * The op attribute determines whether all codes must be active (and) or
+	 * any code can be active (or) for the content to be rendered.
+	 *
+	 * @param array $atts attributes
+	 * @param string $content content to render
+	 * @return string
+	 */
+	public static function coupon_is_active( $atts, $content = null ) {
+		$output = '';
+		if ( !empty( $content ) ) {
+			$active = self::_is_active( $atts );
+			if ( $active ) {
+				remove_shortcode( 'coupon_is_active' );
+				$content = do_shortcode( $content );
+				add_shortcode( 'coupon_is_active', array( __CLASS__, 'coupon_is_active' ) );
+				$output = $content;
+			}
+		}
+		return $output;
+	}
+
+	/**
+	 * Conditionally render content if the coupon is not active, i.e. expired or with usage limits exceeded.
+	 *
+	 * Takes a comma-separated list of coupon codes as coupon or code attribute.
+	 *
+	 * The op attribute determines whether all codes must be active (and) or
+	 * any code can be active (or) for the content to be rendered.
+	 *
+	 * @param array $atts attributes
+	 * @param string $content content to render
+	 * @return string
+	 */
+	public static function coupon_is_not_active( $atts, $content = null ) {
+		$output = '';
+		if ( !empty( $content ) ) {
+			$active = !self::_is_active( $atts );
+			if ( $active ) {
+				remove_shortcode( 'coupon_is_not_active' );
+				$content = do_shortcode( $content );
+				add_shortcode( 'coupon_is_not_active', array( __CLASS__, 'coupon_is_not_active' ) );
 				$output = $content;
 			}
 		}
