@@ -460,7 +460,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			array(
 				'coupon' => null,
 				'code'   => null,
-				'op'     => 'and'
+				'op'     => 'and',
+				'revop'  => false
 			),
 			$atts
 		);
@@ -489,6 +490,17 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				$wcs_discounts->_wcs_coupon_is_useable( $coupon );
 		}
 
+		if ( $options['revop'] ) {
+			switch( strtolower( $options['op'] ) ) {
+				case 'and' :
+					$options['op'] = 'or';
+					break;
+				case 'or' :
+					$options['op'] = 'and';
+					break;
+			}
+		}
+
 		switch( strtolower( $options['op'] ) ) {
 			case 'and' :
 				$active = self::conj( $actives );
@@ -514,7 +526,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			array(
 				'coupon' => null,
 				'code'   => null,
-				'op'     => 'and'
+				'op'     => 'and',
+				'revop'  => false
 			),
 			$atts
 		);
@@ -537,6 +550,17 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$coupon = new WC_Coupon( $code );
 			if ( $coupon->get_id() ) {
 				$validities[] = $coupon->is_valid();
+			}
+		}
+
+		if ( $options['revop'] ) {
+			switch( strtolower( $options['op'] ) ) {
+				case 'and' :
+					$options['op'] = 'or';
+					break;
+				case 'or' :
+					$options['op'] = 'and';
+					break;
 			}
 		}
 
@@ -746,6 +770,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	public static function coupon_is_not_active( $atts, $content = null ) {
 		$output = '';
 		if ( !empty( $content ) ) {
+			$atts['revop'] = true;
 			$active = !self::_is_active( $atts );
 			if ( $active ) {
 				remove_shortcode( 'coupon_is_not_active' );
@@ -798,6 +823,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	public static function coupon_is_not_valid( $atts, $content = null ) {
 		$output = '';
 		if ( !empty( $content ) ) {
+			$atts['revop'] = true;
 			$valid = !self::_is_valid( $atts );
 			if ( $valid ) {
 				remove_shortcode( 'coupon_is_not_valid' );

@@ -1,5 +1,12 @@
 == WooCommerce Coupon Shortcodes by itthinx                       Changelog ==
 
+= 1.9.1 =
+* Improved the logic applied to [coupon_is_not_active] so its usage is more intuitive with AND and OR ops on multiple codes.
+* Improved the logic applied to [coupon_is_not_valid] so its usage is more intuitive with AND and OR ops used with multiple codes.
+  If you were using it with multiple codes such as `[coupon_is_not_valid code="a,b"]...[/coupon_is_not_valid]` then you might
+  need to reverse the logic applied for consistent results: `[coupon_is_not_valid op="or" code="a,b"]...[/coupon_is_not_valid]`.
+  Similarly, if you were using `op="or"` you would now use `op="and"` with this shortcode.
+
 = 1.9.0 =
 * Added the [coupon_is_active] shortcode, requires WooCommerce 3.2 or higher.
 * Added the [coupon_is_not_active] shortcode, requires WooCommerce 3.2 or higher.
