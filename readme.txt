@@ -5,7 +5,7 @@ Tags: woocommerce, shortcode, coupon, discount, marketing, theme, conditional, c
 Requires at least: 4.6
 Requires PHP: 5.5.38
 Tested up to: 5.1
-Stable tag: 1.8.0
+Stable tag: 1.9.0
 License: GPLv3
 
 Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally, based on the validity of coupons.
@@ -26,6 +26,8 @@ It also works with [WooCommerce Group Coupons](https://www.itthinx.com/shop/wooc
 
 It provides the following conditional shortcodes that allow to enclose content which is shown if coupons are applied, valid or not valid.
 
+`[coupon_is_active]`
+`[coupon_is_not_active]`
 `[coupon_is_applied]`
 `[coupon_is_not_applied]`
 `[coupon_is_valid]`
@@ -52,7 +54,21 @@ Please refer to the plugin's [documentation pages](http://docs.itthinx.com/docum
 
 = Examples =
 
-Showing a coupon when the cart contents qualify for a coupon to be applied: 
+Show a text when a coupon can be used (active) - this is useful to show promotional info while coupons can be used,
+as active means that the coupon has not reached its expiration date nor exceeded its usage limits:
+
+`[coupon_is_active code="eastereggs"]
+Happy Easter!
+Use the coupon code [coupon_code] to hop away with a great discount : [coupon_discount]
+[/coupon_is_active]`
+
+This is an example of a text shown when a promotion is over:
+
+`[coupon_is_not_active code="specialdiscount"]
+Our special discount sale has ended. Come back often to see more!
+[/coupon_is_not_active]`
+
+Showing a coupon when the cart contents qualify for a coupon to be applied:
 
 `[coupon_is_valid code="superdiscount"]
 You qualify for a discount!
@@ -107,6 +123,10 @@ See the plugin page [WooCommerce Coupon Shortcodes](http://www.itthinx.com/plugi
 
 
 == Changelog ==
+
+= 1.9.0 =
+* Added the [coupon_is_active] shortcode, requires WooCommerce 3.2 or higher.
+* Added the [coupon_is_not_active] shortcode, requires WooCommerce 3.2 or higher.
 
 = 1.8.0 =
 * WordPress 5.1 compatibility tested.
