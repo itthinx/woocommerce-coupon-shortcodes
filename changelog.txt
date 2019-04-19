@@ -1,5 +1,8 @@
 == WooCommerce Coupon Shortcodes by itthinx                       Changelog ==
 
+= 1.10.0 =
+* WooCommerce 3.6 compatible.
+
 = 1.9.1 =
 * Improved the logic applied to [coupon_is_not_active] so its usage is more intuitive with AND and OR ops on multiple codes.
 * Improved the logic applied to [coupon_is_not_valid] so its usage is more intuitive with AND and OR ops used with multiple codes.
