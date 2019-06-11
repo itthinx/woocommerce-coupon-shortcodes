@@ -95,56 +95,63 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 	 */
 	public static function extensions() {
 
+		global $woocommerce_coupon_shortcodes_extensions;
+
 		$output = '';
 
-		$output .= '<style type="text/css">';
-		$output .= '.woocommerce-coupon-shortcodes-extensions {';
-		$output .= 'display: flex; flex-wrap: wrap;';
-		$output .= '}';
-		$output .= '.woocommerce-coupon-shortcodes-extension-container {';
-		$output .= 'flex: 1; margin: 0.62em;';
-		$output .= '}';
-		$output .= '.woocommerce-coupon-shortcodes-extension-container a {';
-		$output .= 'padding: 1em; margin: 0.62em; display: block; border: 1px solid #ccc; text-align: center; border-radius: 3px; text-decoration: none; color: #666;';
-		$output .= '}';
-		$output .= 'div.woocommerce-coupon-shortcodes-extension-container .extension-title {';
-		$output .= 'display: block; font-size: 1.6em; font-weight: 900; line-height: 1.62em;';
-		$output .= '}';
-		$output .= 'div.woocommerce-coupon-shortcodes-extension-container .extension-description {';
-		$output .= 'display: block; padding: 0.6em;';
-		$output .= '}';
-		$output .= '</style>';
+		if ( !isset( $woocommerce_coupon_shortcodes_extensions ) ) {
 
-		$output .= '<div class="woocommerce-coupon-shortcodes-extensions">';
+			$woocommerce_coupon_shortcodes_extensions = true;
 
-		$output .= '<div class="woocommerce-coupon-shortcodes-extension-container">';
-		$output .= sprintf(
-			'<a target="_blank" href="%s"><div class="extension-title">%s</div><div class="extension-description">%s</div></a>',
-			'https://woocommerce.com/products/group-coupons/?aff=7223&cid=2409803',
-			'Group Coupons',
-			esc_html__( 'Offer exclusive, automatic and targeted coupon discounts for your customers! Use group memberships and roles to control the validity of coupons.', 'woocommerce-coupon-shortcodes' )
-		);
-		$output .= '</div>';
+			$output .= '<style type="text/css">';
+			$output .= '.woocommerce-coupon-shortcodes-extensions {';
+			$output .= 'display: flex; flex-wrap: wrap;';
+			$output .= '}';
+			$output .= '.woocommerce-coupon-shortcodes-extension-container {';
+			$output .= 'flex: 1; margin: 0.62em;';
+			$output .= '}';
+			$output .= '.woocommerce-coupon-shortcodes-extension-container a {';
+			$output .= 'padding: 1em; margin: 0.62em; display: block; border: 1px solid #ccc; text-align: center; border-radius: 3px; text-decoration: none; color: #666;';
+			$output .= '}';
+			$output .= 'div.woocommerce-coupon-shortcodes-extension-container .extension-title {';
+			$output .= 'display: block; font-size: 1.6em; font-weight: 900; line-height: 1.62em;';
+			$output .= '}';
+			$output .= 'div.woocommerce-coupon-shortcodes-extension-container .extension-description {';
+			$output .= 'display: block; padding: 0.6em;';
+			$output .= '}';
+			$output .= '</style>';
 
-		$output .= '<div class="woocommerce-coupon-shortcodes-extension-container">';
-		$output .= sprintf(
-			'<a target="_blank" href="%s"><div class="extension-title">%s</div><div class="extension-description">%s</div></a>',
-			'https://woocommerce.com/products/woocommerce-product-search/?aff=7223&cid=2409803',
-			'WooCommerce Product Search',
-			esc_html__( 'The essential extension for every WooCommerce store! The perfect Search Engine for your store helps your customers to find and buy the right products quickly.', 'woocommerce-coupon-shortcodes' )
-		);
-		$output .= '</div>';
+			$output .= '<div class="woocommerce-coupon-shortcodes-extensions">';
 
-		$output .= '<div class="woocommerce-coupon-shortcodes-extension-container">';
-		$output .= sprintf(
-			'<a target="_blank" href="%s"><div class="extension-title">%s</div><div class="extension-description">%s</div></a>',
-			'https://woocommerce.com/products/groups-woocommerce/?aff=7223&cid=2409803',
-			'Groups WooCommerce',
-			esc_html__( 'Sell Memberships with Groups and WooCommerce! Groups WooCommerce grants memberships based on products. It automatically assigns a customer to one or more groups based on the products ordered.', 'woocommerce-coupon-shortcodes' )
-		);
-		$output .= '</div>';
+			$output .= '<div class="woocommerce-coupon-shortcodes-extension-container">';
+			$output .= sprintf(
+				'<a target="_blank" href="%s"><div class="extension-title">%s</div><div class="extension-description">%s</div></a>',
+				'https://woocommerce.com/products/group-coupons/?aff=7223&cid=2409803',
+				'Group Coupons',
+				esc_html__( 'Offer exclusive, automatic and targeted coupon discounts for your customers! Use group memberships and roles to control the validity of coupons.', 'woocommerce-coupon-shortcodes' )
+			);
+			$output .= '</div>';
 
-		$output .= '</div>';
+			$output .= '<div class="woocommerce-coupon-shortcodes-extension-container">';
+			$output .= sprintf(
+				'<a target="_blank" href="%s"><div class="extension-title">%s</div><div class="extension-description">%s</div></a>',
+				'https://woocommerce.com/products/woocommerce-product-search/?aff=7223&cid=2409803',
+				'WooCommerce Product Search',
+				esc_html__( 'The essential extension for every WooCommerce store! The perfect Search Engine for your store helps your customers to find and buy the right products quickly.', 'woocommerce-coupon-shortcodes' )
+			);
+			$output .= '</div>';
+
+			$output .= '<div class="woocommerce-coupon-shortcodes-extension-container">';
+			$output .= sprintf(
+				'<a target="_blank" href="%s"><div class="extension-title">%s</div><div class="extension-description">%s</div></a>',
+				'https://woocommerce.com/products/groups-woocommerce/?aff=7223&cid=2409803',
+				'Groups WooCommerce',
+				esc_html__( 'Sell Memberships with Groups and WooCommerce! Groups WooCommerce grants memberships based on products. It automatically assigns a customer to one or more groups based on the products ordered.', 'woocommerce-coupon-shortcodes' )
+			);
+			$output .= '</div>';
+
+			$output .= '</div>';
+		}
 		return $output;
 	}
 }
