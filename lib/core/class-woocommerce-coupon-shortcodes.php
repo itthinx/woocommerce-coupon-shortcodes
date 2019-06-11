@@ -52,6 +52,13 @@ class WooCommerce_Coupon_Shortcodes {
 			} else {
 				require_once( WOO_CODES_VIEWS_LIB . '/class-woocommerce-coupon-shortcodes-views-pre-3.0.php' );
 			}
+			// notice
+			if ( is_admin() ) {
+				if ( current_user_can( 'activate_plugins' ) ) { // important: after init hook
+					require_once WOO_CODES_ADMIN_LIB . '/class-woocommerce-coupon-shortcodes-admin-notice.php';
+				}
+				require_once WOO_CODES_ADMIN_LIB . '/class-woocommerce-coupon-shortcodes-admin-coupon.php';
+			}
 		}
 	}
 
