@@ -51,7 +51,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 	 * @return array
 	 */
 	public static function woocommerce_coupon_data_tabs( $tabs ) {
-		$tabs['groups'] = array(
+		$tabs['shortcodes'] = array(
 			'label'  => __( 'Shortcodes', 'woocommerce-coupon-shortcodes' ),
 			'target' => 'custom_coupon_shortcodes',
 			'class'  => 'coupon-shortcodes'
@@ -67,9 +67,150 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 		global $wpdb, $post;
 
 		echo '<style type="text/css">';
+		echo 'li.coupon-shortcodes a::before {';
+		echo 'content: "\f491" !important;';
+		echo 'font-family: dashicons;';
+		echo '}';
+		echo '#custom_coupon_shortcodes {';
+		echo 'padding: 1em;';
+		echo '}';
+		echo '#custom_coupon_shortcodes h3 {';
+		echo 'margin: 1.6em 0 0 0;';
+		echo '}';
+		echo '#custom_coupon_shortcodes pre {';
+		echo 'overflow: scroll;';
+		echo 'padding: 0.62em;';
+		echo 'background-color: #fff;';
+		echo 'color: #333;';
+		echo 'border: 1px solid #999';
+		echo '}';
 		echo '</style>';
 
 		echo '<div id="custom_coupon_shortcodes" class="panel woocommerce_options_panel">';
+
+		echo '<div class="options_group">';
+		// http://docs.itthinx.com/document/woocommerce-coupon-shortcodes/
+
+		echo '<p>';
+		esc_html_e( 'Here are examples of shortcodes that you can use with this coupon.', 'woocommerce-coupon-shortcodes' );
+		echo ' ';
+		printf(
+			__( 'For more details on these and other available shortcodes, please refer to the <a href="%s">documentation</a>.', 'woocommerce-coupon-shortcodes' ),
+			esc_url( 'http://docs.itthinx.com/document/woocommerce-coupon-shortcodes/' )
+		);
+		echo '</p>';
+
+		$code = '&hellip;';
+		if ( $post->post_status !== 'auto-draft' ) {
+			$coupon = new WC_Coupon( $post->ID );
+			$code = $coupon->get_code();
+		}
+
+		// coupon_is_active
+		echo '<h3>';
+		echo '[coupon_is_active]';
+		echo '</h3>';
+
+		echo '<p>';
+		esc_html_e( 'A coupon is considered active while it has not expired and its usage limits have not been exhausted.', 'woocommerce-coupon-shortcodes' );
+		echo ' ';
+		esc_html_e( 'The shortcode reveals the content it encloses when the condition evaluates favorably.', 'woocommerce-coupon-shortcodes' );
+		echo '</p>';
+
+		echo '<pre>';
+		printf( '[coupon_is_active code="%s"]', esc_attr( $code ) );
+		echo "\n";
+		esc_html_e( 'This text is shown when the coupon is active.', 'woocommerce-coupon-shortcodes' );
+		echo "\n";
+		echo '[/coupon_is_active]';
+		echo '</pre>';
+
+		// coupon_is_not_active
+		echo '<h3>';
+		echo '[coupon_is_not_active]';
+		echo '</h3>';
+
+		echo '<p>';
+		esc_html_e( 'This shortcode reveals the content it encloses when the code is not considered active.', 'woocommerce-coupon-shortcodes' );
+		echo '</p>';
+
+		echo '<pre>';
+		printf( '[coupon_is_not_active code="%s"]', esc_attr( $code ) );
+		echo "\n";
+		esc_html_e( 'This text is shown when the coupon is not active.', 'woocommerce-coupon-shortcodes' );
+		echo "\n";
+		echo '[/coupon_is_not_active]';
+		echo '</pre>';
+
+		// coupon_is_applied
+		echo '<h3>';
+		echo '[coupon_is_applied]';
+		echo '</h3>';
+
+		echo '<p>';
+		esc_html_e( 'Used to show content if a coupon is currently applied to the cart.', 'woocommerce-coupon-shortcodes' );
+		echo '</p>';
+
+		echo '<pre>';
+		printf( '[coupon_is_applied code="%s"]', esc_attr( $code ) );
+		echo "\n";
+		esc_html_e( 'This text is shown if the coupon is currently applied to the cart.', 'woocommerce-coupon-shortcodes' );
+		echo "\n";
+		echo '[/coupon_is_applied]';
+		echo '</pre>';
+
+		// coupon_is_not_applied
+		echo '<h3>';
+		echo '[coupon_is_not_applied]';
+		echo '</h3>';
+
+		echo '<p>';
+		esc_html_e( 'This shortcode will show the enclosed content if the coupon is currently not applied to the cart.', 'woocommerce-coupon-shortcodes' );
+		echo '</p>';
+
+		echo '<pre>';
+		printf( '[coupon_is_not_applied code="%s"]', esc_attr( $code ) );
+		echo "\n";
+		esc_html_e( 'This text is shown if the coupon is currently not applied to the cart.', 'woocommerce-coupon-shortcodes' );
+		echo "\n";
+		echo '[/coupon_is_not_applied]';
+		echo '</pre>';
+
+		// coupon_is_valid
+		echo '<h3>';
+		echo '[coupon_is_valid]';
+		echo '</h3>';
+
+		echo '<p>';
+		esc_html_e( 'This shortcode will display the content it encloses if the coupon is currently valid.', 'woocommerce-coupon-shortcodes' );
+		echo '</p>';
+
+		echo '<pre>';
+		printf( '[coupon_is_valid code="%s"]', esc_attr( $code ) );
+		echo "\n";
+		esc_html_e( 'This text is shown if the coupon is valid.', 'woocommerce-coupon-shortcodes' );
+		echo "\n";
+		echo '[/coupon_is_valid]';
+		echo '</pre>';
+
+		// coupon_is_not_valid
+		echo '<h3>';
+		echo '[coupon_is_not_valid]';
+		echo '</h3>';
+
+		echo '<p>';
+		esc_html_e( 'This shortcode will display the content while the coupon is not valid.', 'woocommerce-coupon-shortcodes' );
+		echo '</p>';
+
+		echo '<pre>';
+		printf( '[coupon_is_not_valid code="%s"]', esc_attr( $code ) );
+		echo "\n";
+		esc_html_e( 'This text is shown if the coupon is not valid.', 'woocommerce-coupon-shortcodes' );
+		echo "\n";
+		echo '[/coupon_is_not_valid]';
+		echo '</pre>';
+
+		echo '</div>'; // .options_group
 
 		echo '<div class="options_group">';
 		echo self::extensions();
