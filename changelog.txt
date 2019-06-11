@@ -2,6 +2,9 @@
 
 = 1.11.0 =
 * WordPress 5.2 compatible.
+* Added an information and examples section in coupons.
+* Added the plugin rating notice.
+* Tested with WooCommerce 3.7.0-dev.
 
 = 1.10.0 =
 * WooCommerce 3.6 compatible.

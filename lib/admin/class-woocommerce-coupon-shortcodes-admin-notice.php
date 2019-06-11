@@ -50,11 +50,11 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 	const REMIND_LATER_NOTICE = 'woocommerce-coupon-shortcodes-remind-later-notice';
 
 	/**
-	 * The number of seconds in seven days, since init date to show the notice.
+	 * The number of seconds in five days, since init date to show the notice.
 	 * 
 	 * @var int
 	 */
-	const SHOW_LAPSE = 10; //604800; @todo
+	const SHOW_LAPSE = 432000;
 
 	/**
 	 * The number of seconds in one day, used to show notice later again.

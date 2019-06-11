@@ -25,7 +25,7 @@
  * Author: itthinx
  * Author URI: http://www.itthinx.com
  * WC requires at least: 2.6
- * WC tested up to: 3.6
+ * WC tested up to: 3.7
  * Woo: 244762:d9f372bcea062d4a9eedccb2a80eb49d
  * License: GPLv3
  */

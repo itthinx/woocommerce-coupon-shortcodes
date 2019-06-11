@@ -213,6 +213,9 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 		echo '</div>'; // .options_group
 
 		echo '<div class="options_group">';
+		echo '<p style="padding-top: 1em; font-size: 1.1em; font-weight: 600;">';
+		echo esc_html__( 'Please also have a look at these premium extension that help to improve your store!', 'woocommerce-coupon-shortcodes' );
+		echo '</p>';
 		echo self::extensions();
 		echo '</div>'; // .options_group
 
@@ -251,45 +254,79 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 			$output .= '.woocommerce-coupon-shortcodes-extension-container {';
 			$output .= 'flex: 1; margin: 0.62em;';
 			$output .= '}';
+			$output .= '.woocommerce-coupon-shortcodes-extension-container.featured {';
+			$output .= 'flex: 2;';
+			$output .= '}';
 			$output .= '.woocommerce-coupon-shortcodes-extension-container a {';
 			$output .= 'padding: 1em; margin: 0.62em; display: block; border: 1px solid #ccc; text-align: center; border-radius: 3px; text-decoration: none; color: #666;';
 			$output .= '}';
 			$output .= 'div.woocommerce-coupon-shortcodes-extension-container .extension-title {';
-			$output .= 'display: block; font-size: 1.6em; font-weight: 900; line-height: 1.62em;';
+			$output .= 'display: block; font-size: 1.2em; font-weight: 700; line-height: 1.22em;';
+			$output .= '}';
+			$output .= 'div.woocommerce-coupon-shortcodes-extension-container.featured .extension-title {';
+			$output .= 'color: #555; display: block; font-size: 1.6em; font-weight: 900; line-height: 1.62em;';
 			$output .= '}';
 			$output .= 'div.woocommerce-coupon-shortcodes-extension-container .extension-description {';
 			$output .= 'display: block; padding: 0.6em;';
 			$output .= '}';
 			$output .= '</style>';
 
+			$extensions = array(
+				array(
+					'title'       => 'Group Coupons',
+					'description' => esc_html__( 'Offer exclusive, automatic and targeted coupon discounts for your customers! Use group memberships and roles to control the validity of coupons.', 'woocommerce-coupon-shortcodes' ),
+					'url'         => 'https://woocommerce.com/products/group-coupons/?aff=7223&cid=2409803',
+					'featured'    => true
+				),
+				array(
+					'title'       => 'WooCommerce Product Search',
+					'description' => esc_html__( 'The essential extension for every WooCommerce store! The perfect Search Engine for your store helps your customers to find and buy the right products quickly.', 'woocommerce-coupon-shortcodes' ),
+					'url'         => 'https://woocommerce.com/products/woocommerce-product-search/?aff=7223&cid=2409803',
+					'featured'    => true
+				),
+				array(
+					'title'       => 'Groups WooCommerce',
+					'description' => esc_html__( 'Sell Memberships with Groups and WooCommerce! Groups WooCommerce grants memberships based on products. It automatically assigns a customer to one or more groups based on the products ordered.', 'woocommerce-coupon-shortcodes' ),
+					'url'         => 'https://woocommerce.com/products/groups-woocommerce/?aff=7223&cid=2409803',
+					'featured'    => true
+				),
+				array(
+					'title'       => 'WooCommerce Volume Discount Coupons',
+					'description' => esc_html__( 'Provides automatic discounts and coupons based on the quantities of products in the cart.', 'woocommerce-coupon-shortcodes' ),
+					'url'         => 'https://codecanyon.net/item/woocommerce-volume-discount-coupons/5539403?ref=itthinx'
+				),
+				array(
+					'title'       => 'WooCommerce Coupons Countdown',
+					'description' => esc_html__( 'Provides pretty coupons with real-time countdown counters. Show your customers the coupons they can use and when they expire.', 'woocommerce-coupon-shortcodes' ),
+					'url'         => 'https://codecanyon.net/item/woocommerce-coupons-countdown/4959483?ref=itthinx'
+				),
+				array(
+					'title'       => 'WooCommerce Coupon Exclusions',
+					'description' => esc_html__( 'WooCommerce Coupon Exclusions is a powerful and easy to use WooCommerce extension which provides extended coupon usage restrictions.', 'woocommerce-coupon-shortcodes' ),
+					'url'         => 'https://codecanyon.net/item/woocommerce-coupon-exclusions/7721966?ref=itthinx'
+				),
+				array(
+					'title'       => 'WooCommerce Coupon Messages',
+					'description' => esc_html__( 'This extension for WooCommerce allows to override the default messages for coupons.', 'woocommerce-coupon-shortcodes' ),
+					'url'         => 'https://codecanyon.net/item/woocommerce-coupon-messages/7025817?ref=itthinx'
+				),
+			);
+
 			$output .= '<div class="woocommerce-coupon-shortcodes-extensions">';
 
-			$output .= '<div class="woocommerce-coupon-shortcodes-extension-container">';
-			$output .= sprintf(
-				'<a target="_blank" href="%s"><div class="extension-title">%s</div><div class="extension-description">%s</div></a>',
-				'https://woocommerce.com/products/group-coupons/?aff=7223&cid=2409803',
-				'Group Coupons',
-				esc_html__( 'Offer exclusive, automatic and targeted coupon discounts for your customers! Use group memberships and roles to control the validity of coupons.', 'woocommerce-coupon-shortcodes' )
-			);
-			$output .= '</div>';
-
-			$output .= '<div class="woocommerce-coupon-shortcodes-extension-container">';
-			$output .= sprintf(
-				'<a target="_blank" href="%s"><div class="extension-title">%s</div><div class="extension-description">%s</div></a>',
-				'https://woocommerce.com/products/woocommerce-product-search/?aff=7223&cid=2409803',
-				'WooCommerce Product Search',
-				esc_html__( 'The essential extension for every WooCommerce store! The perfect Search Engine for your store helps your customers to find and buy the right products quickly.', 'woocommerce-coupon-shortcodes' )
-			);
-			$output .= '</div>';
-
-			$output .= '<div class="woocommerce-coupon-shortcodes-extension-container">';
-			$output .= sprintf(
-				'<a target="_blank" href="%s"><div class="extension-title">%s</div><div class="extension-description">%s</div></a>',
-				'https://woocommerce.com/products/groups-woocommerce/?aff=7223&cid=2409803',
-				'Groups WooCommerce',
-				esc_html__( 'Sell Memberships with Groups and WooCommerce! Groups WooCommerce grants memberships based on products. It automatically assigns a customer to one or more groups based on the products ordered.', 'woocommerce-coupon-shortcodes' )
-			);
-			$output .= '</div>';
+			foreach ( $extensions as $ext ) {
+				$output .= sprintf(
+					'<div class="woocommerce-coupon-shortcodes-extension-container %s">',
+					isset( $ext['featured'] ) && $ext['featured'] ? 'featured' : ''
+				);
+				$output .= sprintf(
+					'<a target="_blank" href="%s"><div class="extension-title">%s</div><div class="extension-description">%s</div></a>',
+					$ext['url'],
+					$ext['title'],
+					$ext['description']
+				);
+				$output .= '</div>';
+			}
 
 			$output .= '</div>';
 		}
