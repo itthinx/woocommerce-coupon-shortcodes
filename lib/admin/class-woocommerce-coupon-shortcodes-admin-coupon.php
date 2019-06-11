@@ -102,8 +102,10 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 
 		$code = '&hellip;';
 		if ( $post->post_status !== 'auto-draft' ) {
-			$coupon = new WC_Coupon( $post->ID );
-			$code = $coupon->get_code();
+			if ( class_exists( 'WC_Coupon' ) && method_exists( 'WC_Coupon', 'get_code' ) ) {
+				$coupon = new WC_Coupon( $post->ID );
+				$code = $coupon->get_code();
+			}
 		}
 
 		// coupon_is_active
