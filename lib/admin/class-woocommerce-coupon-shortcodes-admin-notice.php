@@ -119,6 +119,33 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 		$output = '';
 
 		$output .= '<style type="text/css">';
+
+		$output .= '.woocommerce-message a.woocommerce-message-close::before {';
+		$output .= 'position: relative;';
+		$output .= 'top: 18px;';
+		$output .= 'left: -20px;';
+		$output .= '-webkit-transition: all .1s ease-in-out;';
+		$output .= 'transition: all .1s ease-in-out;';
+		$output .= '}';
+
+		$output .= '.woocommerce-message a.woocommerce-message-close {';
+		$output .= 'position: static;';
+		$output .= 'float: right;';
+		$output .= 'top: 0;';
+		$output .= 'right: 0;';
+		$output .= 'padding: 0 15px 10px 28px;';
+		$output .= 'margin-top: -10px;';
+		$output .= 'font-size: 13px;';
+		$output .= 'line-height: 1.23076923;';
+		$output .= 'text-decoration: none;';
+		$output .= '}';
+
+		$output .= 'div.woocommerce-message {';
+		$output .= 'overflow: hidden;';
+		$output .= 'position: relative;';
+		$output .= 'border-left-color: #cc99c2 !important;';
+		$output .= '}';
+
 		$output .= 'div.woocommerce-coupon-shortcodes-rating {';
 		$output .= sprintf( 'background: url(%s) #fff no-repeat 8px 8px;', WOO_CODES_PLUGIN_URL . '/images/icon-256x256.png' );
 		$output .= 'padding-left: 76px ! important;';

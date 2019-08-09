@@ -2,6 +2,9 @@
 
 = 1.12.0 =
 * WordPress 5.3 compatible.
+* WooCommerce 3.7 compatible.
+* Fixed a CSS issue with the rating notice's dismiss link.
+* Updated some links to extensions.
 
 = 1.11.0 =
 * WordPress 5.2 compatible.

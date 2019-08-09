@@ -295,22 +295,22 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 				array(
 					'title'       => 'WooCommerce Volume Discount Coupons',
 					'description' => esc_html__( 'Provides automatic discounts and coupons based on the quantities of products in the cart.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://codecanyon.net/item/woocommerce-volume-discount-coupons/5539403?ref=itthinx'
+					'url'         => 'https://1.envato.market/5GzA1'
 				),
 				array(
 					'title'       => 'WooCommerce Coupons Countdown',
 					'description' => esc_html__( 'Provides pretty coupons with real-time countdown counters. Show your customers the coupons they can use and when they expire.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://codecanyon.net/item/woocommerce-coupons-countdown/4959483?ref=itthinx'
+					'url'         => 'https://1.envato.market/1kz1z'
 				),
 				array(
 					'title'       => 'WooCommerce Coupon Exclusions',
 					'description' => esc_html__( 'WooCommerce Coupon Exclusions is a powerful and easy to use WooCommerce extension which provides extended coupon usage restrictions.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://codecanyon.net/item/woocommerce-coupon-exclusions/7721966?ref=itthinx'
+					'url'         => 'https://1.envato.market/XREd3'
 				),
 				array(
 					'title'       => 'WooCommerce Coupon Messages',
 					'description' => esc_html__( 'This extension for WooCommerce allows to override the default messages for coupons.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://codecanyon.net/item/woocommerce-coupon-messages/7025817?ref=itthinx'
+					'url'         => 'https://1.envato.market/B9kxJ'
 				),
 			);
 
