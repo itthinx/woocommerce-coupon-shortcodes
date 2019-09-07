@@ -182,10 +182,6 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 		);
 		$output .= '</p>';
 
-		$output .= '<p style="padding-top: 1em; font-size: 1.1em; font-weight: 600;">';
-		$output .= esc_html__( 'Please also have a look at these premium extension that help to improve your store!', 'woocommerce-coupon-shortcodes' );
-		$output .= '</p>';
-
 		$output .= WooCommerce_Coupon_Shortcodes_Admin_Coupon::extensions();
 
 		$output .= '<p>';

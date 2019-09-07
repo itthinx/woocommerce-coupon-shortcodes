@@ -1,5 +1,8 @@
 == WooCommerce Coupon Shortcodes by itthinx                       Changelog ==
 
+= 1.13.0 =
+* Revised extensions, added entry, fixed wording, fixed intro phrase rendered unconditionally outside.
+
 = 1.12.0 =
 * WordPress 5.3 compatible.
 * WooCommerce 3.7 compatible.
