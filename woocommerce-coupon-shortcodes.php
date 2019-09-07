@@ -21,7 +21,7 @@
  * Plugin Name: WooCommerce Coupon Shortcodes
  * Plugin URI: http://www.itthinx.com/plugins/woocommerce-coupon-shortcodes
  * Description: Provides conditional shortcodes [coupon_is_valid], [coupon_is_not_valid], [coupon_is_applied] and [coupon_is_not_applied] to enclose content and [coupon_code], [coupon_description], [coupon_discount] to render coupon information. <a href="http://docs.itthinx.com/document/woocommerce-coupon-shortcodes/">Documentation</a> | <a href="http://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/">Plugin page</a>
- * Version: 1.12.0
+ * Version: 1.13.0
  * Author: itthinx, proaktion
  * Author URI: http://www.itthinx.com
  * WC requires at least: 2.6
@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WOO_CODES_PLUGIN_VERSION', '1.12.0' );
+define( 'WOO_CODES_PLUGIN_VERSION', '1.13.0' );
 define( 'WOO_CODES_PLUGIN_DOMAIN', 'woocommerce-coupon-shortcodes' );
 define( 'WOO_CODES_FILE', __FILE__ );
 define( 'WOO_CODES_LOG', false );
@@ -44,4 +44,4 @@ define( 'WOO_CODES_ADMIN_LIB', WOO_CODES_CORE_DIR . '/lib/admin' );
 define( 'WOO_CODES_VIEWS_LIB', WOO_CODES_CORE_DIR . '/lib/views' );
 define( 'WOO_CODES_PLUGIN_URL', WP_PLUGIN_URL . '/woocommerce-coupon-shortcodes' );
 
-require_once( WOO_CODES_CORE_LIB . '/class-woocommerce-coupon-shortcodes.php');
+require_once WOO_CODES_CORE_LIB . '/class-woocommerce-coupon-shortcodes.php';
