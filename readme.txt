@@ -40,8 +40,7 @@ It also provides shortcodes that allow to render the coupon code, its descriptio
 `[coupon_discount]`
 `[coupon_show]`
 
-A coupon enumerator shortcode allows to list all or a set of coupons, to show their code, description or discount information,
-(or combinations of those using the `[coupon_show]` shortcode):
+A coupon enumerator shortcode allows to list all or a set of coupons, to show their code, description or discount information, or combinations of those using the `[coupon_show]` shortcode:
 
 `[coupon_enumerate]`
 
