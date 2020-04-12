@@ -2,6 +2,7 @@
 
 = 1.15.0 =
 * WordPress 5.4 compatible.
+* Corrected some outdated links.
 
 = 1.14.0 =
 * WordPress 5.3 compatible.
