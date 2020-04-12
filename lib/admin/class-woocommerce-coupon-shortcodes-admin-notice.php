@@ -171,7 +171,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 		$output .= '<p>';
 		$output .= sprintf(
 			'<a class="button button-primary" href="%s" target="_blank">%s</a>',
-			esc_url( 'http://wordpress.org/support/view/plugin-reviews/woocommerce-coupon-shortcodes?filter=5#postform' ),
+			esc_url( 'https://wordpress.org/support/view/plugin-reviews/woocommerce-coupon-shortcodes?filter=5#postform' ),
 			__( 'Yes, here we go!', 'woocommerce-coupon-shortcodes' )
 		);
 		$output .= '&emsp;';

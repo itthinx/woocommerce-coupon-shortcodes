@@ -109,7 +109,7 @@ class WooCommerce_Coupon_Shortcodes {
 		}
 		$woocommerce_is_active = in_array( 'woocommerce/woocommerce.php', $active_plugins );
 		if ( !$woocommerce_is_active ) {
-			self::$admin_messages[] = "<div class='error'>" . __( '<em>WooCommerce Coupon Shortcodes</em> needs the <a href="http://www.woothemes.com/woocommerce/" target="_blank">WooCommerce</a> plugin. Please install and activate it.', WOO_CODES_PLUGIN_DOMAIN ) . "</div>";
+			self::$admin_messages[] = "<div class='error'>" . __( '<em>WooCommerce Coupon Shortcodes</em> needs the <a href="https://woocommerce.com" target="_blank">WooCommerce</a> plugin. Please install and activate it.', WOO_CODES_PLUGIN_DOMAIN ) . "</div>";
 		}
 		if ( !$woocommerce_is_active ) {
 			if ( $disable ) {

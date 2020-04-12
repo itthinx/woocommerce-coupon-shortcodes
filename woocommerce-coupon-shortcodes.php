@@ -19,11 +19,12 @@
  * @since woocommerce-coupon-shortcodes 1.0.0
  *
  * Plugin Name: WooCommerce Coupon Shortcodes
- * Plugin URI: http://www.itthinx.com/plugins/woocommerce-coupon-shortcodes
- * Description: Provides conditional shortcodes [coupon_is_valid], [coupon_is_not_valid], [coupon_is_applied] and [coupon_is_not_applied] to enclose content and [coupon_code], [coupon_description], [coupon_discount] to render coupon information. <a href="http://docs.itthinx.com/document/woocommerce-coupon-shortcodes/">Documentation</a> | <a href="http://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/">Plugin page</a>
- * Version: 1.14.0
+ * Plugin URI: https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes
+ * Description: Provides conditional shortcodes [coupon_is_valid], [coupon_is_not_valid], [coupon_is_applied] and [coupon_is_not_applied] to enclose content and [coupon_code], [coupon_description], [coupon_discount] to render coupon information. <a href="http://docs.itthinx.com/document/woocommerce-coupon-shortcodes/">Documentation</a> | <a href="https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/">Plugin page</a>
+ * Version: 1.15.0
  * Author: itthinx, proaktion
- * Author URI: http://www.itthinx.com
+ * Author URI: https://www.itthinx.com
+ * Donate-Link: https://www.itthinx.com/shop/
  * WC requires at least: 2.6
  * WC tested up to: 4.0
  * Woo: 244762:d9f372bcea062d4a9eedccb2a80eb49d
@@ -34,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WOO_CODES_PLUGIN_VERSION', '1.14.0' );
+define( 'WOO_CODES_PLUGIN_VERSION', '1.15.0' );
 define( 'WOO_CODES_PLUGIN_DOMAIN', 'woocommerce-coupon-shortcodes' );
 define( 'WOO_CODES_FILE', __FILE__ );
 define( 'WOO_CODES_LOG', false );
