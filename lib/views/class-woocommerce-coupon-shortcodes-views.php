@@ -546,10 +546,21 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		$woocommerce_coupon_shortcodes_codes = $codes;
 
 		$validities = array();
-		foreach ( $codes as $code ) {
-			$coupon = new WC_Coupon( $code );
-			if ( $coupon->get_id() ) {
-				$validities[] = $coupon->is_valid();
+		// @since 1.16.0 $coupon->is_valid() was deprecated in WC 3.2.0
+		if ( class_exists( 'WC_Discounts' ) && method_exists( 'WC_Discounts', 'is_coupon_valid' ) ) {
+			$discounts = new WC_Discounts( WC()->cart );
+			foreach ( $codes as $code ) {
+				$coupon = new WC_Coupon( $code );
+				if ( $coupon->get_id() ) {
+					$validities[] = $discounts->is_coupon_valid( $coupon ) === true;
+				}
+			}
+		} else {
+			foreach ( $codes as $code ) {
+				$coupon = new WC_Coupon( $code );
+				if ( $coupon->get_id() ) {
+					$validities[] = $coupon->is_valid();
+				}
 			}
 		}
 
