@@ -962,7 +962,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 						$elements[] =
 							$element_prefix .
 							sprintf( '<%s class="coupon description %s">', stripslashes( wp_strip_all_tags( $element_tag ) ), stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) ) .
-							stripslashes( wp_filter_kses( $post->post_excerpt ) ) .
+							stripslashes( wp_filter_post_kses( $post->post_excerpt ) ) .
 							sprintf( '</%s>', stripslashes( wp_strip_all_tags( $element_tag ) ) );
 					}
 				}
