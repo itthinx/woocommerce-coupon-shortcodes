@@ -962,7 +962,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 						$elements[] =
 							$element_prefix .
 							sprintf( '<%s class="coupon description %s">', stripslashes( wp_strip_all_tags( $element_tag ) ), stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) ) .
-							stripslashes( wp_filter_kses( $post->post_excerpt ) ) .
+							stripslashes( wp_filter_post_kses( $post->post_excerpt ) ) .
 							sprintf( '</%s>', stripslashes( wp_strip_all_tags( $element_tag ) ) );
 					}
 				}
@@ -1113,7 +1113,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			case 'recurring_percent' :
 				if ( sizeof( $coupon->get_product_ids() ) > 0 ) {
 					foreach( $coupon->get_product_ids() as $product_id ) {
-						$product = get_product( $product_id );
+						$product = wc_get_product( $product_id );
 						if ( $product ) {
 							$products[] = sprintf(
 								'<span class="product-link"><a href="%s">%s</a></span>',
