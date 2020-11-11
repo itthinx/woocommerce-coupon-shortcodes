@@ -47,11 +47,7 @@ class WooCommerce_Coupon_Shortcodes {
 	public static function wp_init() {
 		load_plugin_textdomain( WOO_CODES_PLUGIN_DOMAIN, null, 'woocommerce-coupon-shortcodes/languages' );
 		if ( self::check_dependencies() ) {
-			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.0.0' ) >= 0 ) {
-				require_once( WOO_CODES_VIEWS_LIB . '/class-woocommerce-coupon-shortcodes-views.php' );
-			} else {
-				require_once( WOO_CODES_VIEWS_LIB . '/class-woocommerce-coupon-shortcodes-views-pre-3.0.php' );
-			}
+			require_once( WOO_CODES_VIEWS_LIB . '/class-woocommerce-coupon-shortcodes-views.php' );
 			// notice
 			if ( is_admin() ) {
 				if ( current_user_can( 'activate_plugins' ) ) { // important: after init hook
