@@ -12,13 +12,13 @@ Show coupon discount info using shortcodes. Allows to render coupon information 
 
 == Description ==
 
-This extension for [WooCommerce](http://wordpress.org/extend/plugins/woocommerce) allows you to render coupon information and show content based on the validity of coupons.
+This extension for [WooCommerce](https:/woocommerce.com) allows you to render coupon information and show content based on the validity of coupons.
 
 Customers can be motivated to proceed with their purchase, offering them to use specific coupons when the contents in the cart qualify for it, or by offering them to purchase additional items so they can use a coupon.
 
-Extended coupon discount info for volume discounts is shown automatically, if the [WooCommerce Volume Discount Coupons](http://www.itthinx.com/plugins/woocommerce-volume-discount-coupons) is installed.
+Extended coupon discount info for volume discounts is shown automatically, if the [WooCommerce Volume Discount Coupons](https://www.itthinx.com/shop/woocommerce-volume-discount-coupons) is installed.
 
-It also works with [WooCommerce Group Coupons](https://www.itthinx.com/shop/woocommerce-group-coupons) and [WooCommerce Coupons Countdown](http://www.itthinx.com/plugins/woocommerce-coupons-countdown).
+It also works with [WooCommerce Group Coupons](https://www.itthinx.com/shop/woocommerce-group-coupons) and [WooCommerce Coupons Countdown](https://www.itthinx.com/shop/woocommerce-coupons-countdown).
 
 = Conditional Shortcodes =
 
@@ -46,7 +46,7 @@ A coupon enumerator shortcode allows to list all or a set of coupons, to show th
 
 = Documentation =
 
-Please refer to the plugin's [documentation pages](http://docs.itthinx.com/document/woocommerce-coupon-shortcodes/) for detailed descriptions.
+Please refer to the plugin's [documentation pages](https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/) for detailed descriptions.
 
 
 = Examples =
@@ -93,8 +93,8 @@ Show a single random coupon code:
 
 Full usage instructions and help is provided on these pages:
 
-- Please refer to the plugin's documentation pages for detailed information [Documentation](http://docs.itthinx.com/document/woocommerce-coupon-shortcodes/)
-- Questions, feedback and suggestions can be posted on the plugin page [WooCommerce Coupon Shortcodes plugin page and Support](http://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/)
+- Please refer to the plugin's documentation pages for detailed information [Documentation](https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/)
+- Questions, feedback and suggestions can be posted on the plugin page [WooCommerce Coupon Shortcodes plugin page and Support](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/)
 
 
 == Installation ==
@@ -106,16 +106,16 @@ Full usage instructions and help is provided on these pages:
 
 = Where is the documentation? =
 
-[Documentation](http://docs.itthinx.com/document/woocommerce-coupon-shortcodes/)
+[Documentation](https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/)
 
 = I have a question, where do I ask? =
 
-You can leave a comment at the [WooCommerce Coupon Shortcodes plugin page](http://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/).
+You can leave a comment at the [WooCommerce Coupon Shortcodes plugin page](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/).
 
 
 == Screenshots ==
 
-See the plugin page [WooCommerce Coupon Shortcodes](http://www.itthinx.com/plugins/woocommerce-discount-coupons/)
+See the plugin page [WooCommerce Coupon Shortcodes](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/)
 
 
 == Changelog ==

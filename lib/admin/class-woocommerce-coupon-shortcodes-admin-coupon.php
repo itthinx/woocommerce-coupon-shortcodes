@@ -89,14 +89,14 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 		echo '<div id="custom_coupon_shortcodes" class="panel woocommerce_options_panel">';
 
 		echo '<div class="options_group">';
-		// http://docs.itthinx.com/document/woocommerce-coupon-shortcodes/
+		// https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/
 
 		echo '<p>';
 		esc_html_e( 'Here are examples of shortcodes that you can use with this coupon.', 'woocommerce-coupon-shortcodes' );
 		echo ' ';
 		printf(
 			__( 'For more details on these and other available shortcodes, please refer to the <a href="%s">documentation</a>.', 'woocommerce-coupon-shortcodes' ),
-			esc_url( 'http://docs.itthinx.com/document/woocommerce-coupon-shortcodes/' )
+			esc_url( 'https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/' )
 		);
 		echo '</p>';
 

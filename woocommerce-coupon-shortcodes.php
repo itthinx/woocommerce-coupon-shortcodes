@@ -20,12 +20,12 @@
  *
  * Plugin Name: WooCommerce Coupon Shortcodes
  * Plugin URI: https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes
- * Description: Provides conditional shortcodes [coupon_is_valid], [coupon_is_not_valid], [coupon_is_applied] and [coupon_is_not_applied] to enclose content and [coupon_code], [coupon_description], [coupon_discount] to render coupon information. <a href="http://docs.itthinx.com/document/woocommerce-coupon-shortcodes/">Documentation</a> | <a href="https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/">Plugin page</a>
+ * Description: Provides conditional shortcodes [coupon_is_valid], [coupon_is_not_valid], [coupon_is_applied] and [coupon_is_not_applied] to enclose content and [coupon_code], [coupon_description], [coupon_discount] to render coupon information. <a href="https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/">Documentation</a> | <a href="https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/">Plugin page</a>
  * Version: 1.19.0
  * Author: itthinx, proaktion
  * Author URI: https://www.itthinx.com
  * Donate-Link: https://www.itthinx.com/shop/
- * WC requires at least: 3.6
+ * WC requires at least: 4.0
  * WC tested up to: 5.1
  * Woo: 244762:d9f372bcea062d4a9eedccb2a80eb49d
  * License: GPLv3
