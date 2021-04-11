@@ -4,8 +4,8 @@ Donate link: https://www.itthinx.com/shop/
 Tags: woocommerce, shortcode, coupon, discount, marketing, theme, conditional, coupons, discounts, display, info, information, promotion, subscription, subscriptions
 Requires at least: 5.0
 Requires PHP: 5.6.0
-Tested up to: 5.7
-Stable tag: 1.19.0
+Tested up to: 5.8
+Stable tag: 1.20.0
 License: GPLv3
 
 Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally, based on the validity of coupons.
