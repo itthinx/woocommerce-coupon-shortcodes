@@ -3,6 +3,8 @@
 = 1.20.0 =
 * WordPress 5.8 compatible.
 * WooCommerce 5.2 compatible.
+* Requires at least WordPress 5.5.
+* Requires at least WooCommerce 4.9.
 
 = 1.19.0 =
 * WordPress 5.7 compatible.
