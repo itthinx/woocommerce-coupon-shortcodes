@@ -570,22 +570,25 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$atts
 		);
 
-		if ( !isset( $woocommerce_coupon_shortcodes_codes ) ) {
-			$code = null;
-			if ( !empty( $options['code'] ) ) {
-				$code = $options['code'];
-			} else if ( !empty( $options['coupon'] ) ) {
-				$code = $options['coupon'];
-			}
-			if ( $code === null ) {
-				return '';
-			}
-
-			$codes = array_map( 'trim', explode( ',', $code ) );
-			$woocommerce_coupon_shortcodes_codes = $codes;
-		} else {
-			$codes = $woocommerce_coupon_shortcodes_codes;
+		$code = null;
+		if ( !empty( $options['code'] ) ) {
+			$code = $options['code'];
+		} else if ( !empty( $options['coupon'] ) ) {
+			$code = $options['coupon'];
 		}
+
+		if ( $code === null && isset( $woocommerce_coupon_shortcodes_codes ) ) {
+			if ( is_array( $woocommerce_coupon_shortcodes_codes ) && count( $woocommerce_coupon_shortcodes_codes ) > 0 ) {
+				$code = implode( ',', $woocommerce_coupon_shortcodes_codes );
+			}
+		}
+
+		if ( $code === null ) {
+			return '';
+		}
+
+		$codes = array_map( 'trim', explode( ',', $code ) );
+		$woocommerce_coupon_shortcodes_codes = $codes;
 
 		$validities = array();
 		// @since 1.16.0 $coupon->is_valid() was deprecated in WC 3.2.0
