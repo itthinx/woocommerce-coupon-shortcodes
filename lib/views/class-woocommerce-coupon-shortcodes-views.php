@@ -449,7 +449,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$_coupons = $wpdb->get_results(
 					$wpdb->prepare(
 						"SELECT DISTINCT ID, post_title FROM $wpdb->posts p LEFT JOIN $wpdb->postmeta pm ON p.ID = pm.post_id WHERE p.post_type = 'shop_coupon' AND p.post_status = 'publish' AND pm.meta_key = 'discount_type' AND pm.meta_value IN $_types ORDER BY $orderby $order LIMIT %d",
-						intval( number )
+						intval( $number )
 					)
 			);
 		}
