@@ -83,9 +83,15 @@ Showing a coupon that is not valid for the current cart and motivating to add it
 If you purchase 5 Widgets, you can use the coupon [coupon_code] to get 25% off your purchase!
 [/coupon_is_not_valid]`
 
-Iterate over all coupon and show their discount info:
+Iterate over several coupons and show their discount info:
 
 `[coupon_iterate code="test,welcome,20off"]
+Use the Coupon Code: [coupon_code] for [coupon_discount]
+[/coupon_iterate]`
+
+Iterate over all coupons and show their discount info:
+
+`[coupon_iterate code="*"]
 Use the Coupon Code: [coupon_code] for [coupon_discount]
 [/coupon_iterate]`
 
