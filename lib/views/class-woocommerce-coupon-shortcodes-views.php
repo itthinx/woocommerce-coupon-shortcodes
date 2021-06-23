@@ -690,6 +690,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 		global $woocommerce_coupon_shortcodes_codes;
 
+		$unset = !isset( $woocommerce_coupon_shortcodes_codes );
+
 		$options = shortcode_atts(
 			array(
 				'coupon'  => null,
@@ -733,6 +735,11 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		remove_shortcode( 'coupon_enumerate' );
 		$content = do_shortcode( $content );
 		add_shortcode( 'coupon_enumerate', array( __CLASS__, 'coupon_enumerate' ) );
+
+		if ( $unset ) {
+			unset( $woocommerce_coupon_shortcodes_codes );
+		}
+
 		return $content;
 	}
 
@@ -746,6 +753,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	 */
 	public static function coupon_iterate( $atts, $content = null ) {
 		global $woocommerce_coupon_shortcodes_codes, $woocommerce_coupon_shortcodes_iterator_code;
+
+		$unset = !isset( $woocommerce_coupon_shortcodes_codes );
 
 		$options = shortcode_atts(
 			array(
@@ -793,6 +802,11 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$output .= do_shortcode( $content );
 			add_shortcode( 'coupon_iterate', array( __CLASS__, 'coupon_iterate' ) );
 		}
+
+		if ( $unset ) {
+			unset( $woocommerce_coupon_shortcodes_codes );
+		}
+
 		return $output;
 	}
 
