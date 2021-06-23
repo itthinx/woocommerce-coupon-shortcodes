@@ -94,10 +94,20 @@ if ( class_exists( 'WC_Discounts' ) ) {
 class WooCommerce_Coupon_Shortcodes_Views {
 
 	/**
+	 * Default limit used for the number attribute of the [coupon_enumerate] shortcode.
+	 *
+	 * @since 1.21.0
+	 *
+	 * @var int
+	 */
+	const NUMBER_LIMIT_DEFAULT = 25;
+
+	/**
 	 * Adds shortcodes.
 	 */
 	public static function init() {
 		add_shortcode( 'coupon_enumerate', array( __CLASS__, 'coupon_enumerate' ) );
+		add_shortcode( 'coupon_iterate', array( __CLASS__, 'coupon_iterate' ) ); // @since 1.21.0
 		add_shortcode( 'coupon_is_applied', array( __CLASS__, 'coupon_is_applied' ) );
 		add_shortcode( 'coupon_is_not_applied', array( __CLASS__, 'coupon_is_not_applied' ) );
 		add_shortcode( 'coupon_is_valid', array( __CLASS__, 'coupon_is_valid' ) );
@@ -132,21 +142,26 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$atts
 		);
 
-		$code = null;
-		if ( !empty( $options['code'] ) ) {
-			$code = $options['code'];
-		} else if ( !empty( $options['coupon'] ) ) {
-			$code = $options['coupon'];
-		}
-		if ( $code === null ) {
-			return '';
+		if ( !isset( $woocommerce_coupon_shortcodes_codes ) ) {
+			$code = null;
+			if ( !empty( $options['code'] ) ) {
+				$code = $options['code'];
+			} else if ( !empty( $options['coupon'] ) ) {
+				$code = $options['coupon'];
+			}
+			if ( $code === null ) {
+				return '';
+			}
+			$codes = array_map( 'trim', explode( ',', $code ) );
+		} else {
+			$codes = $woocommerce_coupon_shortcodes_codes;
 		}
 
 		$applied_coupon_codes = self::_get_applied_codes();
-
-		$codes = array_map( 'trim', explode( ',', $code ) );
 		if ( !in_array( '*', $codes ) ) {
-			$woocommerce_coupon_shortcodes_codes = $codes;
+			if ( !isset( $woocommerce_coupon_shortcodes_codes ) ) {
+				$woocommerce_coupon_shortcodes_codes = $codes;
+			}
 			$applied = array();
 			foreach ( $codes as $code ) {
 				$applied[] = in_array( $code, $applied_coupon_codes );
@@ -159,7 +174,9 @@ class WooCommerce_Coupon_Shortcodes_Views {
 					$is_applied = self::disj( $applied );
 			}
 		} else {
-			$woocommerce_coupon_shortcodes_codes = $applied_coupon_codes;
+			if ( !isset( $woocommerce_coupon_shortcodes_codes ) ) {
+				$woocommerce_coupon_shortcodes_codes = $applied_coupon_codes;
+			}
 			$is_applied = !empty( $applied_coupon_codes );
 		}
 		return $is_applied;
@@ -184,41 +201,47 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$atts
 		);
 
-		// remove * if present
-		if ( isset( $options['code'] ) ) {
-			$codes = array_map( 'trim', explode( ',', $options['code'] ) );
-			if ( in_array( '*', $codes ) ) {
-				$codes = array_diff( $codes, array( '*' ) );
+		if ( !isset( $woocommerce_coupon_shortcodes_codes ) ) {
+			// remove * if present
+			if ( isset( $options['code'] ) ) {
+				$codes = array_map( 'trim', explode( ',', $options['code'] ) );
+				if ( in_array( '*', $codes ) ) {
+					$codes = array_diff( $codes, array( '*' ) );
+				}
+				$options['code'] = implode( ',', $codes );
 			}
-			$options['code'] = implode( ',', $codes );
-		}
 
-		$code = null;
-		if ( !empty( $options['code'] ) ) {
-			$code = $options['code'];
-		} else if ( !empty( $options['coupon'] ) ) {
-			$code = $options['coupon'];
-		}
-		if ( $code === null ) {
-			return '';
+			$code = null;
+			if ( !empty( $options['code'] ) ) {
+				$code = $options['code'];
+			} else if ( !empty( $options['coupon'] ) ) {
+				$code = $options['coupon'];
+			}
+			if ( $code === null ) {
+				return '';
+			}
+			$codes = array_map( 'trim', explode( ',', $code ) );
+		} else {
+			$codes = $woocommerce_coupon_shortcodes_codes;
 		}
 
 		$applied_coupon_codes = self::_get_applied_codes();
 
-		$codes = array_map( 'trim', explode( ',', $code ) );
-
+		if ( !isset( $woocommerce_coupon_shortcodes_codes ) ) {
 			$woocommerce_coupon_shortcodes_codes = $codes;
-			$not_applied = array();
-			foreach ( $codes as $code ) {
-				$not_applied[] = !in_array( $code, $applied_coupon_codes );
-			}
-			switch( strtolower( $options['op'] ) ) {
-				case 'and' :
-					$is_not_applied = self::conj( $not_applied );
-					break;
-				default :
-					$is_not_applied = self::disj( $not_applied );
-			}
+		}
+
+		$not_applied = array();
+		foreach ( $codes as $code ) {
+			$not_applied[] = !in_array( $code, $applied_coupon_codes );
+		}
+		switch( strtolower( $options['op'] ) ) {
+			case 'and' :
+				$is_not_applied = self::conj( $not_applied );
+				break;
+			default :
+				$is_not_applied = self::disj( $not_applied );
+		}
 
 		return $is_not_applied;
 	}
@@ -246,7 +269,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	}
 
 	/**
-	 * Returns all published coupons' codes.
+	 * Returns all published coupon codes.
 	 * 
 	 * Options:
 	 * 
@@ -403,7 +426,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$orderby = $_orderby;
 		}
 
-		$number = null;
+		$number = WooCommerce_Coupon_Shortcodes::get_hard_limit();
 		if ( $options['number'] !== null ) {
 			$number = max( 1, intval( $options['number'] ) );
 		}
@@ -411,7 +434,10 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		$coupon_codes = array();
 		if ( count( $types ) == 0 ) {
 			$_coupons = $wpdb->get_results(
-				"SELECT DISTINCT ID, post_title FROM $wpdb->posts WHERE post_type = 'shop_coupon' AND post_status = 'publish' ORDER BY $orderby $order"
+				$wpdb->prepare(
+					"SELECT DISTINCT ID, post_title FROM $wpdb->posts WHERE post_type = 'shop_coupon' AND post_status = 'publish' ORDER BY $orderby $order LIMIT %d",
+					intval( $number )
+				)
 			);
 		} else {
 			$types = esc_sql( $types );
@@ -421,7 +447,10 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			}
 			$_types = ' (' . implode(',', $ts ) . ') ';
 			$_coupons = $wpdb->get_results(
-				"SELECT DISTINCT ID, post_title FROM $wpdb->posts p LEFT JOIN $wpdb->postmeta pm ON p.ID = pm.post_id WHERE p.post_type = 'shop_coupon' AND p.post_status = 'publish' AND pm.meta_key = 'discount_type' AND pm.meta_value IN $_types ORDER BY $orderby $order"
+					$wpdb->prepare(
+						"SELECT DISTINCT ID, post_title FROM $wpdb->posts p LEFT JOIN $wpdb->postmeta pm ON p.ID = pm.post_id WHERE p.post_type = 'shop_coupon' AND p.post_status = 'publish' AND pm.meta_key = 'discount_type' AND pm.meta_value IN $_types ORDER BY $orderby $order LIMIT %d",
+						intval( number )
+					)
 			);
 		}
 		if ( $_coupons && ( count( $_coupons ) > 0 ) ) {
@@ -436,9 +465,14 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 			foreach ( $_coupons as $coupon ) {
 				$coupon_code = $coupon->post_title;
-				$coupon = new WC_Coupon( $coupon_code );
-				if ( $coupon->get_id() ) {
-					$coupon_codes[] = $coupon->get_code();
+				// @since 1.21.0 don't get the coupon objects as this has a considerable performance impact when there are large numbers of coupons
+				// $coupon = new WC_Coupon( $coupon_code );
+				// if ( $coupon->get_id() ) {
+				// 	$coupon_codes[] = $coupon->get_code();
+				// }
+				// Apply this function instead to the post_title, which is what the setter of WC_Coupon does:
+				if ( !empty( $coupon->post_title ) ) {
+					$coupon_codes[] = wc_format_coupon_code( $coupon_code );
 				}
 			}
 		}
@@ -466,18 +500,22 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$atts
 		);
 
-		$code = null;
-		if ( !empty( $options['code'] ) ) {
-			$code = $options['code'];
-		} else if ( !empty( $options['coupon'] ) ) {
-			$code = $options['coupon'];
-		}
-		if ( $code === null ) {
-			return '';
-		}
+		if ( !isset( $woocommerce_coupon_shortcodes_codes ) ) {
+			$code = null;
+			if ( !empty( $options['code'] ) ) {
+				$code = $options['code'];
+			} else if ( !empty( $options['coupon'] ) ) {
+				$code = $options['coupon'];
+			}
+			if ( $code === null ) {
+				return '';
+			}
 
-		$codes = array_map( 'trim', explode( ',', $code ) );
-		$woocommerce_coupon_shortcodes_codes = $codes;
+			$codes = array_map( 'trim', explode( ',', $code ) );
+			$woocommerce_coupon_shortcodes_codes = $codes;
+		} else {
+			$codes = $woocommerce_coupon_shortcodes_codes;
+		}
 
 		$wcs_discounts = new WooCommerce_Coupon_Shortcodes_WC_Discounts();
 
@@ -532,18 +570,22 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$atts
 		);
 
-		$code = null;
-		if ( !empty( $options['code'] ) ) {
-			$code = $options['code'];
-		} else if ( !empty( $options['coupon'] ) ) {
-			$code = $options['coupon'];
-		}
-		if ( $code === null ) {
-			return '';
-		}
+		if ( !isset( $woocommerce_coupon_shortcodes_codes ) ) {
+			$code = null;
+			if ( !empty( $options['code'] ) ) {
+				$code = $options['code'];
+			} else if ( !empty( $options['coupon'] ) ) {
+				$code = $options['coupon'];
+			}
+			if ( $code === null ) {
+				return '';
+			}
 
-		$codes = array_map( 'trim', explode( ',', $code ) );
-		$woocommerce_coupon_shortcodes_codes = $codes;
+			$codes = array_map( 'trim', explode( ',', $code ) );
+			$woocommerce_coupon_shortcodes_codes = $codes;
+		} else {
+			$codes = $woocommerce_coupon_shortcodes_codes;
+		}
 
 		$validities = array();
 		// @since 1.16.0 $coupon->is_valid() was deprecated in WC 3.2.0
@@ -648,7 +690,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				'type'    => null,
 				'order'   => null,
 				'orderby' => null,
-				'number'  => null
+				'number'  => self::NUMBER_LIMIT_DEFAULT
 			),
 			$atts
 		);
@@ -667,24 +709,84 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$options['number'] = max( 1, intval( $options['number'] ) );
 		}
 
-		$coupon_codes = self::_get_coupon_codes( $options );
-
 		$codes = array_map( 'trim', explode( ',', $code ) );
 		if ( !in_array( '*', $codes ) ) {
 			$woocommerce_coupon_shortcodes_codes = $codes;
 			$existing = array();
 			foreach ( $codes as $code ) {
-				$existing[] = in_array( $code, $coupon_codes );
+				if ( wc_get_coupon_id_by_code( $code ) > 0 ) {
+					$existing[] = $code;
+				}
 			}
 			$woocommerce_coupon_shortcodes_codes = $existing;
 		} else {
-			$woocommerce_coupon_shortcodes_codes = $coupon_codes;
+			$woocommerce_coupon_shortcodes_codes = self::_get_coupon_codes( $options );
 		}
 
 		remove_shortcode( 'coupon_enumerate' );
 		$content = do_shortcode( $content );
 		add_shortcode( 'coupon_enumerate', array( __CLASS__, 'coupon_enumerate' ) );
 		return $content;
+	}
+
+	/**
+	 * Iterate over a set of coupon codes, rendering the enclosed content for each code.
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	public static function coupon_iterate( $atts, $content = null ) {
+		global $woocommerce_coupon_shortcodes_codes, $woocommerce_coupon_shortcodes_iterator_code;
+
+		$options = shortcode_atts(
+			array(
+				'coupon'  => null,
+				'code'    => null,
+				'type'    => null,
+				'order'   => null,
+				'orderby' => null,
+				'number'  => self::NUMBER_LIMIT_DEFAULT
+			),
+			$atts
+		);
+
+		$code = null;
+		if ( !empty( $options['code'] ) ) {
+			$code = $options['code'];
+		} else if ( !empty( $options['coupon'] ) ) {
+			$code = $options['coupon'];
+		}
+		if ( $code === null ) {
+			return '';
+		}
+
+		if ( $options['number'] !== null ) {
+			$options['number'] = max( 1, intval( $options['number'] ) );
+		}
+
+		$codes = array();
+		$_codes = array_map( 'trim', explode( ',', $code ) );
+		if ( !in_array( '*', $_codes ) ) {
+			foreach ( $_codes as $code ) {
+				if ( wc_get_coupon_id_by_code( $code ) > 0 ) {
+					$codes[] = $code;
+				}
+			}
+		} else {
+			$codes = self::_get_coupon_codes( $options );
+		}
+
+		$output = '';
+		foreach ( $codes as $code ) {
+			remove_shortcode( 'coupon_iterate' );
+			$woocommerce_coupon_shortcodes_iterator_code = $code;
+			$woocommerce_coupon_shortcodes_codes = array( $code );
+			$output .= do_shortcode( $content );
+			add_shortcode( 'coupon_iterate', array( __CLASS__, 'coupon_iterate' ) );
+		}
+		return $output;
 	}
 
 	/**
@@ -781,7 +883,11 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	public static function coupon_is_not_active( $atts, $content = null ) {
 		$output = '';
 		if ( !empty( $content ) ) {
-			$atts['revop'] = true;
+			if ( is_array( $atts ) ) {
+				$atts['revop'] = true;
+			} else {
+				$atts = array( 'revop' => true );
+			}
 			$active = !self::_is_active( $atts );
 			if ( $active ) {
 				remove_shortcode( 'coupon_is_not_active' );
@@ -834,7 +940,11 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	public static function coupon_is_not_valid( $atts, $content = null ) {
 		$output = '';
 		if ( !empty( $content ) ) {
-			$atts['revop'] = true;
+			if ( is_array( $atts ) ) {
+				$atts['revop'] = true;
+			} else {
+				$atts = array( 'revop' => true );
+			}
 			$valid = !self::_is_valid( $atts );
 			if ( $valid ) {
 				remove_shortcode( 'coupon_is_not_valid' );
@@ -895,6 +1005,19 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 		$codes = self::get_codes( $options );
 		foreach ( $codes as $code ) {
+			// Tested with WC 5.4.1 during 1.21.0 development.
+			// There is no substantial difference in performance between this alterantive code and the existing method using the object.
+			//
+			// Instead of checking the object, use the API function for the coupon's existence
+			// if ( wc_get_coupon_id_by_code( $code ) > 0 ) {
+			// 	$coupon_code = wc_format_coupon_code( $code );
+			// 	$output .= sprintf( '<span class="coupon code %s">', stripslashes( wp_strip_all_tags( $coupon_code ) ) );
+			// 	$output .= stripslashes( wp_strip_all_tags( $coupon_code ) );
+			// 	$output .= '</span>';
+			// 	$output .= stripslashes( wp_filter_kses( $options['separator'] ) );
+			// }
+			//
+			// => pre-1.21.0 code left as is:
 			$coupon = new WC_Coupon( $code );
 			if ( $coupon->get_id() ) {
 				$output .= sprintf( '<span class="coupon code %s">', stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) );
