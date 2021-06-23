@@ -794,14 +794,14 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$codes = self::_get_coupon_codes( $options );
 		}
 
+		remove_shortcode( 'coupon_iterate' );
 		$output = '';
 		foreach ( $codes as $code ) {
-			remove_shortcode( 'coupon_iterate' );
 			$woocommerce_coupon_shortcodes_iterator_code = $code;
 			$woocommerce_coupon_shortcodes_codes = array( $code );
 			$output .= do_shortcode( $content );
-			add_shortcode( 'coupon_iterate', array( __CLASS__, 'coupon_iterate' ) );
 		}
+		add_shortcode( 'coupon_iterate', array( __CLASS__, 'coupon_iterate' ) );
 
 		if ( $unset ) {
 			unset( $woocommerce_coupon_shortcodes_codes );
