@@ -142,26 +142,27 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$atts
 		);
 
-		if ( !isset( $woocommerce_coupon_shortcodes_codes ) ) {
-			$code = null;
-			if ( !empty( $options['code'] ) ) {
-				$code = $options['code'];
-			} else if ( !empty( $options['coupon'] ) ) {
-				$code = $options['coupon'];
-			}
-			if ( $code === null ) {
-				return '';
-			}
-			$codes = array_map( 'trim', explode( ',', $code ) );
-		} else {
-			$codes = $woocommerce_coupon_shortcodes_codes;
+		$code = null;
+		if ( !empty( $options['code'] ) ) {
+			$code = $options['code'];
+		} else if ( !empty( $options['coupon'] ) ) {
+			$code = $options['coupon'];
 		}
+
+		if ( $code === null && isset( $woocommerce_coupon_shortcodes_codes ) ) {
+			if ( is_array( $woocommerce_coupon_shortcodes_codes ) && count( $woocommerce_coupon_shortcodes_codes ) > 0 ) {
+				$code = implode( ',', $woocommerce_coupon_shortcodes_codes );
+			}
+		}
+
+		if ( $code === null ) {
+			return '';
+		}
+
+		$codes = array_map( 'trim', explode( ',', $code ) );
 
 		$applied_coupon_codes = self::_get_applied_codes();
 		if ( !in_array( '*', $codes ) ) {
-			if ( !isset( $woocommerce_coupon_shortcodes_codes ) ) {
-				$woocommerce_coupon_shortcodes_codes = $codes;
-			}
 			$applied = array();
 			foreach ( $codes as $code ) {
 				$applied[] = in_array( $code, $applied_coupon_codes );
@@ -201,35 +202,35 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$atts
 		);
 
-		if ( !isset( $woocommerce_coupon_shortcodes_codes ) ) {
-			// remove * if present
-			if ( isset( $options['code'] ) ) {
-				$codes = array_map( 'trim', explode( ',', $options['code'] ) );
-				if ( in_array( '*', $codes ) ) {
-					$codes = array_diff( $codes, array( '*' ) );
-				}
-				$options['code'] = implode( ',', $codes );
+		// remove * if present
+		if ( isset( $options['code'] ) ) {
+			$codes = array_map( 'trim', explode( ',', $options['code'] ) );
+			if ( in_array( '*', $codes ) ) {
+				$codes = array_diff( $codes, array( '*' ) );
 			}
-
-			$code = null;
-			if ( !empty( $options['code'] ) ) {
-				$code = $options['code'];
-			} else if ( !empty( $options['coupon'] ) ) {
-				$code = $options['coupon'];
-			}
-			if ( $code === null ) {
-				return '';
-			}
-			$codes = array_map( 'trim', explode( ',', $code ) );
-		} else {
-			$codes = $woocommerce_coupon_shortcodes_codes;
+			$options['code'] = implode( ',', $codes );
 		}
+
+		$code = null;
+		if ( !empty( $options['code'] ) ) {
+			$code = $options['code'];
+		} else if ( !empty( $options['coupon'] ) ) {
+			$code = $options['coupon'];
+		}
+
+		if ( $code === null && isset( $woocommerce_coupon_shortcodes_codes ) ) {
+			if ( is_array( $woocommerce_coupon_shortcodes_codes ) && count( $woocommerce_coupon_shortcodes_codes ) > 0 ) {
+				$code = implode( ',', $woocommerce_coupon_shortcodes_codes );
+			}
+		}
+
+		if ( $code === null ) {
+			return '';
+		}
+
+		$codes = array_map( 'trim', explode( ',', $code ) );
 
 		$applied_coupon_codes = self::_get_applied_codes();
-
-		if ( !isset( $woocommerce_coupon_shortcodes_codes ) ) {
-			$woocommerce_coupon_shortcodes_codes = $codes;
-		}
 
 		$not_applied = array();
 		foreach ( $codes as $code ) {
@@ -500,22 +501,25 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$atts
 		);
 
-		if ( !isset( $woocommerce_coupon_shortcodes_codes ) ) {
-			$code = null;
-			if ( !empty( $options['code'] ) ) {
-				$code = $options['code'];
-			} else if ( !empty( $options['coupon'] ) ) {
-				$code = $options['coupon'];
-			}
-			if ( $code === null ) {
-				return '';
-			}
-
-			$codes = array_map( 'trim', explode( ',', $code ) );
-			$woocommerce_coupon_shortcodes_codes = $codes;
-		} else {
-			$codes = $woocommerce_coupon_shortcodes_codes;
+		$code = null;
+		if ( !empty( $options['code'] ) ) {
+			$code = $options['code'];
+		} else if ( !empty( $options['coupon'] ) ) {
+			$code = $options['coupon'];
 		}
+
+		if ( $code === null && isset( $woocommerce_coupon_shortcodes_codes ) ) {
+			if ( is_array( $woocommerce_coupon_shortcodes_codes ) && count( $woocommerce_coupon_shortcodes_codes ) > 0 ) {
+				$code = implode( ',', $woocommerce_coupon_shortcodes_codes );
+			}
+		}
+
+		if ( $code === null ) {
+			return '';
+		}
+
+		$codes = array_map( 'trim', explode( ',', $code ) );
+		$woocommerce_coupon_shortcodes_codes = $codes;
 
 		$wcs_discounts = new WooCommerce_Coupon_Shortcodes_WC_Discounts();
 
