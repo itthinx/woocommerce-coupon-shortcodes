@@ -28,6 +28,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WooCommerce_Coupon_Shortcodes {
 
+	/**
+	 * @since 1.21.0
+	 *
+	 * @var int
+	 */
+	const HARD_LIMIT = 1000;
+
 	private static $admin_messages = array();
 
 	/**
@@ -115,6 +122,25 @@ class WooCommerce_Coupon_Shortcodes {
 			$result = false;
 		}
 		return $result;
+	}
+
+	/**
+	 * The maximum number of coupon codes to handle.
+	 *
+	 * Introduced to avoid performance issues with queries on sites that have very large numbers of coupon codes.
+	 *
+	 * This is specifically important with [coupon_enumerate code="*"], as all published coupon codes would be processed and would lead to overuse of database and server resources while processing them.
+	 *
+	 * @since 1.21.0
+	 *
+	 * @return int
+	 */
+	public static function get_hard_limit() {
+		$n = self::HARD_LIMIT;
+		if ( is_numeric( WOOCOMMERCE_COUPON_SHORTCODES_HARD_LIMIT ) ) {
+			$n = max( 1, intval( WOOCOMMERCE_COUPON_SHORTCODES_HARD_LIMIT ) );
+		}
+		return $n;
 	}
 }
 WooCommerce_Coupon_Shortcodes::init();

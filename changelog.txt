@@ -1,5 +1,16 @@
 == WooCommerce Coupon Shortcodes by itthinx                       Changelog ==
 
+= 1.21.0 =
+* WordPress 5.8 compatible.
+* WooCommerce 5.4 compatible.
+* Requires at least WooCommerce 5.0.
+* Added the [coupon_iterate] shortcode, used to render the enclosed content for each coupon code in a given set.
+* Added the WOOCOMMERCE_COUPON_SHORTCODES_HARD_LIMIT constant which can be used to modify the maximum number of coupon codes handled with direct queries, affects coupon enumeration and iteration via the corresponding shortcodes. Defaults to 1000.
+* The [coupon_enumerate] shortcode now uses 25 as the default value for its number argument, thus limiting the number of coupons processed to 25 by default.
+* Fixed incorrect initialization for a given set of coupon passed to the [coupon_enumerate] shortcode.
+* Reduced processing overhead on coupon sets with enumeration and iteration.
+* Fixed PHP Warnings produced on some shortcodes expecting arrays only instead of array or string as first attribute.
+
 = 1.20.0 =
 * WordPress 5.8 compatible.
 * WooCommerce 5.2 compatible.

@@ -5,7 +5,7 @@ Tags: woocommerce, shortcode, coupon, discount, marketing, theme, conditional, c
 Requires at least: 5.5
 Requires PHP: 5.6.0
 Tested up to: 5.8
-Stable tag: 1.20.0
+Stable tag: 1.21.0
 License: GPLv3
 
 Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally, based on the validity of coupons.
@@ -39,6 +39,12 @@ It also provides shortcodes that allow to render the coupon code, its descriptio
 `[coupon_description]`
 `[coupon_discount]`
 `[coupon_show]`
+
+A coupon iterator shortcode makes it easy to work with a set of coupons, the enclosed content is rendered for each coupon in sequence. The informational shortcodes can be used inside the content of this shortcode to display details about each coupon code.
+
+`[coupon_iterate]`
+
+For example: `[coupon_iterate code="test,welcome,20off"][coupon_code] – [coupon_discount][/coupon_iterate]`
 
 A coupon enumerator shortcode allows to list all or a set of coupons, to show their code, description or discount information, or combinations of those using the `[coupon_show]` shortcode:
 
@@ -76,6 +82,18 @@ Showing a coupon that is not valid for the current cart and motivating to add it
 `[coupon_is_not_valid code="25off"]
 If you purchase 5 Widgets, you can use the coupon [coupon_code] to get 25% off your purchase!
 [/coupon_is_not_valid]`
+
+Iterate over several coupons and show their discount info:
+
+`[coupon_iterate code="test,welcome,20off"]
+Use the Coupon Code: [coupon_code] for [coupon_discount]
+[/coupon_iterate]`
+
+Iterate over all coupons and show their discount info:
+
+`[coupon_iterate code="*"]
+Use the Coupon Code: [coupon_code] for [coupon_discount]
+[/coupon_iterate]`
 
 Show information about three random coupons, including the coupon code, its description and discount info together on each entry:
 
