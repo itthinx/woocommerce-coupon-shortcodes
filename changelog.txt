@@ -3,6 +3,8 @@
 = 1.22.0 =
 * WordPress 5.9 compatible.
 * WooCommerce 5.8 compatible.
+* Updated the recommended related extensions.
+* Updated coupon queries so filters are applied.
 
 = 1.21.0 =
 * WordPress 5.8 compatible.

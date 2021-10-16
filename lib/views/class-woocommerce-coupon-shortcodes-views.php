@@ -434,25 +434,48 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 		$coupon_codes = array();
 		if ( count( $types ) == 0 ) {
-			$_coupons = $wpdb->get_results(
-				$wpdb->prepare(
-					"SELECT DISTINCT ID, post_title FROM $wpdb->posts WHERE post_type = 'shop_coupon' AND post_status = 'publish' ORDER BY $orderby $order LIMIT %d",
-					intval( $number )
-				)
-			);
+			// pre 1.22.0 query for reference:
+			// $_coupons = $wpdb->get_results(
+			// 	$wpdb->prepare(
+			// 		"SELECT DISTINCT ID, post_title FROM $wpdb->posts WHERE post_type = 'shop_coupon' AND post_status = 'publish' ORDER BY $orderby $order LIMIT %d",
+			// 		intval( $number )
+			// 	)
+			// );
+			// @since 1.22.0 allow filters to act while coupons are obtained
+			$_coupons = get_posts( array(
+				'post_type'        => 'shop_coupon',
+				'post_status'      => 'publish',
+				'suppress_filters' => false,
+				'order'            => $order,
+				'orderby'          => $orderby,
+				'posts_per_page'   => intval( $number )
+			) );
 		} else {
-			$types = esc_sql( $types );
-			$ts = array();
-			foreach( $types as $type ) {
-				$ts[] = "'" . $type . "'";
-			}
-			$_types = ' (' . implode(',', $ts ) . ') ';
-			$_coupons = $wpdb->get_results(
-					$wpdb->prepare(
-						"SELECT DISTINCT ID, post_title FROM $wpdb->posts p LEFT JOIN $wpdb->postmeta pm ON p.ID = pm.post_id WHERE p.post_type = 'shop_coupon' AND p.post_status = 'publish' AND pm.meta_key = 'discount_type' AND pm.meta_value IN $_types ORDER BY $orderby $order LIMIT %d",
-						intval( $number )
-					)
-			);
+			// pre 1.22.0 query for reference:
+			// $types = esc_sql( $types );
+			// $ts = array();
+			// foreach( $types as $type ) {
+			// 	$ts[] = "'" . $type . "'";
+			// }
+			// $_types = ' (' . implode(',', $ts ) . ') ';
+			// $_coupons = $wpdb->get_results(
+			// 	$wpdb->prepare(
+			// 		"SELECT DISTINCT ID, post_title FROM $wpdb->posts p LEFT JOIN $wpdb->postmeta pm ON p.ID = pm.post_id WHERE p.post_type = 'shop_coupon' AND p.post_status = 'publish' AND pm.meta_key = 'discount_type' AND pm.meta_value IN $_types ORDER BY $orderby $order LIMIT %d",
+			// 		intval( $number )
+			// 	)
+			// );
+			// @since 1.22.0 allow filters to act while coupons are obtained
+			$_coupons = get_posts( array(
+				'post_type'        => 'shop_coupon',
+				'post_status'      => 'publish',
+				'suppress_filters' => false,
+				'order'            => $order,
+				'orderby'          => $orderby,
+				'posts_per_page'   => intval( $number ),
+				'meta_key'         => 'discount_type',
+				'meta_value'       => $types,
+				'meta_compare'     => 'IN'
+			) );
 		}
 		if ( $_coupons && ( count( $_coupons ) > 0 ) ) {
 
