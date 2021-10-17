@@ -22,7 +22,7 @@ It also works with [WooCommerce Group Coupons](https://www.itthinx.com/shop/wooc
 
 = Conditional Shortcodes =
 
-It provides the following conditional shortcodes that allow to enclose content which is shown if coupons are applied, valid or not valid.
+It provides the following conditional shortcodes that allow to enclose content which is shown if certain coupons are applied, valid or active:
 
 `[coupon_is_active]`
 `[coupon_is_not_active]`
@@ -30,6 +30,15 @@ It provides the following conditional shortcodes that allow to enclose content w
 `[coupon_is_not_applied]`
 `[coupon_is_valid]`
 `[coupon_is_not_valid]`
+
+These conditional shortcodes allow to render content if any coupons are applied, valid or active:
+
+`[coupon_has_valid]`
+`[coupon_has_not_valid]`
+`[coupon_has_active]`
+`[coupon_has_not_active]`
+`[coupon_has_applied]`
+`[coupon_has_not_applied]`
 
 = Coupon Info Shortcodes =
 

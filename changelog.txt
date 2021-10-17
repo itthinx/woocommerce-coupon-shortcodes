@@ -5,6 +5,12 @@
 * WooCommerce 5.8 compatible.
 * Updated the recommended related extensions.
 * Updated coupon queries so filters are applied.
+* Added the [coupon_has_valid] shortcode.
+* Added the [coupon_has_not_valid] shortcode.
+* Added the [coupon_has_active] shortcode.
+* Added the [coupon_has_not_active] shortcode.
+* Added the [coupon_has_applied] shortcode.
+* Added the [coupon_has_not_applied] shortcode.
 
 = 1.21.0 =
 * WordPress 5.8 compatible.
