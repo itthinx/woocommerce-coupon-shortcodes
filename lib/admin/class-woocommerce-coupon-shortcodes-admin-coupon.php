@@ -89,7 +89,6 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 		echo '<div id="custom_coupon_shortcodes" class="panel woocommerce_options_panel">';
 
 		echo '<div class="options_group">';
-		// https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/
 
 		echo '<p>';
 		esc_html_e( 'Here are examples of shortcodes that you can use with this coupon.', 'woocommerce-coupon-shortcodes' );
@@ -258,10 +257,10 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 			$output .= 'padding: 1em; margin: 0.62em; display: block; border: 1px solid #ccc; text-align: center; border-radius: 3px; text-decoration: none; color: #666;';
 			$output .= '}';
 			$output .= 'div.woocommerce-coupon-shortcodes-extension-container .extension-title {';
-			$output .= 'color: #a64c84; display: block; font-size: 1.2em; font-weight: 700; line-height: 1.22em;';
+			$output .= 'color: #7f54b3; display: block; font-size: 1.2em; font-weight: 700; line-height: 1.22em;';
 			$output .= '}';
 			$output .= 'div.woocommerce-coupon-shortcodes-extension-container.featured .extension-title {';
-			$output .= 'color: #a64c84; display: block; font-size: 1.6em; font-weight: 900; line-height: 1.62em;';
+			$output .= 'color: #7f54b3; display: block; font-size: 1.6em; font-weight: 900; line-height: 1.62em;';
 			$output .= '}';
 			$output .= 'div.woocommerce-coupon-shortcodes-extension-container .extension-description {';
 			$output .= 'display: block; padding: 0.6em;';
@@ -296,22 +295,27 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 				array(
 					'title'       => 'Volume Discount Coupons',
 					'description' => esc_html__( 'Provides automatic discounts and coupons based on the quantities of products in the cart.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://1.envato.market/5GzA1'
+					'url'         => 'https://www.itthinx.com/shop/woocommerce-vollume-discount-coupons/'
 				),
 				array(
 					'title'       => 'Coupons Countdown',
 					'description' => esc_html__( 'Provides pretty coupons with real-time countdown counters. Show your customers the coupons they can use and when they expire.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://1.envato.market/1kz1z'
+					'url'         => 'https://www.itthinx.com/shop/woocommerce-coupons-countdown/'
 				),
 				array(
 					'title'       => 'Coupon Exclusions',
 					'description' => esc_html__( 'WooCommerce Coupon Exclusions is a powerful and easy to use WooCommerce extension which provides extended coupon usage restrictions.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://1.envato.market/XREd3'
+					'url'         => 'https://www.itthinx.com/shop/woocommerce-coupon-exclusions/'
 				),
 				array(
 					'title'       => 'Coupon Messages',
 					'description' => esc_html__( 'This extension for WooCommerce allows to override the default messages for coupons.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://1.envato.market/B9kxJ'
+					'url'         => 'https://www.itthinx.com/shop/woocommerce-coupon-messages/'
+				),
+				array(
+					'title'       => 'WooCommerce Documentation',
+					'description' => esc_html__( 'This extension is based on the free Documentation plugin. It allows to link documentation pages to products and display them automatically on the product pages.', 'woocommerce-coupon-shortcodes' ),
+					'url'         => 'https://www.itthinx.com/shop/woocommerce-documentation/'
 				),
 			);
 

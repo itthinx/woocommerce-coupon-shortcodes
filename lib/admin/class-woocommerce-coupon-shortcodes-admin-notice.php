@@ -162,7 +162,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 		);
 
 		$output .= '<p style="font-size: 1.2em; font-weight: 600;">';
-		$output .= __( 'Many thanks for using <a target="_blank" href="https://wordpress.org/plugins/woocommerce-coupon-shortcodes/">WooCommerce Coupon Shortcodes</a>!', 'woocommerce-coupon-shortcodes' );
+		$output .= __( 'Many thanks for using <a style="text-decoration: none; color: #a64c84;" target="_blank" href="https://wordpress.org/plugins/woocommerce-coupon-shortcodes/">WooCommerce Coupon Shortcodes</a>!', 'woocommerce-coupon-shortcodes' );
 		$output .= '</p>';
 		$output .= '<p>';
 		$output .= __( 'Could you please spare a minute and give it a review over at WordPress.org?', 'woocommerce-coupon-shortcodes' );

@@ -112,6 +112,12 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		add_shortcode( 'coupon_is_not_applied', array( __CLASS__, 'coupon_is_not_applied' ) );
 		add_shortcode( 'coupon_is_valid', array( __CLASS__, 'coupon_is_valid' ) );
 		add_shortcode( 'coupon_is_not_valid', array( __CLASS__, 'coupon_is_not_valid' ) );
+		add_shortcode( 'coupon_has_valid', array( __CLASS__, 'coupon_has_valid' ) );
+		add_shortcode( 'coupon_has_not_valid', array( __CLASS__, 'coupon_has_not_valid' ) );
+		add_shortcode( 'coupon_has_active', array( __CLASS__, 'coupon_has_active' ) );
+		add_shortcode( 'coupon_has_not_active', array( __CLASS__, 'coupon_has_not_active' ) );
+		add_shortcode( 'coupon_has_applied', array( __CLASS__, 'coupon_has_applied' ) );
+		add_shortcode( 'coupon_has_not_applied', array( __CLASS__, 'coupon_has_not_applied' ) );
 		add_shortcode( 'coupon_code', array( __CLASS__, 'coupon_code' ) );
 		add_shortcode( 'coupon_description', array( __CLASS__, 'coupon_description' ) );
 		add_shortcode( 'coupon_discount', array( __CLASS__, 'coupon_discount' ) );
@@ -434,25 +440,48 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 		$coupon_codes = array();
 		if ( count( $types ) == 0 ) {
-			$_coupons = $wpdb->get_results(
-				$wpdb->prepare(
-					"SELECT DISTINCT ID, post_title FROM $wpdb->posts WHERE post_type = 'shop_coupon' AND post_status = 'publish' ORDER BY $orderby $order LIMIT %d",
-					intval( $number )
-				)
-			);
+			// pre 1.22.0 query for reference:
+			// $_coupons = $wpdb->get_results(
+			// 	$wpdb->prepare(
+			// 		"SELECT DISTINCT ID, post_title FROM $wpdb->posts WHERE post_type = 'shop_coupon' AND post_status = 'publish' ORDER BY $orderby $order LIMIT %d",
+			// 		intval( $number )
+			// 	)
+			// );
+			// @since 1.22.0 allow filters to act while coupons are obtained
+			$_coupons = get_posts( array(
+				'post_type'        => 'shop_coupon',
+				'post_status'      => 'publish',
+				'suppress_filters' => false,
+				'order'            => $order,
+				'orderby'          => $orderby,
+				'posts_per_page'   => intval( $number )
+			) );
 		} else {
-			$types = esc_sql( $types );
-			$ts = array();
-			foreach( $types as $type ) {
-				$ts[] = "'" . $type . "'";
-			}
-			$_types = ' (' . implode(',', $ts ) . ') ';
-			$_coupons = $wpdb->get_results(
-					$wpdb->prepare(
-						"SELECT DISTINCT ID, post_title FROM $wpdb->posts p LEFT JOIN $wpdb->postmeta pm ON p.ID = pm.post_id WHERE p.post_type = 'shop_coupon' AND p.post_status = 'publish' AND pm.meta_key = 'discount_type' AND pm.meta_value IN $_types ORDER BY $orderby $order LIMIT %d",
-						intval( $number )
-					)
-			);
+			// pre 1.22.0 query for reference:
+			// $types = esc_sql( $types );
+			// $ts = array();
+			// foreach( $types as $type ) {
+			// 	$ts[] = "'" . $type . "'";
+			// }
+			// $_types = ' (' . implode(',', $ts ) . ') ';
+			// $_coupons = $wpdb->get_results(
+			// 	$wpdb->prepare(
+			// 		"SELECT DISTINCT ID, post_title FROM $wpdb->posts p LEFT JOIN $wpdb->postmeta pm ON p.ID = pm.post_id WHERE p.post_type = 'shop_coupon' AND p.post_status = 'publish' AND pm.meta_key = 'discount_type' AND pm.meta_value IN $_types ORDER BY $orderby $order LIMIT %d",
+			// 		intval( $number )
+			// 	)
+			// );
+			// @since 1.22.0 allow filters to act while coupons are obtained
+			$_coupons = get_posts( array(
+				'post_type'        => 'shop_coupon',
+				'post_status'      => 'publish',
+				'suppress_filters' => false,
+				'order'            => $order,
+				'orderby'          => $orderby,
+				'posts_per_page'   => intval( $number ),
+				'meta_key'         => 'discount_type',
+				'meta_value'       => $types,
+				'meta_compare'     => 'IN'
+			) );
 		}
 		if ( $_coupons && ( count( $_coupons ) > 0 ) ) {
 
@@ -633,6 +662,214 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		}
 
 		return $valid;
+	}
+
+
+	/**
+	 * Whether there are any valid coupons.
+	 *
+	 * @since 1.22.0
+	 *
+	 * @param array $atts type, number
+	 *
+	 * @return boolean
+	 */
+	private static function _has_valid( $atts = array() ) {
+		$has = false;
+		$types = array();
+		$options = shortcode_atts(
+			array(
+				'type' => null,
+				'number' => null // should only be used to override hard limit if needed
+			),
+			$atts
+		);
+		if ( $options['type'] !== null ) {
+			$types = array_map( 'trim', explode( ',', $options['type'] ) );
+		}
+
+		$order = 'DESC';
+		$orderby = 'ID';
+
+		$number = WooCommerce_Coupon_Shortcodes::get_hard_limit();
+		if ( $options['number'] !== null ) {
+			$number = max( 1, intval( $options['number'] ) );
+		}
+
+		$coupon_ids = array();
+		if ( count( $types ) === 0 ) {
+			$coupon_ids = get_posts( array(
+				'fields'           => 'ids',
+				'post_type'        => 'shop_coupon',
+				'post_status'      => 'publish',
+				'suppress_filters' => false,
+				'order'            => $order,
+				'orderby'          => $orderby,
+				'posts_per_page'   => intval( $number )
+			) );
+		} else {
+			$coupon_ids = get_posts( array(
+				'fields'           => 'ids',
+				'post_type'        => 'shop_coupon',
+				'post_status'      => 'publish',
+				'suppress_filters' => false,
+				'order'            => $order,
+				'orderby'          => $orderby,
+				'posts_per_page'   => intval( $number ),
+				'meta_key'         => 'discount_type',
+				'meta_value'       => $types,
+				'meta_compare'     => 'IN'
+			) );
+		}
+
+		foreach ( $coupon_ids as $coupon_id ) {
+			if ( $code = wc_get_coupon_code_by_id( $coupon_id ) ) {
+				if ( self::_is_valid( array( 'code' => $code ) ) ) {
+					$has = true;
+					break;
+				}
+			}
+		}
+
+		return $has;
+	}
+
+	/**
+	 * Whether there are any active coupons.
+	 *
+	 * @since 1.22.0
+	 *
+	 * @param array $atts type, number
+	 *
+	 * @return boolean
+	 */
+	private static function _has_active( $atts = array() ) {
+		$has = false;
+		$types = array();
+		$options = shortcode_atts(
+			array(
+				'type' => null,
+				'number' => null // should only be used to override hard limit if needed
+			),
+			$atts
+		);
+		if ( $options['type'] !== null ) {
+			$types = array_map( 'trim', explode( ',', $options['type'] ) );
+		}
+
+		$order = 'DESC';
+		$orderby = 'ID';
+
+		$number = WooCommerce_Coupon_Shortcodes::get_hard_limit();
+		if ( $options['number'] !== null ) {
+			$number = max( 1, intval( $options['number'] ) );
+		}
+
+		$coupon_ids = array();
+		if ( count( $types ) === 0 ) {
+			$coupon_ids = get_posts( array(
+				'fields'           => 'ids',
+				'post_type'        => 'shop_coupon',
+				'post_status'      => 'publish',
+				'suppress_filters' => false,
+				'order'            => $order,
+				'orderby'          => $orderby,
+				'posts_per_page'   => intval( $number )
+			) );
+		} else {
+			$coupon_ids = get_posts( array(
+				'fields'           => 'ids',
+				'post_type'        => 'shop_coupon',
+				'post_status'      => 'publish',
+				'suppress_filters' => false,
+				'order'            => $order,
+				'orderby'          => $orderby,
+				'posts_per_page'   => intval( $number ),
+				'meta_key'         => 'discount_type',
+				'meta_value'       => $types,
+				'meta_compare'     => 'IN'
+			) );
+		}
+
+		foreach ( $coupon_ids as $coupon_id ) {
+			if ( $code = wc_get_coupon_code_by_id( $coupon_id ) ) {
+				if ( self::_is_active( array( 'code' => $code ) ) ) {
+					$has = true;
+					break;
+				}
+			}
+		}
+
+		return $has;
+	}
+
+	/**
+	 * Whether there are any applied coupons.
+	 *
+	 * @since 1.22.0
+	 *
+	 * @param array $atts type, number
+	 *
+	 * @return boolean
+	 */
+	private static function _has_applied( $atts = array() ) {
+		$has = false;
+		$types = array();
+		$options = shortcode_atts(
+			array(
+				'type' => null,
+				'number' => null // should only be used to override hard limit if needed
+			),
+			$atts
+		);
+		if ( $options['type'] !== null ) {
+			$types = array_map( 'trim', explode( ',', $options['type'] ) );
+		}
+
+		$order = 'DESC';
+		$orderby = 'ID';
+
+		$number = WooCommerce_Coupon_Shortcodes::get_hard_limit();
+		if ( $options['number'] !== null ) {
+			$number = max( 1, intval( $options['number'] ) );
+		}
+
+		$coupon_ids = array();
+		if ( count( $types ) === 0 ) {
+			$coupon_ids = get_posts( array(
+				'fields'           => 'ids',
+				'post_type'        => 'shop_coupon',
+				'post_status'      => 'publish',
+				'suppress_filters' => false,
+				'order'            => $order,
+				'orderby'          => $orderby,
+				'posts_per_page'   => intval( $number )
+			) );
+		} else {
+			$coupon_ids = get_posts( array(
+				'fields'           => 'ids',
+				'post_type'        => 'shop_coupon',
+				'post_status'      => 'publish',
+				'suppress_filters' => false,
+				'order'            => $order,
+				'orderby'          => $orderby,
+				'posts_per_page'   => intval( $number ),
+				'meta_key'         => 'discount_type',
+				'meta_value'       => $types,
+				'meta_compare'     => 'IN'
+			) );
+		}
+
+		foreach ( $coupon_ids as $coupon_id ) {
+			if ( $code = wc_get_coupon_code_by_id( $coupon_id ) ) {
+				if ( self::_is_applied( array( 'code' => $code ) ) ) {
+					$has = true;
+					break;
+				}
+			}
+		}
+
+		return $has;
 	}
 
 	/**
@@ -971,6 +1208,162 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				remove_shortcode( 'coupon_is_not_valid' );
 				$content = do_shortcode( $content );
 				add_shortcode( 'coupon_is_not_valid', array( __CLASS__, 'coupon_is_not_valid' ) );
+				$output = $content;
+			}
+		}
+		return $output;
+	}
+
+	/**
+	 * Render content if there are valid coupons.
+	 *
+	 * The type attribute can be used to limit it to certain coupon types (takes a comma-separated list of coupon types).
+	 *
+	 * @since 1.22.0
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	public static function coupon_has_valid( $atts, $content = null ) {
+		$output = '';
+		if ( !empty( $content ) ) {
+			$has = self::_has_valid( $atts );
+			if ( $has ) {
+				remove_shortcode( 'coupon_has_valid' );
+				$content = do_shortcode( $content );
+				add_shortcode( 'coupon_has_valid', array( __CLASS__, 'coupon_has_valid' ) );
+				$output = $content;
+			}
+		}
+		return $output;
+	}
+
+	/**
+	 * Render content if there are no valid coupons.
+	 *
+	 * The type attribute can be used to limit it to certain coupon types (takes a comma-separated list of coupon types).
+	 *
+	 * @since 1.22.0
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	public static function coupon_has_not_valid( $atts, $content = null ) {
+		$output = '';
+		if ( !empty( $content ) ) {
+			$has = self::_has_valid( $atts );
+			if ( !$has ) {
+				remove_shortcode( 'coupon_has_not_valid' );
+				$content = do_shortcode( $content );
+				add_shortcode( 'coupon_has_not_valid', array( __CLASS__, 'coupon_has_not_valid' ) );
+				$output = $content;
+			}
+		}
+		return $output;
+	}
+
+	/**
+	 * Render content if there are active coupons.
+	 *
+	 * The type attribute can be used to limit it to certain coupon types (takes a comma-separated list of coupon types).
+	 *
+	 * @since 1.22.0
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	public static function coupon_has_active( $atts, $content = null ) {
+		$output = '';
+		if ( !empty( $content ) ) {
+			$has = self::_has_active( $atts );
+			if ( $has ) {
+				remove_shortcode( 'coupon_has_active' );
+				$content = do_shortcode( $content );
+				add_shortcode( 'coupon_has_active', array( __CLASS__, 'coupon_has_active' ) );
+				$output = $content;
+			}
+		}
+		return $output;
+	}
+
+	/**
+	 * Render content if there are no active coupons.
+	 *
+	 * The type attribute can be used to limit it to certain coupon types (takes a comma-separated list of coupon types).
+	 *
+	 * @since 1.22.0
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	public static function coupon_has_not_active( $atts, $content = null ) {
+		$output = '';
+		if ( !empty( $content ) ) {
+			$has = self::_has_active( $atts );
+			if ( !$has ) {
+				remove_shortcode( 'coupon_has_not_active' );
+				$content = do_shortcode( $content );
+				add_shortcode( 'coupon_has_not_active', array( __CLASS__, 'coupon_has_not_active' ) );
+				$output = $content;
+			}
+		}
+		return $output;
+	}
+
+	/**
+	 * Render content if there are applied coupons.
+	 *
+	 * The type attribute can be used to limit it to certain coupon types (takes a comma-separated list of coupon types).
+	 *
+	 * @since 1.22.0
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	public static function coupon_has_applied( $atts, $content = null ) {
+		$output = '';
+		if ( !empty( $content ) ) {
+			$has = self::_has_applied( $atts );
+			if ( $has ) {
+				remove_shortcode( 'coupon_has_applied' );
+				$content = do_shortcode( $content );
+				add_shortcode( 'coupon_has_applied', array( __CLASS__, 'coupon_has_applied' ) );
+				$output = $content;
+			}
+		}
+		return $output;
+	}
+
+	/**
+	 * Render content if there are no applied coupons.
+	 *
+	 * The type attribute can be used to limit it to certain coupon types (takes a comma-separated list of coupon types).
+	 *
+	 * @since 1.22.0
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	public static function coupon_has_not_applied( $atts, $content = null ) {
+		$output = '';
+		if ( !empty( $content ) ) {
+			$has = self::_has_applied( $atts );
+			if ( !$has ) {
+				remove_shortcode( 'coupon_has_not_applied' );
+				$content = do_shortcode( $content );
+				add_shortcode( 'coupon_has_not_applied', array( __CLASS__, 'coupon_has_not_applied' ) );
 				$output = $content;
 			}
 		}

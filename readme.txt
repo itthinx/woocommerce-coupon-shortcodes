@@ -4,8 +4,8 @@ Donate link: https://www.itthinx.com/shop/
 Tags: woocommerce, shortcode, coupon, discount, marketing, theme, conditional, coupons, discounts, display, info, information, promotion, subscription, subscriptions
 Requires at least: 5.5
 Requires PHP: 5.6.0
-Tested up to: 5.8
-Stable tag: 1.21.0
+Tested up to: 5.9
+Stable tag: 1.22.0
 License: GPLv3
 
 Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally, based on the validity of coupons.
@@ -22,7 +22,7 @@ It also works with [WooCommerce Group Coupons](https://www.itthinx.com/shop/wooc
 
 = Conditional Shortcodes =
 
-It provides the following conditional shortcodes that allow to enclose content which is shown if coupons are applied, valid or not valid.
+It provides the following conditional shortcodes that allow to enclose content which is shown if certain coupons are applied, valid or active:
 
 `[coupon_is_active]`
 `[coupon_is_not_active]`
@@ -30,6 +30,15 @@ It provides the following conditional shortcodes that allow to enclose content w
 `[coupon_is_not_applied]`
 `[coupon_is_valid]`
 `[coupon_is_not_valid]`
+
+These conditional shortcodes allow to render content if any coupons are applied, valid or active:
+
+`[coupon_has_valid]`
+`[coupon_has_not_valid]`
+`[coupon_has_active]`
+`[coupon_has_not_active]`
+`[coupon_has_applied]`
+`[coupon_has_not_applied]`
 
 = Coupon Info Shortcodes =
 
