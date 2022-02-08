@@ -3,6 +3,8 @@
 = 1.23.0 =
 * WordPress 6.0 compatible.
 * WooCommerce 6.2 compatible.
+* Requires at least WooCommerce 5.8.
+* Removed legacy WooCommerce compatibility code.
 
 = 1.22.0 =
 * WordPress 5.9 compatible.

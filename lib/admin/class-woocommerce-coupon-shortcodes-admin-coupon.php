@@ -216,16 +216,6 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 		echo self::extensions();
 
 		echo '</div>'; // #custom_coupon_shortcodes .panel .woocommerce_options_panel
-
-		if ( !( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '2.1.9' ) >= 0 ) ) {
-			echo '<script type="text/javascript">';
-			echo 'if (typeof jQuery !== "undefined"){';
-			echo 'jQuery(document).ready(function(){';
-			echo 'jQuery("#custom_coupon_shortcodes").insertAfter(jQuery(".woocommerce_options_panel").last());';
-			echo '});';
-			echo '}';
-			echo '</script>';
-		}
 	}
 
 	/**
