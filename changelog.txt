@@ -7,6 +7,9 @@
 * Requires at least WooCommerce 5.8.
 * Removed legacy WooCommerce compatibility code.
 * Updated plugin entry description.
+* Updated plugin entry links.
+* Replaced the use of language domain constant with string literal.
+* Translation template added.
 
 = 1.22.0 =
 * WordPress 5.9 compatible.

@@ -186,7 +186,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 
 		$output .= '<p>';
 		$output .= sprintf(
-			__( 'Follow <a href="%s">@itthinx</a> on Twitter and visit <a href="%s" target="_blank">itthinx.com</a> to see more free and premium plugins we provide.', 'woocommerce-coupon-shortcodes' ),
+			__( 'Follow <a href="%s">@itthinx</a> and visit <a href="%s" target="_blank">itthinx.com</a> to see more free and premium plugins we provide.', 'woocommerce-coupon-shortcodes' ),
 			esc_url( 'https://twitter.com/itthinx' ),
 			esc_url( 'https://www.itthinx.com' )
 		);

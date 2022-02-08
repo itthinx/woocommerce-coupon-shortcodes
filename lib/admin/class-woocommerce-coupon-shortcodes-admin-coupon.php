@@ -90,12 +90,20 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 
 		echo '<div class="options_group">';
 
-		echo '<p>';
+		echo '<p class="description">';
 		esc_html_e( 'Here are examples of shortcodes that you can use with this coupon.', 'woocommerce-coupon-shortcodes' );
 		echo ' ';
 		printf(
 			__( 'For more details on these and other available shortcodes, please refer to the <a href="%s">documentation</a>.', 'woocommerce-coupon-shortcodes' ),
 			esc_url( 'https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/' )
+		);
+		echo '</p>';
+
+		echo '<p>';
+		printf(
+			esc_html__( 'You can support the development of this extension by purchasing tools from the %s and %s for WooCommerce.', 'woocommerce-coupon-shortcodes' ),
+			sprintf( '<a href="https://www.itthinx.com/shop/">%s</a>', esc_html__( 'Shop', 'woocommerce-coupon-shortcodes' ) ),
+			sprintf( '<a href="https://woocommerce.com/vendor/itthinx/?aff=7223&cid=2409803">%s</a>', esc_html__( 'Extensions', 'woocommerce-coupon-shortcodes' ) )
 		);
 		echo '</p>';
 
@@ -285,7 +293,8 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 				array(
 					'title'       => 'Volume Discount Coupons',
 					'description' => esc_html__( 'Provides automatic discounts and coupons based on the quantities of products in the cart.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://woocommerce.com/products/volume-discount-coupons/?aff=7223&cid=2409803'
+					'url'         => 'https://woocommerce.com/products/volume-discount-coupons/?aff=7223&cid=2409803',
+					'featured'    => true
 				),
 				array(
 					'title'       => 'Coupons Countdown',
