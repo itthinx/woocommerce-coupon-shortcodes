@@ -285,7 +285,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 				array(
 					'title'       => 'Volume Discount Coupons',
 					'description' => esc_html__( 'Provides automatic discounts and coupons based on the quantities of products in the cart.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://www.itthinx.com/shop/woocommerce-vollume-discount-coupons/'
+					'url'         => 'https://woocommerce.com/products/volume-discount-coupons/?aff=7223&cid=2409803'
 				),
 				array(
 					'title'       => 'Coupons Countdown',
