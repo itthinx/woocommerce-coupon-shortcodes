@@ -46,13 +46,15 @@ class WooCommerce_Coupon_Shortcodes {
 		//register_uninstall_hook( WOO_CODES_FILE, array( __CLASS__, 'uninstall' ) );
 		add_action( 'admin_notices', array( __CLASS__, 'admin_notices' ) );
 		add_action( 'init', array( __CLASS__, 'wp_init' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( WOO_CODES_FILE ), array( __CLASS__, 'plugin_action_links' ) );
+		add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 4 );
 	}
 	
 	/**
 	 * Loads translations and shortcode handler.
 	 */
 	public static function wp_init() {
-		load_plugin_textdomain( WOO_CODES_PLUGIN_DOMAIN, null, 'woocommerce-coupon-shortcodes/languages' );
+		load_plugin_textdomain( 'woocommerce-coupon-shortcodes', null, 'woocommerce-coupon-shortcodes/languages' );
 		if ( self::check_dependencies() ) {
 			require_once( WOO_CODES_VIEWS_LIB . '/class-woocommerce-coupon-shortcodes-views.php' );
 			// notice
@@ -63,6 +65,50 @@ class WooCommerce_Coupon_Shortcodes {
 				require_once WOO_CODES_ADMIN_LIB . '/class-woocommerce-coupon-shortcodes-admin-coupon.php';
 			}
 		}
+	}
+
+	/**
+	 * Plugin links.
+	 *
+	 * @param array $links
+	 *
+	 * @return string
+	 */
+	public static function plugin_action_links( $links ) {
+		$links[] = sprintf(
+			'<a href="%s">%s</a>',
+			esc_url( 'https://docs.ithtinx.com/document/woocommerce-coupon-shortcodes/' ),
+			esc_html__( 'Documentation', 'woocommerce-coupons-countdown' )
+		);
+		$links[] = sprintf(
+			'<a href="%s">%s</a>',
+			esc_url( 'https://www.ithtinx.com/shop/' ),
+			esc_html__( 'Shop', 'woocommerce-coupons-countdown' )
+		);
+		$links[] = sprintf(
+			'<a href="%s">%s</a>',
+			esc_url( 'https://woocommerce.com/vendor/itthinx/?aff=7223&cid=2409803' ),
+			esc_html__( 'Extensions', 'woocommerce-coupons-countdown' )
+		);
+		return $links;
+	}
+
+	/**
+	 * Adds links to plugin entry.
+	 *
+	 * @param array $plugin_meta plugin row meta entries
+	 * @param string $plugin_file path to the plugin file - relative to the plugins directory
+	 * @param array $plugin_data plugin data entries
+	 * @param string $status current status of the plugin
+	 *
+	 * @return array[string]
+	 */
+	public static function plugin_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
+		if ( $plugin_file == plugin_basename( WOO_CODES_FILE ) ) {
+			$plugin_meta[] = '<a href="https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/">' . esc_html__( 'Documentation', 'woocommerce-coupon-shortcodes' ) . '</a>';
+			$plugin_meta[] = '<a href="https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/">' . esc_html__( 'Ask a Question', 'woocommerce-coupon-shortcodes' ) . '</a>';
+		}
+		return $plugin_meta;
 	}
 
 	/**
@@ -112,7 +158,7 @@ class WooCommerce_Coupon_Shortcodes {
 		}
 		$woocommerce_is_active = in_array( 'woocommerce/woocommerce.php', $active_plugins );
 		if ( !$woocommerce_is_active ) {
-			self::$admin_messages[] = "<div class='error'>" . __( '<em>WooCommerce Coupon Shortcodes</em> needs the <a href="https://woocommerce.com" target="_blank">WooCommerce</a> plugin. Please install and activate it.', WOO_CODES_PLUGIN_DOMAIN ) . "</div>";
+			self::$admin_messages[] = "<div class='error'>" . __( '<em>WooCommerce Coupon Shortcodes</em> needs the <a href="https://woocommerce.com" target="_blank">WooCommerce</a> plugin. Please install and activate it.', 'woocommerce-coupon-shortcodes' ) . "</div>";
 		}
 		if ( !$woocommerce_is_active ) {
 			if ( $disable ) {
