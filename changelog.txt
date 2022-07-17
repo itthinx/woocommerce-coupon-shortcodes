@@ -3,6 +3,8 @@
 = 1.24.0 =
 * WordPress 6.0 compatible.
 * WooCommerce 6.7 compatible.
+* Fixed code format, trailing whitespace.
+* Added missing code docs and fixed formatting issues.
 
 = 1.23.0 =
 * WordPress 6.0 compatible.

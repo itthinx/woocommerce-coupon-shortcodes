@@ -30,14 +30,14 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 
 	/**
 	 * Time mark.
-	 * 
+	 *
 	 * @var string
 	 */
 	const INIT_TIME = 'woocommerce-coupon-shortcodes-init-time';
 
 	/**
 	 * Used to store user meta and hide the notice asking to review.
-	 * 
+	 *
 	 * @var string
 	 */
 	const HIDE_REVIEW_NOTICE = 'woocommerce-coupon-shortcodes-hide-review-notice';
@@ -51,7 +51,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 
 	/**
 	 * The number of seconds in five days, since init date to show the notice.
-	 * 
+	 *
 	 * @var int
 	 */
 	const SHOW_LAPSE = 432000;

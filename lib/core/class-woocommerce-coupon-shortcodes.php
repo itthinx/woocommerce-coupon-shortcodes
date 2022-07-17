@@ -35,6 +35,11 @@ class WooCommerce_Coupon_Shortcodes {
 	 */
 	const HARD_LIMIT = 1000;
 
+	/**
+	 * Holds admin notices.
+	 *
+	 * @var string[]
+	 */
 	private static $admin_messages = array();
 
 	/**
@@ -49,7 +54,7 @@ class WooCommerce_Coupon_Shortcodes {
 		add_filter( 'plugin_action_links_' . plugin_basename( WOO_CODES_FILE ), array( __CLASS__, 'plugin_action_links' ) );
 		add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 4 );
 	}
-	
+
 	/**
 	 * Loads translations and shortcode handler.
 	 */
@@ -113,7 +118,7 @@ class WooCommerce_Coupon_Shortcodes {
 
 	/**
 	 * Activation hook.
-	 * 
+	 *
 	 * @param boolean $network_wide
 	 */
 	public static function activate( $network_wide = false ) {
@@ -121,7 +126,7 @@ class WooCommerce_Coupon_Shortcodes {
 
 	/**
 	 * Deactivation hook.
-	 * 
+	 *
 	 * @param boolean $network_wide
 	 */
 	public static function deactivate( $network_wide = false ) {
@@ -146,6 +151,7 @@ class WooCommerce_Coupon_Shortcodes {
 
 	/**
 	 * Check plugin dependencies (WooCommerce), nag if missing.
+	 *
 	 * @param boolean $disable disable the plugin if true, defaults to false
 	 */
 	public static function check_dependencies( $disable = false ) {
