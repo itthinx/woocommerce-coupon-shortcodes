@@ -13,7 +13,7 @@
  * GNU General Public License for more details.
  *
  * This header and all notices must be kept intact.
- * 
+ *
  * @author Karim Rahimpur
  * @package woocommerce-coupon-shortcodes
  * @since woocommerce-coupon-shortcodes 1.0.0
@@ -133,6 +133,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	 * Evaluate coupons applied based on op and coupon codes.
 	 *
 	 * @param array $atts
+	 *
 	 * @return boolean
 	 */
 	private static function _is_applied( $atts ) {
@@ -193,6 +194,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	 * Evaluate coupons not applied based on op and coupon codes.
 	 *
 	 * @param array $atts
+	 *
 	 * @return boolean
 	 */
 	private static function _is_not_applied( $atts ) {
@@ -255,7 +257,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 	/**
 	 * Returns the valid coupon codes currently applied to the cart.
-	 * 
+	 *
 	 * @return array of string with coupon codes
 	 */
 	private static function _get_applied_codes() {
@@ -277,9 +279,9 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 	/**
 	 * Returns all published coupon codes.
-	 * 
+	 *
 	 * Options:
-	 * 
+	 *
 	 * - type (coupon type) : fixed_cart, percent, fixed_product, percent_product, sign_up_fee, sign_up_fee_percent, recurring_fee, recurring_percent
 	 * - type (sets) : cart, fixed, percent, product, recurring, sign_up, subscription
 	 * - orderby : code/post_title, ID, rand (*)
@@ -514,6 +516,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	 * Active means: the coupon exists, it has not expired and its usage limit has not been exceeded.
 	 *
 	 * @param array $atts
+	 *
 	 * @return boolean
 	 */
 	private static function _is_active( $atts ) {
@@ -585,8 +588,9 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 	/**
 	 * Evaluate common validity based on op and coupon codes.
-	 * 
+	 *
 	 * @param array $atts
+	 *
 	 * @return boolean
 	 */
 	private static function _is_valid( $atts ) {
@@ -874,8 +878,9 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 	/**
 	 * Boolean AND on array elements.
-	 * 
+	 *
 	 * @param array $a
+	 *
 	 * @return boolean true if all elements are true and there is at least one in the array, false otherwise
 	 */
 	public static function conj( $a ) {
@@ -896,8 +901,9 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 	/**
 	 * Boolean OR on array elements.
-	 * 
+	 *
 	 * @param array $a
+	 *
 	 * @return boolean true if at least one true element is in the array, false otherwise
 	 */
 	public static function disj( $a ) {
@@ -918,9 +924,10 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 	/**
 	 * Enumerate the coupons.
-	 * 
+	 *
 	 * @param array $atts
 	 * @param string $content
+	 *
 	 * @return string
 	 */
 	public static function coupon_enumerate( $atts, $content = null ) {
@@ -1057,6 +1064,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	 *
 	 * @param array $atts attributes
 	 * @param string $content content to render
+	 *
 	 * @return string
 	 */
 	public static function coupon_is_applied( $atts, $content = null ) {
@@ -1083,6 +1091,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	 *
 	 * @param array $atts attributes
 	 * @param string $content content to render
+	 *
 	 * @return string
 	 */
 	public static function coupon_is_not_applied( $atts, $content = null ) {
@@ -1110,6 +1119,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	 *
 	 * @param array $atts attributes
 	 * @param string $content content to render
+	 *
 	 * @return string
 	 */
 	public static function coupon_is_active( $atts, $content = null ) {
@@ -1136,6 +1146,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	 *
 	 * @param array $atts attributes
 	 * @param string $content content to render
+	 *
 	 * @return string
 	 */
 	public static function coupon_is_not_active( $atts, $content = null ) {
@@ -1159,14 +1170,15 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 	/**
 	 * Conditionally render content based on coupon validity.
-	 * 
+	 *
 	 * Takes a comma-separated list of coupon codes as coupon or code attribute.
-	 * 
+	 *
 	 * The op attribute determines whether all codes must be valid (and) or
 	 * any code can be valid (or) for the content to be rendered.
-	 * 
+	 *
 	 * @param array $atts attributes
 	 * @param string $content content to render
+	 *
 	 * @return string
 	 */
 	public static function coupon_is_valid( $atts, $content = null ) {
@@ -1193,6 +1205,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	 *
 	 * @param array $atts attributes
 	 * @param string $content content to render
+	 *
 	 * @return string
 	 */
 	public static function coupon_is_not_valid( $atts, $content = null ) {
@@ -1374,8 +1387,9 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	 * Returns an array of (potential) coupon codes obtained
 	 * through the options or through the global that might have been
 	 * set in _is_valid.
-	 * 
+	 *
 	 * @param array $options
+	 *
 	 * @return array
 	 */
 	private static function get_codes( $options ) {
@@ -1403,6 +1417,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	 *
 	 * @param array $atts
 	 * @param string $content not used
+	 *
 	 * @return string
 	 */
 	public static function coupon_code( $atts, $content = null ) {
@@ -1445,9 +1460,10 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 	/**
 	 * Renders the description(s) of coupon(s).
-	 * 
+	 *
 	 * @param array $atts
 	 * @param string $content not used
+	 *
 	 * @return string
 	 */
 	public static function coupon_description( $atts, $content = null ) {
@@ -1522,6 +1538,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	 *
 	 * @param array $atts
 	 * @param string $content not used
+	 *
 	 * @return string
 	 */
 	public static function coupon_discount( $atts, $content = null ) {
@@ -1619,6 +1636,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	 * Returns a description of the discount.
 	 *
 	 * @param WC_Coupon $coupon
+	 *
 	 * @return string HTML describing the discount
 	 */
 	public static function get_discount_info( $coupon, $atts = array() ) {
@@ -1736,6 +1754,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	 *
 	 * @param array $atts
 	 * @param string $content not used
+	 *
 	 * @return string
 	 */
 	public static function coupon_show( $atts, $content = null ) {

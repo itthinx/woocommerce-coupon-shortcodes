@@ -40,7 +40,6 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 	 * Data panel actions.
 	 */
 	public static function wp_init() {
-		
 	}
 
 	/**
@@ -55,7 +54,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 			'label'  => __( 'Shortcodes', 'woocommerce-coupon-shortcodes' ),
 			'target' => 'custom_coupon_shortcodes',
 			'class'  => 'coupon-shortcodes'
-		); 
+		);
 		return $tabs;
 	}
 

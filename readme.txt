@@ -1,11 +1,11 @@
 === WooCommerce Coupon Shortcodes ===
-Contributors: itthinx
+Contributors: itthinx, proaktion
 Donate link: https://www.itthinx.com/shop/
 Tags: woocommerce, shortcode, coupon, discount, marketing, theme, conditional, coupons, discounts, display, info, information, promotion, subscription, subscriptions
 Requires at least: 5.6
 Requires PHP: 5.6.0
 Tested up to: 6.0
-Stable tag: 1.23.0
+Stable tag: 1.24.0
 License: GPLv3
 
 Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally, based on the validity of coupons.
@@ -126,7 +126,7 @@ Full usage instructions and help is provided on these pages:
 
 == Installation ==
 
-1. Upload or extract the `woocommerce-coupon-shortcodes` folder to your site's `/wp-content/plugins/` directory. You can also use the *Add new* option found in the *Plugins* menu in WordPress.  
+1. Upload or extract the `woocommerce-coupon-shortcodes` folder to your site's `/wp-content/plugins/` directory. You can also use the *Add new* option found in the *Plugins* menu in WordPress.
 2. Enable the plugin from the *Plugins* menu in WordPress.
 
 == Frequently Asked Questions ==

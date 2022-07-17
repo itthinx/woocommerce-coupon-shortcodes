@@ -30,14 +30,14 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 
 	/**
 	 * Time mark.
-	 * 
+	 *
 	 * @var string
 	 */
 	const INIT_TIME = 'woocommerce-coupon-shortcodes-init-time';
 
 	/**
 	 * Used to store user meta and hide the notice asking to review.
-	 * 
+	 *
 	 * @var string
 	 */
 	const HIDE_REVIEW_NOTICE = 'woocommerce-coupon-shortcodes-hide-review-notice';
@@ -51,7 +51,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 
 	/**
 	 * The number of seconds in five days, since init date to show the notice.
-	 * 
+	 *
 	 * @var int
 	 */
 	const SHOW_LAPSE = 432000;
@@ -148,7 +148,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 
 		$output .= 'div.woocommerce-coupon-shortcodes-rating {';
 		$output .= sprintf( 'background: url(%s) #fff no-repeat 8px 8px;', WOO_CODES_PLUGIN_URL . '/images/icon-256x256.png' );
-		$output .= 'padding-left: 76px ! important;';
+		$output .= 'padding-left: 84px ! important;';
 		$output .= 'background-size: 64px 64px;';
 		$output .= '}';
 		$output .= '</style>';
@@ -161,9 +161,11 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 			esc_html__( 'Dismiss', 'woocommerce-coupon-shortcodes' )
 		);
 
-		$output .= '<p style="font-size: 1.2em; font-weight: 600;">';
+		$output .= '<h2 style="font-size: 2.1em; font-weight: 600; margin: 18px 0 24px 0; line-height:36px;">';
 		$output .= __( 'Many thanks for using <a style="text-decoration: none; color: #a64c84;" target="_blank" href="https://wordpress.org/plugins/woocommerce-coupon-shortcodes/">WooCommerce Coupon Shortcodes</a>!', 'woocommerce-coupon-shortcodes' );
-		$output .= '</p>';
+		$output .= '</h2>';
+
+		$output .= '<div style="margin-bottom:24px;">';
 		$output .= '<p>';
 		$output .= __( 'Could you please spare a minute and give it a review over at WordPress.org?', 'woocommerce-coupon-shortcodes' );
 		$output .= '</p>';
@@ -181,6 +183,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 			esc_html( __( 'Remind me later', 'woocommerce-coupon-shortcodes' ) )
 		);
 		$output .= '</p>';
+		$output .= '</div>';
 
 		$output .= WooCommerce_Coupon_Shortcodes_Admin_Coupon::extensions();
 
