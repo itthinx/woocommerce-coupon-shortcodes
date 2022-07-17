@@ -1,5 +1,5 @@
 === WooCommerce Coupon Shortcodes ===
-Contributors: itthinx
+Contributors: itthinx, proaktion
 Donate link: https://www.itthinx.com/shop/
 Tags: woocommerce, shortcode, coupon, discount, marketing, theme, conditional, coupons, discounts, display, info, information, promotion, subscription, subscriptions
 Requires at least: 5.6
