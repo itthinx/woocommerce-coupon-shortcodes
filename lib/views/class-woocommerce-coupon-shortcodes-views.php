@@ -465,7 +465,24 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				case 'rand' :
 				case 'RAND' :
 					// avoid doing a RAND DB query
-					$orderby = 'post_title';
+					$what = rand( 0, 1 );
+					switch ( $what ) {
+						case 0:
+							$orderby = 'ID';
+							break;
+						case 1:
+							$orderby = 'post_title';
+							break;
+					}
+					$how = rand( 0, 1 );
+					switch ( $how ) {
+						case 0:
+							$order = 'ASC';
+							break;
+						case 1:
+							$order = 'DESC';
+							break;
+					}
 					$randomize = true;
 					break;
 				// (*) old swapped values which are for order
@@ -489,7 +506,10 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 		$number = WooCommerce_Coupon_Shortcodes::get_hard_limit();
 		if ( $options['number'] !== null ) {
-			$number = max( 1, intval( $options['number'] ) );
+			// Don't apply the limit here as it would result in no randomization ... (*)
+			if ( !$randomize ) {
+				$number = max( 1, intval( $options['number'] ) );
+			}
 		}
 
 		$coupon_codes = array();
@@ -538,9 +558,12 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			) );
 		}
 		if ( $_coupons && ( count( $_coupons ) > 0 ) ) {
-
 			if ( $randomize ) {
 				shuffle( $_coupons );
+				// (*) ... now we can set the number with randomized coupons
+				if ( $options['number'] !== null ) {
+					$number = max( 1, intval( $options['number'] ) );
+				}
 			}
 
 			if ( $number !== null ) {
