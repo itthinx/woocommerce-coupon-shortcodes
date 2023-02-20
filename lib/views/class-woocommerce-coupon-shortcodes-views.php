@@ -179,6 +179,29 @@ class WooCommerce_Coupon_Shortcodes_Views {
 	}
 
 	/**
+	 * Whether the given coupon or coupon code is valid.
+	 *
+	 * @since 1.27.0
+	 *
+	 * @param WC_Coupon|string $coupon
+	 *
+	 * @return boolean
+	 */
+	private static function is_valid( $coupon ) {
+		$is_valid = false;
+		if ( is_string( $coupon ) ) {
+			$coupon = new WC_Coupon( $coupon );
+		}
+		if ( $coupon instanceof WC_Coupon ) {
+			if ( $coupon->get_id() ) {
+				$discounts = new WC_Discounts( WC()->cart );
+				$is_valid = $discounts->is_coupon_valid( $coupon ) === true;
+			}
+		}
+		return $is_valid;
+	}
+
+	/**
 	 * Evaluate coupons applied based on op and coupon codes.
 	 *
 	 * @param array $atts
@@ -297,8 +320,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$cart = $woocommerce->cart;
 			if ( ! empty( $cart->applied_coupons ) ) {
 				foreach ( $cart->applied_coupons as $key => $code ) {
-					$coupon = new WC_Coupon( $code );
-					if ( ! is_wp_error( $coupon->is_valid() ) ) {
+					if ( self::is_valid( $code ) ) {
 						$applied_coupon_codes[] = $code;
 					}
 				}
@@ -640,22 +662,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		$codes = array_map( 'trim', explode( ',', $code ) );
 
 		$validities = array();
-		// @since 1.16.0 $coupon->is_valid() was deprecated in WC 3.2.0
-		if ( class_exists( 'WC_Discounts' ) && method_exists( 'WC_Discounts', 'is_coupon_valid' ) ) {
-			$discounts = new WC_Discounts( WC()->cart );
-			foreach ( $codes as $code ) {
-				$coupon = new WC_Coupon( $code );
-				if ( $coupon->get_id() ) {
-					$validities[] = $discounts->is_coupon_valid( $coupon ) === true;
-				}
-			}
-		} else {
-			foreach ( $codes as $code ) {
-				$coupon = new WC_Coupon( $code );
-				if ( $coupon->get_id() ) {
-					$validities[] = $coupon->is_valid();
-				}
-			}
+		foreach ( $codes as $code ) {
+			$validities[] = self::is_valid( $code );
 		}
 
 		if ( $options['revop'] ) {
