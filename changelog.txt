@@ -3,6 +3,8 @@
 = 1.27.0 =
 * WordPress 6.1 compatible.
 * WooCommerce 7.4 compatible.
+* Substantial rewrite of the code that handles the coupon shortcode processing.
+* Fixes inconsistencies in the results produced by certain shortcode scenarios, where incorrect handling of global scope would result in wrong internal context.
 
 = 1.26.0 =
 * WordPress 6.1 compatible.
