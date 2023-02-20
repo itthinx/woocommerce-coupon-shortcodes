@@ -7,6 +7,7 @@
 * Fixes inconsistencies in the results produced by certain shortcode scenarios, where incorrect handling of global scope would result in wrong internal context.
 * Removed use of deprecated is_valid() coupon method.
 * Fixed the random order computation used for the [coupon_enumerate] and [coupon_iterate] shortcodes.
+* Updated the translation template.
 
 = 1.26.0 =
 * WordPress 6.1 compatible.
