@@ -82,12 +82,12 @@ class WooCommerce_Coupon_Shortcodes {
 	public static function plugin_action_links( $links ) {
 		$links[] = sprintf(
 			'<a href="%s">%s</a>',
-			esc_url( 'https://docs.ithtinx.com/document/woocommerce-coupon-shortcodes/' ),
+			esc_url( 'https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/' ),
 			esc_html__( 'Documentation', 'woocommerce-coupons-countdown' )
 		);
 		$links[] = sprintf(
 			'<a href="%s">%s</a>',
-			esc_url( 'https://www.ithtinx.com/shop/' ),
+			esc_url( 'https://www.itthinx.com/shop/' ),
 			esc_html__( 'Shop', 'woocommerce-coupons-countdown' )
 		);
 		$links[] = sprintf(
