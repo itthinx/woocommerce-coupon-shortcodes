@@ -43,6 +43,13 @@ class WooCommerce_Coupon_Shortcodes {
 	private static $admin_messages = array();
 
 	/**
+	 * Whether WooCommerce is active.
+	 *
+	 * @var boolean|null
+	 */
+	private static $has_woocommerce = null;
+
+	/**
 	 * Put hooks in place and activate.
 	 */
 	public static function init() {
@@ -53,6 +60,18 @@ class WooCommerce_Coupon_Shortcodes {
 		add_action( 'init', array( __CLASS__, 'wp_init' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( WOO_CODES_FILE ), array( __CLASS__, 'plugin_action_links' ) );
 		add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 4 );
+		add_action( 'before_woocommerce_init', array( __CLASS__, 'before_woocommerce_init' ) );
+	}
+
+	/**
+	 * Declare HPOS compatibility
+	 *
+	 * @since 2.0.0
+	 */
+	public static function before_woocommerce_init() {
+		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', WOO_CODES_FILE, true );
+		}
 	}
 
 	/**
@@ -155,25 +174,49 @@ class WooCommerce_Coupon_Shortcodes {
 	 * @param boolean $disable disable the plugin if true, defaults to false
 	 */
 	public static function check_dependencies( $disable = false ) {
-		$result = true;
-		$active_plugins = get_option( 'active_plugins', array() );
-		if ( is_multisite() ) {
-			$active_sitewide_plugins = get_site_option( 'active_sitewide_plugins', array() );
-			$active_sitewide_plugins = array_keys( $active_sitewide_plugins );
-			$active_plugins = array_merge( $active_plugins, $active_sitewide_plugins );
+		$plugin = 'woocommerce/woocommerce.php';
+		if ( self::$has_woocommerce === null ) {
+			$is_active = false;
+			if ( function_exists( 'wp_get_active_and_valid_plugins' ) ) {
+				$plugin_path = trailingslashit( WP_PLUGIN_DIR ) . $plugin;
+				$active_plugin_paths = wp_get_active_and_valid_plugins();
+				$is_active = in_array( $plugin_path, $active_plugin_paths );
+				if ( !$is_active && is_multisite() && function_exists( 'wp_get_active_network_plugins' ) ) {
+					$active_network_plugin_paths = wp_get_active_network_plugins();
+					$is_active = in_array( $plugin_path, $active_network_plugin_paths );
+				}
+			} else {
+				$active_plugins = get_option( 'active_plugins', array() );
+				if ( is_multisite() ) {
+					$active_sitewide_plugins = get_site_option( 'active_sitewide_plugins', array() );
+					$active_sitewide_plugins = array_keys( $active_sitewide_plugins );
+					$active_plugins = array_merge( $active_plugins, $active_sitewide_plugins );
+				}
+				$is_active = in_array( $plugin, $active_plugins );
+			}
+			self::$has_woocommerce = $is_active;
 		}
-		$woocommerce_is_active = in_array( 'woocommerce/woocommerce.php', $active_plugins );
-		if ( !$woocommerce_is_active ) {
-			self::$admin_messages[] = "<div class='error'>" . __( '<em>WooCommerce Coupon Shortcodes</em> needs the <a href="https://woocommerce.com" target="_blank">WooCommerce</a> plugin. Please install and activate it.', 'woocommerce-coupon-shortcodes' ) . "</div>";
+
+		if ( !self::$has_woocommerce ) {
+			$msg = '<div class="error">';
+			/* translators: 1: immutable name 2: link reference */
+			$msg .= sprintf(
+					esc_html__( '%1$s requires %2$s. Please install and activate it.', 'woocommerce-coupon-shortcodes' ),
+					'<strong>WooCommerce Coupon Shortcodes</strong>',
+					'<a href="https://woocommerce.com" target="_blank">WooCommerce</a>'
+				);
+			$msg .= '</div>';
+			self::$admin_messages[] = $msg;
 		}
-		if ( !$woocommerce_is_active ) {
+
+		if ( !self::$has_woocommerce ) {
 			if ( $disable ) {
 				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 				deactivate_plugins( array( __FILE__ ) );
 			}
-			$result = false;
 		}
-		return $result;
+
+		return self::$has_woocommerce;
 	}
 
 	/**

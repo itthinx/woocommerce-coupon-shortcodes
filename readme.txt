@@ -3,7 +3,7 @@ Contributors: itthinx, proaktion
 Donate link: https://www.itthinx.com/shop/
 Tags: woocommerce, shortcode, coupon, discount, marketing, theme, conditional, coupons, discounts, display, info, information, promotion, subscription, subscriptions
 Requires at least: 6.0
-Requires PHP: 5.6.0
+Requires PHP: 7.2
 Tested up to: 6.2
 Stable tag: 2.0.0
 License: GPLv3

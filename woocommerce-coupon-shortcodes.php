@@ -25,7 +25,7 @@
  * Author: itthinx, proaktion
  * Author URI: https://www.itthinx.com
  * Donate-Link: https://www.itthinx.com/shop/
- * WC requires at least: 7.0
+ * WC requires at least: 7.4
  * WC tested up to: 7.8
  * Woo: 244762:d9f372bcea062d4a9eedccb2a80eb49d
  * License: GPLv3
