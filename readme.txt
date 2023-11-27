@@ -3,20 +3,20 @@ Contributors: itthinx, proaktion
 Donate link: https://www.itthinx.com/shop/
 Tags: woocommerce, shortcode, coupon, discount, marketing, theme, conditional, coupons, discounts, display, info, information, promotion, subscription, subscriptions
 Requires at least: 6.0
-Requires PHP: 7.2
-Tested up to: 6.2
-Stable tag: 2.0.0
+Requires PHP: 7.3
+Tested up to: 6.4
+Stable tag: 2.1.0
 License: GPLv3
 
 Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally, based on the validity of coupons.
 
 == Description ==
 
-This extension for [WooCommerce](https:/woocommerce.com) allows you to render coupon information and show content based on the validity of coupons.
+This extension for [WooCommerce](https:/woo.com) allows you to render coupon information and show content based on the validity of coupons.
 
 Customers can be motivated to proceed with their purchase, offering them to use specific coupons when the contents in the cart qualify for it, or by offering them to purchase additional items so they can use a coupon.
 
-Extended coupon discount info for volume discounts is shown automatically, if the [WooCommerce Volume Discount Coupons](https://www.itthinx.com/shop/woocommerce-volume-discount-coupons) is installed.
+Extended coupon discount info for volume discounts is shown automatically, if [Volume Discount Coupons](https://www.itthinx.com/shop/woocommerce-volume-discount-coupons) is installed.
 
 It also works with [WooCommerce Group Coupons](https://www.itthinx.com/shop/woocommerce-group-coupons) and [WooCommerce Coupons Countdown](https://www.itthinx.com/shop/woocommerce-coupons-countdown).
 

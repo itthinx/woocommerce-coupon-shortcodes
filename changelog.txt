@@ -1,5 +1,12 @@
 == WooCommerce Coupon Shortcodes by itthinx                       Changelog ==
 
+= 2.1.0 =
+* Update - WordPress 6.4 compatible.
+* Update - WooCommerce 8.3 compatible.
+* Update - Requires at least WooCommerce 7.9.
+* Update - Requires at least PHP 7.3.
+* Update - Updated domain references from woocommerce.com to woo.com.
+
 = 2.0.0 =
 * Update - WordPress 6.2 compatible.
 * Update - WooCommerce 7.8 compatible.
