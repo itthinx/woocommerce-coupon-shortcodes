@@ -306,11 +306,6 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 					'url'         => 'https://www.itthinx.com/shop/woocommerce-coupon-exclusions/'
 				),
 				array(
-					'title'       => 'Coupon Messages',
-					'description' => esc_html__( 'This extension for WooCommerce allows to override the default messages for coupons.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://www.itthinx.com/shop/woocommerce-coupon-messages/'
-				),
-				array(
 					'title'       => 'WooCommerce Documentation',
 					'description' => esc_html__( 'This extension is based on the free Documentation plugin. It allows to link documentation pages to products and display them automatically on the product pages.', 'woocommerce-coupon-shortcodes' ),
 					'url'         => 'https://www.itthinx.com/shop/woocommerce-documentation/'
