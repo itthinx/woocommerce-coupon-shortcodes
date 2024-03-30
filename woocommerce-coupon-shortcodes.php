@@ -2,7 +2,7 @@
 /**
  * woocommerce-coupon-shortcodes.php
  *
- * Copyright (c) 2013-2023 "kento" Karim Rahimpur www.itthinx.com
+ * Copyright (c) 2013-2024 "kento" Karim Rahimpur www.itthinx.com
  *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
@@ -25,7 +25,9 @@
  * Author: itthinx, proaktion
  * Author URI: https://www.itthinx.com
  * Donate-Link: https://www.itthinx.com/shop/
- * WC requires at least: 7.9
+ * Requires at least: 6.0
+ * Requires PHP: 7.4
+ * WC requires at least: 8.2
  * WC tested up to: 8.7
  * Woo: 244762:d9f372bcea062d4a9eedccb2a80eb49d
  * License: GPLv3
