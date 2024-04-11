@@ -102,7 +102,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 		printf(
 			esc_html__( 'You can support the development of this extension by purchasing tools from the %s and %s for WooCommerce.', 'woocommerce-coupon-shortcodes' ),
 			sprintf( '<a href="https://www.itthinx.com/shop/">%s</a>', esc_html__( 'Shop', 'woocommerce-coupon-shortcodes' ) ),
-			sprintf( '<a href="https://woo.com/vendor/itthinx/?aff=7223&cid=2409803">%s</a>', esc_html__( 'Extensions', 'woocommerce-coupon-shortcodes' ) )
+			sprintf( '<a href="https://woocommerce.com/vendor/itthinx/?aff=7223&cid=2409803">%s</a>', esc_html__( 'Extensions', 'woocommerce-coupon-shortcodes' ) )
 		);
 		echo '</p>';
 
@@ -268,31 +268,31 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 				array(
 					'title'       => 'Group Coupons',
 					'description' => esc_html__( 'Offer exclusive, automatic and targeted coupon discounts for your customers! Use group memberships and roles to control the validity of coupons.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://woo.com/products/group-coupons/?aff=7223&cid=2409803',
+					'url'         => 'https://woocommerce.com/products/group-coupons/?aff=7223&cid=2409803',
 					'featured'    => true
 				),
 				array(
 					'title'       => 'WooCommerce Product Search',
 					'description' => esc_html__( 'The essential extension for every WooCommerce store! The perfect Search Engine for your store helps your customers to find and buy the right products quickly.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://woo.com/products/woocommerce-product-search/?aff=7223&cid=2409803',
+					'url'         => 'https://woocommerce.com/products/woocommerce-product-search/?aff=7223&cid=2409803',
 					'featured'    => true
 				),
 				array(
 					'title'       => 'Group Memberships',
 					'description' => esc_html__( 'Sell Memberships with Groups and WooCommerce! Groups WooCommerce grants memberships based on products. It automatically assigns a customer to one or more groups based on the products ordered.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://woo.com/products/groups-woocommerce/?aff=7223&cid=2409803',
+					'url'         => 'https://woocommerce.com/products/groups-woocommerce/?aff=7223&cid=2409803',
 					'featured'    => true
 				),
 				array(
 					'title'       => 'Sales Analysis',
 					'description' => esc_html__( 'Sales Analysis oriented at Marketing & Management. Get in-depth views on fundamental Business Intelligence, focused on Sales and net Revenue Trends, International Sales Reports, Product Market and Customer Trends.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://woo.com/products/sales-analysis-for-woocommerce/?aff=7223&cid=2409803',
+					'url'         => 'https://woocommerce.com/products/sales-analysis-for-woocommerce/?aff=7223&cid=2409803',
 					'featured'    => true
 				),
 				array(
 					'title'       => 'Volume Discount Coupons',
 					'description' => esc_html__( 'Provides automatic discounts and coupons based on the quantities of products in the cart.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://woo.com/products/volume-discount-coupons/?aff=7223&cid=2409803',
+					'url'         => 'https://woocommerce.com/products/volume-discount-coupons/?aff=7223&cid=2409803',
 					'featured'    => true
 				),
 				array(

@@ -111,7 +111,7 @@ class WooCommerce_Coupon_Shortcodes {
 		);
 		$links[] = sprintf(
 			'<a href="%s">%s</a>',
-			esc_url( 'https://woo.com/vendor/itthinx/?aff=7223&cid=2409803' ),
+			esc_url( 'https://woocommerce.com/vendor/itthinx/?aff=7223&cid=2409803' ),
 			esc_html__( 'Extensions', 'woocommerce-coupons-countdown' )
 		);
 		return $links;
@@ -203,7 +203,7 @@ class WooCommerce_Coupon_Shortcodes {
 			$msg .= sprintf(
 					esc_html__( '%1$s requires %2$s. Please install and activate it.', 'woocommerce-coupon-shortcodes' ),
 					'<strong>WooCommerce Coupon Shortcodes</strong>',
-					'<a href="https://woo.com" target="_blank">WooCommerce</a>'
+					'<a href="https://woocommerce.com" target="_blank">WooCommerce</a>'
 				);
 			$msg .= '</div>';
 			self::$admin_messages[] = $msg;
