@@ -22,10 +22,10 @@
  * Plugin URI: https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes
  * Description: Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally.
  * Version: 2.6.0
- * Author: itthinx, proaktion
+ * Author: itthinx
  * Author URI: https://www.itthinx.com
  * Donate-Link: https://www.itthinx.com/shop/
- * Requires at least: 6.0
+ * Requires at least: 6.2
  * Requires PHP: 7.4
  * WC requires at least: 8.2
  * WC tested up to: 9.2
