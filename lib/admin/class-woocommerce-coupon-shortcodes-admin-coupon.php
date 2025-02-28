@@ -102,7 +102,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 		printf(
 			esc_html__( 'You can support the development of this extension by purchasing tools from the %s and %s for WooCommerce.', 'woocommerce-coupon-shortcodes' ),
 			sprintf( '<a href="https://www.itthinx.com/shop/">%s</a>', esc_html__( 'Shop', 'woocommerce-coupon-shortcodes' ) ),
-			sprintf( '<a href="https://woocommerce.com/vendor/itthinx/?aff=7223&cid=2409803">%s</a>', esc_html__( 'Extensions', 'woocommerce-coupon-shortcodes' ) )
+			sprintf( '<a href="https://woocommerce.com/vendor/itthinx/">%s</a>', esc_html__( 'Extensions', 'woocommerce-coupon-shortcodes' ) )
 		);
 		echo '</p>';
 
@@ -248,52 +248,58 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 			$output .= 'flex: 1; margin: 0.62em;';
 			$output .= '}';
 			$output .= '.woocommerce-coupon-shortcodes-extension-container.featured {';
-			$output .= 'flex: 2;';
+			$output .= 'flex: 2 0 30%;';
 			$output .= '}';
 			$output .= '.woocommerce-coupon-shortcodes-extension-container a {';
-			$output .= 'padding: 1em; margin: 0.62em; display: block; border: 1px solid #ccc; text-align: center; border-radius: 3px; text-decoration: none; color: #666;';
+			$output .= 'padding: 1em; margin: 0.62em; display: block; border: 1px solid #ccc; text-align: center; border-radius: 4px; text-decoration: none; color: #666;';
 			$output .= '}';
 			$output .= 'div.woocommerce-coupon-shortcodes-extension-container .extension-title {';
-			$output .= 'color: #7f54b3; display: block; font-size: 1.2em; font-weight: 700; line-height: 1.22em;';
+			$output .= 'color: #873eff; display: block; font-size: 20px; font-weight: 700; line-height: 1.22em;';
 			$output .= '}';
 			$output .= 'div.woocommerce-coupon-shortcodes-extension-container.featured .extension-title {';
-			$output .= 'color: #7f54b3; display: block; font-size: 1.6em; font-weight: 900; line-height: 1.62em;';
+			$output .= 'color: #873eff; display: block; font-size: 24px; font-weight: 900; line-height: 1.62em;';
 			$output .= '}';
 			$output .= 'div.woocommerce-coupon-shortcodes-extension-container .extension-description {';
-			$output .= 'display: block; padding: 0.6em;';
+			$output .= 'display: block; padding: 0.6em; font-size: 14px;';
 			$output .= '}';
 			$output .= '</style>';
 
 			$extensions = array(
 				array(
-					'title'       => 'Group Coupons',
-					'description' => esc_html__( 'Offer exclusive, automatic and targeted coupon discounts for your customers! Use group memberships and roles to control the validity of coupons.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://woocommerce.com/products/group-coupons/?aff=7223&cid=2409803',
-					'featured'    => true
-				),
-				array(
 					'title'       => 'WooCommerce Product Search',
 					'description' => esc_html__( 'The essential extension for every WooCommerce store! The perfect Search Engine for your store helps your customers to find and buy the right products quickly.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://woocommerce.com/products/woocommerce-product-search/?aff=7223&cid=2409803',
+					'url'         => 'https://woocommerce.com/products/woocommerce-product-search/',
 					'featured'    => true
 				),
 				array(
 					'title'       => 'Group Memberships',
 					'description' => esc_html__( 'Sell Memberships with Groups and WooCommerce! Groups WooCommerce grants memberships based on products. It automatically assigns a customer to one or more groups based on the products ordered.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://woocommerce.com/products/groups-woocommerce/?aff=7223&cid=2409803',
+					'url'         => 'https://woocommerce.com/products/groups-woocommerce/',
 					'featured'    => true
+				),
+				array(
+					'title'       => 'Restrict Payment Methods',
+					'description' => esc_html__( 'Limit the use of Payment Methods by Group Memberships, Roles, Countries, and Order Amounts. ', 'woocommerce-coupon-shortcodes' ),
+					'url'         => 'https://woocommerce.com/products/restrict-payment-methods/',
+					'featured'    => true
+				),
+				array(
+					'title'       => 'Group Coupons',
+					'description' => esc_html__( 'Offer exclusive, automatic and targeted coupon discounts for your customers! Use group memberships and roles to control the validity of coupons.', 'woocommerce-coupon-shortcodes' ),
+					'url'         => 'https://woocommerce.com/products/group-coupons/',
+					'featured'    => false
 				),
 				array(
 					'title'       => 'Sales Analysis',
 					'description' => esc_html__( 'Sales Analysis oriented at Marketing & Management. Get in-depth views on fundamental Business Intelligence, focused on Sales and net Revenue Trends, International Sales Reports, Product Market and Customer Trends.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://woocommerce.com/products/sales-analysis-for-woocommerce/?aff=7223&cid=2409803',
-					'featured'    => true
+					'url'         => 'https://woocommerce.com/products/sales-analysis-for-woocommerce/',
+					'featured'    => false
 				),
 				array(
 					'title'       => 'Volume Discount Coupons',
 					'description' => esc_html__( 'Provides automatic discounts and coupons based on the quantities of products in the cart.', 'woocommerce-coupon-shortcodes' ),
-					'url'         => 'https://woocommerce.com/products/volume-discount-coupons/?aff=7223&cid=2409803',
-					'featured'    => true
+					'url'         => 'https://woocommerce.com/products/volume-discount-coupons/',
+					'featured'    => false
 				),
 				array(
 					'title'       => 'Coupons Countdown',
@@ -313,7 +319,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 			);
 
 			$output .= '<div class="options_group">';
-			$output .= '<p style="padding-top: 1em; font-size: 1.1em; font-weight: 600;">';
+			$output .= '<p style="padding-top: 1em; font-size: 1.3em; font-weight: 600;">';
 			$output .= esc_html__( 'Please also have a look at these premium extensions that help to improve your store!', 'woocommerce-coupon-shortcodes' );
 			$output .= '</p>';
 
