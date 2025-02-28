@@ -111,7 +111,7 @@ class WooCommerce_Coupon_Shortcodes {
 		);
 		$links[] = sprintf(
 			'<a href="%s">%s</a>',
-			esc_url( 'https://woocommerce.com/vendor/itthinx/?aff=7223&cid=2409803' ),
+			esc_url( 'https://woocommerce.com/vendor/itthinx/' ),
 			esc_html__( 'Extensions', 'woocommerce-coupons-countdown' )
 		);
 		return $links;

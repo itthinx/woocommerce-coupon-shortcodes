@@ -161,12 +161,16 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 			esc_html__( 'Dismiss', 'woocommerce-coupon-shortcodes' )
 		);
 
-		$output .= '<h2 style="font-size: 2.1em; font-weight: 600; margin: 18px 0 24px 0; line-height:36px;">';
-		$output .= __( 'Many thanks for using <a style="text-decoration: none; color: #a64c84;" target="_blank" href="https://wordpress.org/plugins/woocommerce-coupon-shortcodes/">WooCommerce Coupon Shortcodes</a>!', 'woocommerce-coupon-shortcodes' );
+		$output .= '<h2 style="font-size: 2.1em; font-weight: 600; margin: 18px 0 24px 0; line-height:36px; padding-bottom: 24px; border-bottom: 2px solid #eee;">';
+		$output .= sprintf(
+			/* translators: link */
+			__( 'Many thanks for using %s!', 'woocommerce-coupon-shortcodes' ),
+			'<a style="text-decoration: none; color: #873eff;" target="_blank" href="https://wordpress.org/plugins/woocommerce-coupon-shortcodes/">WooCommerce Coupon Shortcodes</a>'
+		);
 		$output .= '</h2>';
 
-		$output .= '<div style="margin-bottom:24px;">';
-		$output .= '<p>';
+		$output .= '<div style="margin-bottom:24px">';
+		$output .= '<p style="font-size: 15px">';
 		$output .= __( 'Could you please spare a minute and give it a review over at WordPress.org?', 'woocommerce-coupon-shortcodes' );
 		$output .= '</p>';
 
@@ -187,11 +191,12 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 
 		$output .= WooCommerce_Coupon_Shortcodes_Admin_Coupon::extensions();
 
-		$output .= '<p>';
+		$output .= '<p style="font-size: 19px; text-align: center;">';
 		$output .= sprintf(
-			__( 'Follow <a href="%s">@itthinx</a> and visit <a href="%s" target="_blank">itthinx.com</a> to see more free and premium plugins we provide.', 'woocommerce-coupon-shortcodes' ),
-			esc_url( 'https://twitter.com/itthinx' ),
-			esc_url( 'https://www.itthinx.com' )
+			/* translators: 1: link 2: link */
+			__( 'Follow %1$s for related news and information. Visit %2$s where you can find more free and premium extensions.', 'woocommerce-coupon-shortcodes' ),
+			'<a href="https://x.com/itthinx">@itthinx</a>',
+			'<a href="https://www.itthinx.com" target="_blank">itthinx.com</a>'
 		);
 		$output .= '</p>';
 
