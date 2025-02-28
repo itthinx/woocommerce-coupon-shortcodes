@@ -7,6 +7,7 @@
 * Icon updated.
 * Added Restrict Payment Methods https://woocommerce.com/products/restrict-payment-methods/ to recommended extensions.
 * Updated styling.
+* Updated the translation template.
 
 = 2.8.0 =
 * WordPress 6.7 compatible.
