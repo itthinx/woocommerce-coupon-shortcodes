@@ -21,14 +21,14 @@
  * Plugin Name: WooCommerce Coupon Shortcodes
  * Plugin URI: https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes
  * Description: Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally.
- * Version: 2.9.0
+ * Version: 2.10.0
  * Author: itthinx
  * Author URI: https://www.itthinx.com
  * Donate-Link: https://www.itthinx.com/shop/
- * Requires at least: 6.2
+ * Requires at least: 6.3
  * Requires PHP: 7.4
- * WC requires at least: 8.2
- * WC tested up to: 9.7
+ * WC requires at least: 8.3
+ * WC tested up to: 9.8
  * Woo: 244762:d9f372bcea062d4a9eedccb2a80eb49d
  * License: GPLv3
  */
@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WOO_CODES_PLUGIN_VERSION', '2.9.0' );
+define( 'WOO_CODES_PLUGIN_VERSION', '2.10.0' );
 define( 'WOO_CODES_PLUGIN_DOMAIN', 'woocommerce-coupon-shortcodes' );
 define( 'WOO_CODES_FILE', __FILE__ );
 define( 'WOO_CODES_LOG', false );
