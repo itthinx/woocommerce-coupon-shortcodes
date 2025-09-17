@@ -200,9 +200,9 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 		);
 		$output .= '</p>';
 
-		$output .= '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		$output .= '</div>';
 
-		echo $output;
+		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
 WooCommerce_Coupon_Shortcodes_Admin_Notice::init();

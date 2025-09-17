@@ -1701,7 +1701,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				$output .= stripslashes( wp_filter_kses( $options['separator'] ) );
 			}
 		}
-		return $output;// phpcs:ignore audit.php.wp.security.xss.shortcode-attr
+		return $output; // nosemgrep audit.php.wp.security.xss.shortcode-attr
 	}
 
 	/**
@@ -1776,7 +1776,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$output .= '</ul>';
 		}
 
-		return $output; // phpcs:ignore audit.php.wp.security.xss.shortcode-attr
+		return $output; // nosemgrep audit.php.wp.security.xss.shortcode-attr
 	}
 
 	/**
@@ -1875,7 +1875,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		if ( $element_tag == 'li' ) {
 			$output .= '</ul>';
 		}
-		return $output; // phpcs:ignore audit.php.wp.security.xss.shortcode-attr
+		return $output; // nosemgrep audit.php.wp.security.xss.shortcode-attr
 	}
 
 	/**
@@ -2063,7 +2063,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				}
 			}
 		}
-		return $output; // phpcs:ignore audit.php.wp.security.xss.shortcode-attr
+		return $output; // nosemgrep audit.php.wp.security.xss.shortcode-attr
 	}
 }
 WooCommerce_Coupon_Shortcodes_Views::init();
