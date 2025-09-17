@@ -45,11 +45,11 @@ define( 'WOO_CODES_CORE_DIR', WP_PLUGIN_DIR . '/woocommerce-coupon-shortcodes' )
 define( 'WOO_CODES_CORE_LIB', WOO_CODES_CORE_DIR . '/lib/core' );
 define( 'WOO_CODES_ADMIN_LIB', WOO_CODES_CORE_DIR . '/lib/admin' );
 define( 'WOO_CODES_VIEWS_LIB', WOO_CODES_CORE_DIR . '/lib/views' );
-define( 'WOO_CODES_PLUGIN_URL', WP_PLUGIN_URL . '/woocommerce-coupon-shortcodes' );
+define( 'WOO_CODES_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 
 // @since 1.21.0
 if ( !defined( 'WOOCOMMERCE_COUPON_SHORTCODES_HARD_LIMIT' ) ) {
 	define( 'WOOCOMMERCE_COUPON_SHORTCODES_HARD_LIMIT', 1000 );
 }
 
-require_once WOO_CODES_CORE_LIB . '/class-woocommerce-coupon-shortcodes.php';
+require_once WOO_CODES_CORE_LIB . '/class-woocommerce-coupon-shortcodes.php'; // @phpstan-ignore requireOnce.fileNotFound
