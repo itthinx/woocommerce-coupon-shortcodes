@@ -18,17 +18,17 @@
  * @package woocommerce-coupon-shortcodes
  * @since woocommerce-coupon-shortcodes 1.0.0
  *
- * Plugin Name: WooCommerce Coupon Shortcodes
+ * Plugin Name: Coupon Shortcodes for WooCommerce
  * Plugin URI: https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes
  * Description: Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally.
- * Version: 2.13.0
+ * Version: 3.0.0
  * Author: itthinx
  * Author URI: https://www.itthinx.com
  * Donate-Link: https://www.itthinx.com/shop/
- * Requires at least: 6.3
+ * Requires at least: 6.5
  * Requires PHP: 7.4
- * WC requires at least: 8.3
- * WC tested up to: 10.1
+ * WC requires at least: 9.0
+ * WC tested up to: 10.2
  * Woo: 244762:d9f372bcea062d4a9eedccb2a80eb49d
  * License: GPLv3
  */
@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WOO_CODES_PLUGIN_VERSION', '2.13.0' );
+define( 'WOO_CODES_PLUGIN_VERSION', '3.0.0' );
 define( 'WOO_CODES_PLUGIN_DOMAIN', 'woocommerce-coupon-shortcodes' );
 define( 'WOO_CODES_FILE', __FILE__ );
 define( 'WOO_CODES_LOG', false );
@@ -45,11 +45,11 @@ define( 'WOO_CODES_CORE_DIR', WP_PLUGIN_DIR . '/woocommerce-coupon-shortcodes' )
 define( 'WOO_CODES_CORE_LIB', WOO_CODES_CORE_DIR . '/lib/core' );
 define( 'WOO_CODES_ADMIN_LIB', WOO_CODES_CORE_DIR . '/lib/admin' );
 define( 'WOO_CODES_VIEWS_LIB', WOO_CODES_CORE_DIR . '/lib/views' );
-define( 'WOO_CODES_PLUGIN_URL', WP_PLUGIN_URL . '/woocommerce-coupon-shortcodes' );
+define( 'WOO_CODES_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 
 // @since 1.21.0
 if ( !defined( 'WOOCOMMERCE_COUPON_SHORTCODES_HARD_LIMIT' ) ) {
 	define( 'WOOCOMMERCE_COUPON_SHORTCODES_HARD_LIMIT', 1000 );
 }
 
-require_once WOO_CODES_CORE_LIB . '/class-woocommerce-coupon-shortcodes.php';
+require_once WOO_CODES_CORE_LIB . '/class-woocommerce-coupon-shortcodes.php'; // @phpstan-ignore requireOnce.fileNotFound

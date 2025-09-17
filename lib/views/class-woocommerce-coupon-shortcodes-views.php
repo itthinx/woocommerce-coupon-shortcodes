@@ -1695,13 +1695,13 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			// => pre-1.21.0 code left as is:
 			$coupon = new WC_Coupon( $code );
 			if ( $coupon->get_id() ) {
-				$output .= sprintf( '<span class="coupon code %s">', stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) );
+				$output .= sprintf( '<span class="coupon code %s">', esc_attr( stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) ) );
 				$output .= stripslashes( wp_strip_all_tags( $coupon->get_code() ) );
 				$output .= '</span>';
 				$output .= stripslashes( wp_filter_kses( $options['separator'] ) );
 			}
 		}
-		return $output;
+		return $output; // nosemgrep audit.php.wp.security.xss.shortcode-attr
 	}
 
 	/**
@@ -1752,7 +1752,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 						$element_prefix = '';
 						if ( $prefix_code ) {
-							$element_prefix .= sprintf( '<span class="coupon code %s">', stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) );
+							$element_prefix .= sprintf( '<span class="coupon code %s">', esc_attr( stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) ) );
 							$element_prefix .= stripslashes( wp_strip_all_tags( $coupon->get_code() ) );
 							$element_prefix .= '</span>';
 							$element_prefix .= stripslashes( wp_filter_kses( $options['prefix_separator'] ) );
@@ -1760,7 +1760,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 
 						$elements[] =
 							$element_prefix .
-							sprintf( '<%s class="coupon description %s">', stripslashes( wp_strip_all_tags( $element_tag ) ), stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) ) .
+							sprintf( '<%s class="coupon description %s">', stripslashes( wp_strip_all_tags( $element_tag ) ), esc_attr( stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) ) ) .
 							stripslashes( wp_filter_post_kses( $post->post_excerpt ) ) .
 							sprintf( '</%s>', stripslashes( wp_strip_all_tags( $element_tag ) ) );
 					}
@@ -1776,7 +1776,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$output .= '</ul>';
 		}
 
-		return $output;
+		return $output; // nosemgrep audit.php.wp.security.xss.shortcode-attr
 	}
 
 	/**
@@ -1824,7 +1824,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			$element_output = '';
 			$coupon = new WC_Coupon( $code );
 			if ( $coupon->get_id() ) {
-				$element_output .= sprintf( '<%s class="coupon discount %s">', stripslashes( wp_strip_all_tags( $element_tag ) ), stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) );
+				$element_output .= sprintf( '<%s class="coupon discount %s">', stripslashes( wp_strip_all_tags( $element_tag ) ), esc_attr( stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) ) );
 
 				$renderer = null;
 				if ( $options['renderer'] == 'auto' ) {
@@ -1847,7 +1847,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				}
 
 				if ( $prefix_code ) {
-					$element_output .= sprintf( '<span class="coupon code %s">', stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) );
+					$element_output .= sprintf( '<span class="coupon code %s">', esc_attr( stripslashes( wp_strip_all_tags( $coupon->get_code() ) ) ) );
 					$element_output .= stripslashes( wp_strip_all_tags( $coupon->get_code() ) );
 					$element_output .= '</span>';
 					$element_output .= stripslashes( wp_filter_kses( $options['prefix_separator'] ) );
@@ -1858,7 +1858,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				} else {
 					switch( $renderer ) {
 						case 'WooCommerce_Volume_Discount_Coupons_Shortcodes' :
-							$element_output .= WooCommerce_Volume_Discount_Coupons_Shortcodes::get_volume_discount_info( $coupon );
+							$element_output .= WooCommerce_Volume_Discount_Coupons_Shortcodes::get_volume_discount_info( $coupon ); // @phpstan-ignore class.notFound
 							break;
 					}
 				}
@@ -1875,7 +1875,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 		if ( $element_tag == 'li' ) {
 			$output .= '</ul>';
 		}
-		return $output;
+		return $output; // nosemgrep audit.php.wp.security.xss.shortcode-attr
 	}
 
 	/**
@@ -1955,7 +1955,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 					}
 				} else if ( sizeof( $coupon->get_product_categories() ) > 0 ) {
 					$result = sprintf( __( '%s%s Discount in %s', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, implode( $category_delimiter, $categories ) );
-				} else if ( sizeof( $coupon->get_exclude_product_ids() ) > 0 || sizeof( $coupon->get_exclude_product_categories() ) > 0 ) {
+				} else if ( sizeof( $coupon->get_exclude_product_ids() ) > 0 || sizeof( $coupon->get_exclude_product_categories() ) > 0 ) { // @phpstan-ignore method.notFound, method.notFound
 					$result = sprintf( __( '%s%s Discount on selected products', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix );
 				} else {
 					$result = sprintf( __( '%s%s Discount', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix );
@@ -1984,7 +1984,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 					}
 				} else if ( sizeof( $coupon->get_product_categories() ) > 0 ) {
 					$result = sprintf( __( '%s%s %s in %s', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, $discount_name, implode( $category_delimiter, $categories ) );
-				} else if ( sizeof( $coupon->get_exclude_product_ids() ) > 0 || sizeof( $coupon->get_exclude_product_categories() ) > 0 ) {
+				} else if ( sizeof( $coupon->get_exclude_product_ids() ) > 0 || sizeof( $coupon->get_exclude_product_categories() ) > 0 ) { // @phpstan-ignore method.notFound, method.notFound
 					$result = sprintf( __( '%s%s %s on selected products', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, $discount_name );
 				} else {
 					$result = sprintf( __( '%s%s %s', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, $discount_name );
@@ -2063,7 +2063,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				}
 			}
 		}
-		return $output;
+		return $output; // nosemgrep audit.php.wp.security.xss.shortcode-attr
 	}
 }
 WooCommerce_Coupon_Shortcodes_Views::init();

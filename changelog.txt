@@ -1,39 +1,57 @@
-== WooCommerce Coupon Shortcodes by itthinx                       Changelog ==
+== Coupon Shortcodes for WooCommerce by itthinx                   Changelog ==
+
+= 3.0.0 =
+* Update - WordPress 6.8 compatible.
+* Update - Requires at least WordPress 6.5.
+* Update - WooCommerce 10.2 compatible.
+* Update - Requires at least WooCommerce 9.0.
+* Update - Name updated to Coupon Shortcodes for WooCommerce.
+* Update - Updated the translation template.
+* Update - Validated instances of WordPress.Security.EscapeOutput.OutputNotEscaped.
+* Update - Validated instances of ordPress.Security.ValidatedSanitizedInput.InputNotSanitized.
+* Update - Validated instances of audit.php.wp.security.xss.shortcode-attr.
+* Update - Validated instances of requireOnce.fileNotFound.
+* Update - Validated instances of class.notFound.
+* Update - Validated instances of method.notFound.
+* Update - Validated instances of constant.notFound.
+* Dev - Added several instances of input sanitation.
+* Dev - Added several instances of output escaping.
+* Dev - Replaced use of WP_PLUGIN_URL with call to plugin_dir_url() to define plugin's URL constant.
 
 = 2.13.0 =
-* WordPress 6.8 compatible.
-* WooCommerce 10.1 compatible.
+* Update - WordPress 6.8 compatible.
+* Update - WooCommerce 10.1 compatible.
 
 = 2.12.0 =
-* WordPress 6.8 compatible.
-* WooCommerce 10.0 compatible.
+* Update - WordPress 6.8 compatible.
+* Update - WooCommerce 10.0 compatible.
 
 = 2.11.0 =
-* WordPress 6.8 compatible.
-* WooCommerce 9.9 compatible.
+* Update - WordPress 6.8 compatible.
+* Update - WooCommerce 9.9 compatible.
 
 = 2.10.0 =
-* WordPress 6.8 compatible.
-* WooCommerce 9.8 compatible.
+* Update - WordPress 6.8 compatible.
+* Update - WooCommerce 9.8 compatible.
 * Update - Requires at least WordPress 6.3.
 * Update - Requires at least WooCommerce 8.3.
 
 = 2.9.0 =
-* WordPress 6.7 compatible.
-* WooCommerce 9.7 compatible.
-* Colors updated.
-* Icon updated.
-* Added Restrict Payment Methods https://woocommerce.com/products/restrict-payment-methods/ to recommended extensions.
-* Updated styling.
-* Updated the translation template.
+* Update - WordPress 6.7 compatible.
+* Update - WooCommerce 9.7 compatible.
+* Update - Colors updated.
+* Update - Icon updated.
+* Add - Added Restrict Payment Methods https://woocommerce.com/products/restrict-payment-methods/ to recommended extensions.
+* Update - Updated styling.
+* Update - Updated the translation template.
 
 = 2.8.0 =
-* WordPress 6.7 compatible.
-* WooCommerce 9.6 compatible.
+* Update - WordPress 6.7 compatible.
+* Update - WooCommerce 9.6 compatible.
 
 = 2.7.0 =
-* WordPress 6.6 compatible.
-* WooCommerce 9.4 compatible.
+* Update - WordPress 6.6 compatible.
+* Update - WooCommerce 9.4 compatible.
 
 = 2.6.0 =
 * Update - WordPress 6.6 compatible.
@@ -41,12 +59,12 @@
 * Update - Requires at least WordPress 6.2.
 
 = 2.5.0 =
-* WordPress 6.5 compatible.
-* WooCommerce 8.9 compatible.
+* Update - WordPress 6.5 compatible.
+* Update - WooCommerce 8.9 compatible.
 
 = 2.4.0 =
-* WordPress 6.5 compatible.
-* WooCommerce 8.8 compatible.
+* Update - WordPress 6.5 compatible.
+* Update - WooCommerce 8.8 compatible.
 * Update - Updated links to point to woocommerce.com instead of woo.com.
 
 = 2.3.0 =

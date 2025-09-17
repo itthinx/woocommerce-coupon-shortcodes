@@ -76,10 +76,10 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 	public static function admin_init() {
 		if ( current_user_can( 'activate_plugins' ) ) {
 			$user_id = get_current_user_id();
-			if ( !empty( $_GET[self::HIDE_REVIEW_NOTICE] ) && wp_verify_nonce( $_GET['woocommerce-coupon-shortcodes_notice'], 'hide' ) ) {
+			if ( !empty( $_GET[self::HIDE_REVIEW_NOTICE] ) && wp_verify_nonce( sanitize_text_field( $_GET['woocommerce-coupon-shortcodes_notice'] ), 'hide' ) ) {
 				add_user_meta( $user_id, self::HIDE_REVIEW_NOTICE, true );
 			}
-			if ( !empty( $_GET[self::REMIND_LATER_NOTICE] ) && wp_verify_nonce( $_GET['woocommerce-coupon-shortcodes_notice'], 'later' ) ) {
+			if ( !empty( $_GET[self::REMIND_LATER_NOTICE] ) && wp_verify_nonce( sanitize_text_field( $_GET['woocommerce-coupon-shortcodes_notice'] ), 'later' ) ) {
 				update_user_meta( $user_id, self::REMIND_LATER_NOTICE, time() + self::REMIND_LAPSE );
 			}
 			$hide_review_notice = get_user_meta( $user_id, self::HIDE_REVIEW_NOTICE, true );
@@ -112,7 +112,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 	 */
 	public static function admin_notices() {
 
-		$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+		$current_url = sanitize_url( ( is_ssl() ? 'https://' : 'http://' ) . ( $_SERVER['HTTP_HOST'] ?? '' ) . ( $_SERVER['REQUEST_URI'] ?? '' ) );
 		$hide_url    = wp_nonce_url( add_query_arg( self::HIDE_REVIEW_NOTICE, true, $current_url ), 'hide', 'woocommerce-coupon-shortcodes_notice' );
 		$remind_url  = wp_nonce_url( add_query_arg( self::REMIND_LATER_NOTICE, true, $current_url ), 'later', 'woocommerce-coupon-shortcodes_notice' );
 
@@ -147,7 +147,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 		$output .= '}';
 
 		$output .= 'div.woocommerce-coupon-shortcodes-rating {';
-		$output .= sprintf( 'background: url(%s) #fff no-repeat 8px 8px;', WOO_CODES_PLUGIN_URL . '/images/icon-256x256.png' );
+		$output .= sprintf( 'background: url(%s) #fff no-repeat 8px 8px;', WOO_CODES_PLUGIN_URL . '/images/icon-256x256.png' ); // @phpstan-ignore constant.notFound
 		$output .= 'padding-left: 84px ! important;';
 		$output .= 'background-size: 64px 64px;';
 		$output .= '}';
@@ -165,7 +165,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 		$output .= sprintf(
 			/* translators: link */
 			__( 'Many thanks for using %s!', 'woocommerce-coupon-shortcodes' ),
-			'<a style="text-decoration: none; color: #873eff;" target="_blank" href="https://wordpress.org/plugins/woocommerce-coupon-shortcodes/">WooCommerce Coupon Shortcodes</a>'
+			'<a style="text-decoration: none; color: #873eff;" target="_blank" href="https://wordpress.org/plugins/woocommerce-coupon-shortcodes/">Coupon Shortcodes for WooCommerce</a>'
 		);
 		$output .= '</h2>';
 
@@ -202,7 +202,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 
 		$output .= '</div>';
 
-		echo $output;
+		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
 WooCommerce_Coupon_Shortcodes_Admin_Notice::init();

@@ -1,24 +1,24 @@
-=== WooCommerce Coupon Shortcodes ===
+=== Coupon Shortcodes for WooCommerce ===
 Contributors: itthinx, proaktion
 Donate link: https://www.itthinx.com/shop/
-Tags: woocommerce, shortcode, coupon, discount, marketing, theme, conditional, coupons, discounts, display, info, information, promotion, subscription, subscriptions
-Requires at least: 6.3
+Tags: woocommerce, shortcode, coupon, discount, marketing
+Requires at least: 6.5
 Requires PHP: 7.4
 Tested up to: 6.8
-Stable tag: 2.13.0
+Stable tag: 3.0.0
 License: GPLv3
 
 Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally, based on the validity of coupons.
 
 == Description ==
 
-This extension for [WooCommerce](https:/woo.com) allows you to render coupon information and show content based on the validity of coupons.
+Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally, based on the validity of coupons.
 
 Customers can be motivated to proceed with their purchase, offering them to use specific coupons when the contents in the cart qualify for it, or by offering them to purchase additional items so they can use a coupon.
 
-Extended coupon discount info for volume discounts is shown automatically, if [Volume Discount Coupons](https://www.itthinx.com/shop/woocommerce-volume-discount-coupons) is installed.
+This extension for [WooCommerce](https://woocommerce.com/) is a useful addition that is easy to use.
 
-It also works with [WooCommerce Group Coupons](https://www.itthinx.com/shop/woocommerce-group-coupons) and [WooCommerce Coupons Countdown](https://www.itthinx.com/shop/woocommerce-coupons-countdown).
+Works great with these premium extensions: [Volume Discount Coupons](https://woocommerce.com/products/volume-discount-coupons/), [Group Coupons](https://woocommerce.com/products/group-coupons/) and [Coupons Countdown](https://www.itthinx.com/shop/woocommerce-coupons-countdown).
 
 = Conditional Shortcodes =
 
@@ -120,8 +120,9 @@ Show a single random coupon code:
 
 Full usage instructions and help is provided on these pages:
 
-- Please refer to the plugin's documentation pages for detailed information [Documentation](https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/)
-- Questions, feedback and suggestions can be posted on the plugin page [WooCommerce Coupon Shortcodes plugin page and Support](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/)
+- The [Documentation](https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/) pages provide detailed information.
+- Questions, feedback and suggestions can be posted on the [Coupon Shortcodes](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/) page.
+- You can contact [WooCommerce Support](https://woocommerce.com/contact-us/) with your questions related to this extension.
 
 
 == Installation ==
@@ -137,12 +138,18 @@ Full usage instructions and help is provided on these pages:
 
 = I have a question, where do I ask? =
 
-You can leave a comment at the [WooCommerce Coupon Shortcodes plugin page](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/).
+You can leave a comment at the [Coupon Shortcodes for WooCommerce plugin page](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/).
+You can also [Contact WooCommerce Support](https://woocommerce.com/contact-us/) with your questions related to this extension.
 
+= How can I install this extension? =
+
+- For self-hosted sites install [WordPress.org](https://wordpress.org/plugins/woocommerce-coupon-shortcodes/) directly from your dashboard.
+- For WooCommerce customers use [WooCommerce.com](https://woocommerce.com/products/coupon-shortcodes/).
+- For sites hosted on [WordPress.com](https://wordpress.com/plugins/woocommerce-coupon-shortcodes) with a plan that supports adding plugins.
 
 == Screenshots ==
 
-See the plugin page [WooCommerce Coupon Shortcodes](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/)
+1. See the [Documentation](https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/).
 
 
 == Changelog ==

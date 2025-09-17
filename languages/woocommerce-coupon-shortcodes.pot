@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: PACKAGE VERSION\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: 2025-04-09 17:09+0200\n"
+        "POT-Creation-Date: 2025-09-17 15:39+0200\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr  ""
 msgid   "%s%s Discount on selected products"
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:123
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:124
 msgid   "A coupon is considered active while it has not expired and its usage "
         "limits have not been exhausted."
 msgstr  ""
@@ -88,7 +88,7 @@ msgid   "Documentation"
 msgstr  ""
 
 #: lib/core/class-woocommerce-coupon-shortcodes.php:115
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:105
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:106
 msgid   "Extensions"
 msgstr  ""
 
@@ -98,17 +98,17 @@ msgid   "Follow %1$s for related news and information. Visit %2$s where you "
         "can find more free and premium extensions."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:96
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:97
 #, php-format
 msgid   "For more details on these and other available shortcodes, please "
-        "refer to the <a href=\"%s\">documentation</a>."
+        "refer to the %s."
 msgstr  ""
 
 #: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:93
 msgid   "Here are examples of shortcodes that you can use with this coupon."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:282
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:283
 msgid   "Limit the use of Payment Methods by Group Memberships, Roles, "
         "Countries, and Order Amounts. "
 msgstr  ""
@@ -118,23 +118,23 @@ msgstr  ""
 msgid   "Many thanks for using %s!"
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:288
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:289
 msgid   "Offer exclusive, automatic and targeted coupon discounts for your "
         "customers! Use group memberships and roles to control the validity "
         "of coupons."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:323
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:324
 msgid   "Please also have a look at these premium extensions that help to "
         "improve your store!"
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:300
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:301
 msgid   "Provides automatic discounts and coupons based on the quantities of "
         "products in the cart."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:306
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:307
 msgid   "Provides pretty coupons with real-time countdown counters. Show your "
         "customers the coupons they can use and when they expire."
 msgstr  ""
@@ -143,21 +143,21 @@ msgstr  ""
 msgid   "Remind me later"
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:294
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:295
 msgid   "Sales Analysis oriented at Marketing & Management. Get in-depth "
         "views on fundamental Business Intelligence, focused on Sales and net "
         "Revenue Trends, International Sales Reports, Product Market and "
         "Customer Trends."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:276
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:277
 msgid   "Sell Memberships with Groups and WooCommerce! Groups WooCommerce "
         "grants memberships based on products. It automatically assigns a "
         "customer to one or more groups based on the products ordered."
 msgstr  ""
 
 #: lib/core/class-woocommerce-coupon-shortcodes.php:110
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:104
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:105
 msgid   "Shop"
 msgstr  ""
 
@@ -173,73 +173,73 @@ msgstr  ""
 msgid   "Subscription Discount"
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:270
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:271
 msgid   "The essential extension for every WooCommerce store! The perfect "
         "Search Engine for your store helps your customers to find and buy "
         "the right products quickly."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:125
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:126
 msgid   "The shortcode reveals the content it encloses when the condition "
         "evaluates favorably."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:316
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:317
 msgid   "This extension is based on the free Documentation plugin. It allows "
         "to link documentation pages to products and display them "
         "automatically on the product pages."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:142
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:143
 msgid   "This shortcode reveals the content it encloses when the code is not "
         "considered active."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:193
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:194
 msgid   "This shortcode will display the content it encloses if the coupon is "
         "currently valid."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:210
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:211
 msgid   "This shortcode will display the content while the coupon is not "
         "valid."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:176
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:177
 msgid   "This shortcode will show the enclosed content if the coupon is "
         "currently not applied to the cart."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:165
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:166
 msgid   "This text is shown if the coupon is currently applied to the cart."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:182
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:183
 msgid   "This text is shown if the coupon is currently not applied to the "
         "cart."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:216
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:217
 msgid   "This text is shown if the coupon is not valid."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:199
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:200
 msgid   "This text is shown if the coupon is valid."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:131
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:132
 msgid   "This text is shown when the coupon is active."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:148
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:149
 msgid   "This text is shown when the coupon is not active."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:159
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:160
 msgid   "Used to show content if a coupon is currently applied to the cart."
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:311
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:312
 msgid   "WooCommerce Coupon Exclusions is a powerful and easy to use "
         "WooCommerce extension which provides extended coupon usage "
         "restrictions."
@@ -249,7 +249,7 @@ msgstr  ""
 msgid   "Yes, here we go!"
 msgstr  ""
 
-#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:103
+#: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:104
 #, php-format
 msgid   "You can support the development of this extension by purchasing "
         "tools from the %s and %s for WooCommerce."

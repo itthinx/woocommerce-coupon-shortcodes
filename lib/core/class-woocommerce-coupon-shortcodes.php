@@ -80,13 +80,13 @@ class WooCommerce_Coupon_Shortcodes {
 	public static function wp_init() {
 		load_plugin_textdomain( 'woocommerce-coupon-shortcodes', null, 'woocommerce-coupon-shortcodes/languages' );
 		if ( self::check_dependencies() ) {
-			require_once( WOO_CODES_VIEWS_LIB . '/class-woocommerce-coupon-shortcodes-views.php' );
+			require_once( WOO_CODES_VIEWS_LIB . '/class-woocommerce-coupon-shortcodes-views.php' ); // @phpstan-ignore requireOnce.fileNotFound
 			// notice
 			if ( is_admin() ) {
 				if ( current_user_can( 'activate_plugins' ) ) { // important: after init hook
-					require_once WOO_CODES_ADMIN_LIB . '/class-woocommerce-coupon-shortcodes-admin-notice.php';
+					require_once WOO_CODES_ADMIN_LIB . '/class-woocommerce-coupon-shortcodes-admin-notice.php'; // @phpstan-ignore requireOnce.fileNotFound
 				}
-				require_once WOO_CODES_ADMIN_LIB . '/class-woocommerce-coupon-shortcodes-admin-coupon.php';
+				require_once WOO_CODES_ADMIN_LIB . '/class-woocommerce-coupon-shortcodes-admin-coupon.php'; // @phpstan-ignore requireOnce.fileNotFound
 			}
 		}
 	}
@@ -163,7 +163,7 @@ class WooCommerce_Coupon_Shortcodes {
 	public static function admin_notices() {
 		if ( !empty( self::$admin_messages ) ) {
 			foreach ( self::$admin_messages as $msg ) {
-				echo $msg;
+				echo $msg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
 	}
@@ -202,7 +202,7 @@ class WooCommerce_Coupon_Shortcodes {
 			/* translators: 1: immutable name 2: link reference */
 			$msg .= sprintf(
 					esc_html__( '%1$s requires %2$s. Please install and activate it.', 'woocommerce-coupon-shortcodes' ),
-					'<strong>WooCommerce Coupon Shortcodes</strong>',
+					'<strong>Coupon Shortcodes for WooCommerce</strong>',
 					'<a href="https://woocommerce.com" target="_blank">WooCommerce</a>'
 				);
 			$msg .= '</div>';

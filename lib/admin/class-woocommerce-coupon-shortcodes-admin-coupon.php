@@ -93,8 +93,9 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 		esc_html_e( 'Here are examples of shortcodes that you can use with this coupon.', 'woocommerce-coupon-shortcodes' );
 		echo ' ';
 		printf(
-			__( 'For more details on these and other available shortcodes, please refer to the <a href="%s">documentation</a>.', 'woocommerce-coupon-shortcodes' ),
-			esc_url( 'https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/' )
+			/* translators: link to documentation */
+			esc_html__( 'For more details on these and other available shortcodes, please refer to the %s.', 'woocommerce-coupon-shortcodes' ),
+			sprintf( '<a href="%s">documentation</a>', esc_url( 'https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/' ) )
 		);
 		echo '</p>';
 
@@ -220,7 +221,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 
 		echo '</div>'; // .options_group
 
-		echo self::extensions();
+		echo self::extensions(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		echo '</div>'; // #custom_coupon_shortcodes .panel .woocommerce_options_panel
 	}
