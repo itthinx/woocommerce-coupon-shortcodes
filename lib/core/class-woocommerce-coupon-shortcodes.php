@@ -202,7 +202,7 @@ class WooCommerce_Coupon_Shortcodes {
 			/* translators: 1: immutable name 2: link reference */
 			$msg .= sprintf(
 					esc_html__( '%1$s requires %2$s. Please install and activate it.', 'woocommerce-coupon-shortcodes' ),
-					'<strong>WooCommerce Coupon Shortcodes</strong>',
+					'<strong>Coupon Shortcodes for WooCommerce</strong>',
 					'<a href="https://woocommerce.com" target="_blank">WooCommerce</a>'
 				);
 			$msg .= '</div>';

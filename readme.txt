@@ -1,4 +1,4 @@
-=== WooCommerce Coupon Shortcodes ===
+=== Coupon Shortcodes for WooCommerce ===
 Contributors: itthinx, proaktion
 Donate link: https://www.itthinx.com/shop/
 Tags: woocommerce, shortcode, coupon, discount, marketing, theme, conditional, coupons, discounts, display, info, information, promotion, subscription, subscriptions
@@ -121,7 +121,7 @@ Show a single random coupon code:
 Full usage instructions and help is provided on these pages:
 
 - Please refer to the plugin's documentation pages for detailed information [Documentation](https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/)
-- Questions, feedback and suggestions can be posted on the plugin page [WooCommerce Coupon Shortcodes plugin page and Support](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/)
+- Questions, feedback and suggestions can be posted on the plugin page [Coupon Shortcodes for WooCommerce plugin page and Support](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/)
 
 
 == Installation ==
@@ -137,12 +137,12 @@ Full usage instructions and help is provided on these pages:
 
 = I have a question, where do I ask? =
 
-You can leave a comment at the [WooCommerce Coupon Shortcodes plugin page](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/).
+You can leave a comment at the [Coupon Shortcodes for WooCommerce plugin page](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/).
 
 
 == Screenshots ==
 
-See the plugin page [WooCommerce Coupon Shortcodes](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/)
+See the plugin page [Coupon Shortcodes for WooCommerce](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/)
 
 
 == Changelog ==

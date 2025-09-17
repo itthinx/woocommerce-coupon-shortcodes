@@ -1,5 +1,5 @@
 
- WooCommerce Coupon Shortcodes
+ Coupon Shortcodes for WooCommerce
 
  Copyright 2013 - 2025 "kento" (Karim Rahimpur) www.itthinx.com
 

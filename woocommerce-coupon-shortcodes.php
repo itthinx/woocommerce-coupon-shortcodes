@@ -18,7 +18,7 @@
  * @package woocommerce-coupon-shortcodes
  * @since woocommerce-coupon-shortcodes 1.0.0
  *
- * Plugin Name: WooCommerce Coupon Shortcodes
+ * Plugin Name: Coupon Shortcodes for WooCommerce
  * Plugin URI: https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes
  * Description: Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally.
  * Version: 3.0.0

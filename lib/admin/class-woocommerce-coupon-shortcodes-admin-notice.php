@@ -165,7 +165,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 		$output .= sprintf(
 			/* translators: link */
 			__( 'Many thanks for using %s!', 'woocommerce-coupon-shortcodes' ),
-			'<a style="text-decoration: none; color: #873eff;" target="_blank" href="https://wordpress.org/plugins/woocommerce-coupon-shortcodes/">WooCommerce Coupon Shortcodes</a>'
+			'<a style="text-decoration: none; color: #873eff;" target="_blank" href="https://wordpress.org/plugins/woocommerce-coupon-shortcodes/">Coupon Shortcodes for WooCommerce</a>'
 		);
 		$output .= '</h2>';
 
