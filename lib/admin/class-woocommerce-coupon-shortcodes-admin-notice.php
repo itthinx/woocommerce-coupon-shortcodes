@@ -147,7 +147,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 		$output .= '}';
 
 		$output .= 'div.woocommerce-coupon-shortcodes-rating {';
-		$output .= sprintf( 'background: url(%s) #fff no-repeat 8px 8px;', WOO_CODES_PLUGIN_URL . '/images/icon-256x256.png' );
+		$output .= sprintf( 'background: url(%s) #fff no-repeat 8px 8px;', WOO_CODES_PLUGIN_URL . '/images/icon-256x256.png' ); // @phpstan-ignore constant.notFound
 		$output .= 'padding-left: 84px ! important;';
 		$output .= 'background-size: 64px 64px;';
 		$output .= '}';
