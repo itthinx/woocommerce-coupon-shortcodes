@@ -25,9 +25,9 @@
  * Author: itthinx
  * Author URI: https://www.itthinx.com
  * Donate-Link: https://www.itthinx.com/shop/
- * Requires at least: 6.3
+ * Requires at least: 6.5
  * Requires PHP: 7.4
- * WC requires at least: 8.3
+ * WC requires at least: 9.0
  * WC tested up to: 10.2
  * Woo: 244762:d9f372bcea062d4a9eedccb2a80eb49d
  * License: GPLv3

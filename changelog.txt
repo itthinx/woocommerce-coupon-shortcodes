@@ -2,7 +2,9 @@
 
 = 3.0.0 =
 * Update - WordPress 6.8 compatible.
+* Update - Requires at least WordPress 6.5.
 * Update - WooCommerce 10.2 compatible.
+* Update - Requires at least WooCommerce 9.0.
 * Update - Name updated to Coupon Shortcodes for WooCommerce.
 * Update - Updated the translation template.
 
