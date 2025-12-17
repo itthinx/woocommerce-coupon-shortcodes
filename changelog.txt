@@ -1,8 +1,14 @@
 == Coupon Shortcodes for WooCommerce by itthinx                   Changelog ==
 
+= 3.2.0 =
+* Update - WordPress 6.9 compatible.
+* Update - WooCommerce 10.4 compatible.
+* Dev - Changed a wording to avoid failed Woo E2E tests that rely on a too generic getByRole locator based on 'link' finding 'Usage restriction'
+* Update - Updated the translation template.
+
 = 3.1.0 =
-* WordPress 6.8 compatible.
-* WooCommerce 10.3 compatible.
+* Update - WordPress 6.8 compatible.
+* Update - WooCommerce 10.3 compatible.
 
 = 3.0.0 =
 * Update - WordPress 6.8 compatible.

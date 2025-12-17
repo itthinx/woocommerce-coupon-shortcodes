@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: PACKAGE VERSION\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: 2025-09-17 15:39+0200\n"
+        "POT-Creation-Date: 2025-12-17 13:00+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -241,7 +241,7 @@ msgstr  ""
 
 #: lib/admin/class-woocommerce-coupon-shortcodes-admin-coupon.php:312
 msgid   "WooCommerce Coupon Exclusions is a powerful and easy to use "
-        "WooCommerce extension which provides extended coupon usage "
+        "WooCommerce extension which provides extended coupon use "
         "restrictions."
 msgstr  ""
 
