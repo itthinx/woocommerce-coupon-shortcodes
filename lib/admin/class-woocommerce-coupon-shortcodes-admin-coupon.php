@@ -309,7 +309,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 				),
 				array(
 					'title'       => 'Coupon Exclusions',
-					'description' => esc_html__( 'WooCommerce Coupon Exclusions is a powerful and easy to use WooCommerce extension which provides extended coupon usage restrictions.', 'woocommerce-coupon-shortcodes' ),
+					'description' => esc_html__( 'WooCommerce Coupon Exclusions is a powerful and easy to use WooCommerce extension which provides extended coupon use restrictions.', 'woocommerce-coupon-shortcodes' ), // @since 3.2.0 changed wording from "... usage restrictions" to "... use restrictions" to avoid Woo E2E test failures when locating with getByRole('link', { name: 'Usage restriction' }) which is too generic. Related tests: Restricted coupon management - can create new minimumSpend coupon, can create new maximumSpend coupon, can create new individualUse coupon, can create new excludeSaleItems coupon, can create new productCategories coupon, can create new excludeProductCategories coupon, can create new products coupon, can create new excludeProducts coupon, can create new allowedEmails coupon
 					'url'         => 'https://www.itthinx.com/shop/woocommerce-coupon-exclusions/'
 				),
 				array(
