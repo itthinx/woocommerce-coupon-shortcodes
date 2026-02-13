@@ -8,6 +8,7 @@
 * Update - Using enumerated placeholders in translatable strings.
 * Update - Replaced parameters with deprecated argument type.
 * Dev - Validation hint for PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound.
+* Dev - Validation hints for WordPress.WP.AlternativeFunctions.rand_rand.
 
 = 3.2.0 =
 * Update - WordPress 6.9 compatible.

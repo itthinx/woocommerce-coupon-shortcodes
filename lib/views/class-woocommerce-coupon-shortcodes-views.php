@@ -465,7 +465,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				case 'rand' :
 				case 'RAND' :
 					// avoid doing a RAND DB query
-					$what = rand( 0, 1 );
+					$what = rand( 0, 1 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.rand_rand
 					switch ( $what ) {
 						case 0:
 							$orderby = 'ID';
@@ -474,7 +474,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 							$orderby = 'post_title';
 							break;
 					}
-					$how = rand( 0, 1 );
+					$how = rand( 0, 1 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.rand_rand
 					switch ( $how ) {
 						case 0:
 							$order = 'ASC';
