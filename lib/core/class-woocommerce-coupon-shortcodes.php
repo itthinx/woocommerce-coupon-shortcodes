@@ -201,6 +201,7 @@ class WooCommerce_Coupon_Shortcodes {
 			$msg = '<div class="error">';
 			/* translators: 1: immutable name 2: link reference */
 			$msg .= sprintf(
+					/* translators: plugin name, link */
 					esc_html__( '%1$s requires %2$s. Please install and activate it.', 'woocommerce-coupon-shortcodes' ),
 					'<strong>Coupon Shortcodes for WooCommerce</strong>',
 					'<a href="https://woocommerce.com" target="_blank">WooCommerce</a>'

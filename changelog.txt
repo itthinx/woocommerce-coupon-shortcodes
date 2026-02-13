@@ -4,6 +4,8 @@
 * WordPress 6.9 compatible.
 * WooCommerce 10.5 compatible.
 * Fix - Corrected mismatched text domain on some translatable strings.
+* Update - Added missing translators comments.
+* Update - Using enumerated placeholders in translatable strings.
 
 = 3.2.0 =
 * Update - WordPress 6.9 compatible.
