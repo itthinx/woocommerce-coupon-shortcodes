@@ -13,6 +13,7 @@
 * Dev - Validation hints for WordPress.DB.SlowDBQuery.slow_db_query_meta_value.
 * Dev - Revised nonce processing.
 * Dev - Added to internal API.
+* Update - Updated the translation template.
 
 = 3.2.0 =
 * Update - WordPress 6.9 compatible.
