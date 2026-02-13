@@ -3,6 +3,7 @@
 = 4.0.0 =
 * WordPress 6.9 compatible.
 * WooCommerce 10.5 compatible.
+* Fix - Corrected mismatched text domain on some translatable strings.
 
 = 3.2.0 =
 * Update - WordPress 6.9 compatible.

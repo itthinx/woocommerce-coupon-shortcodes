@@ -102,17 +102,17 @@ class WooCommerce_Coupon_Shortcodes {
 		$links[] = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( 'https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/' ),
-			esc_html__( 'Documentation', 'woocommerce-coupons-countdown' )
+			esc_html__( 'Documentation', 'woocommerce-coupon-shortcodes' )
 		);
 		$links[] = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( 'https://www.itthinx.com/shop/' ),
-			esc_html__( 'Shop', 'woocommerce-coupons-countdown' )
+			esc_html__( 'Shop', 'woocommerce-coupon-shortcodes' )
 		);
 		$links[] = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( 'https://woocommerce.com/vendor/itthinx/' ),
-			esc_html__( 'Extensions', 'woocommerce-coupons-countdown' )
+			esc_html__( 'Extensions', 'woocommerce-coupon-shortcodes' )
 		);
 		return $links;
 	}
