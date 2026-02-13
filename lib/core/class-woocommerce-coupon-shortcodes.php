@@ -78,7 +78,7 @@ class WooCommerce_Coupon_Shortcodes {
 	 * Loads translations and shortcode handler.
 	 */
 	public static function wp_init() {
-		load_plugin_textdomain( 'woocommerce-coupon-shortcodes', null, 'woocommerce-coupon-shortcodes/languages' );
+		load_plugin_textdomain( 'woocommerce-coupon-shortcodes', false, 'woocommerce-coupon-shortcodes/languages' ); // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
 		if ( self::check_dependencies() ) {
 			require_once( WOO_CODES_VIEWS_LIB . '/class-woocommerce-coupon-shortcodes-views.php' ); // @phpstan-ignore requireOnce.fileNotFound
 			// notice
@@ -102,17 +102,17 @@ class WooCommerce_Coupon_Shortcodes {
 		$links[] = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( 'https://docs.itthinx.com/document/woocommerce-coupon-shortcodes/' ),
-			esc_html__( 'Documentation', 'woocommerce-coupons-countdown' )
+			esc_html__( 'Documentation', 'woocommerce-coupon-shortcodes' )
 		);
 		$links[] = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( 'https://www.itthinx.com/shop/' ),
-			esc_html__( 'Shop', 'woocommerce-coupons-countdown' )
+			esc_html__( 'Shop', 'woocommerce-coupon-shortcodes' )
 		);
 		$links[] = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( 'https://woocommerce.com/vendor/itthinx/' ),
-			esc_html__( 'Extensions', 'woocommerce-coupons-countdown' )
+			esc_html__( 'Extensions', 'woocommerce-coupon-shortcodes' )
 		);
 		return $links;
 	}
@@ -201,6 +201,7 @@ class WooCommerce_Coupon_Shortcodes {
 			$msg = '<div class="error">';
 			/* translators: 1: immutable name 2: link reference */
 			$msg .= sprintf(
+					/* translators: plugin name, link */
 					esc_html__( '%1$s requires %2$s. Please install and activate it.', 'woocommerce-coupon-shortcodes' ),
 					'<strong>Coupon Shortcodes for WooCommerce</strong>',
 					'<a href="https://woocommerce.com" target="_blank">WooCommerce</a>'
@@ -236,6 +237,19 @@ class WooCommerce_Coupon_Shortcodes {
 			$n = max( 1, intval( WOOCOMMERCE_COUPON_SHORTCODES_HARD_LIMIT ) );
 		}
 		return $n;
+	}
+
+	/**
+	 * Provide the sanitized current URL.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @return string
+	 */
+	public static function get_current_url() {
+		$host = wp_unslash( $_SERVER['HTTP_HOST'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$uri  = wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		return sanitize_url( ( is_ssl() ? 'https://' : 'http://' ) . $host . $uri );
 	}
 }
 WooCommerce_Coupon_Shortcodes::init();

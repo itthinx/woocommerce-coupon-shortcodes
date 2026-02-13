@@ -465,7 +465,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				case 'rand' :
 				case 'RAND' :
 					// avoid doing a RAND DB query
-					$what = rand( 0, 1 );
+					$what = rand( 0, 1 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.rand_rand
 					switch ( $what ) {
 						case 0:
 							$orderby = 'ID';
@@ -474,7 +474,7 @@ class WooCommerce_Coupon_Shortcodes_Views {
 							$orderby = 'post_title';
 							break;
 					}
-					$how = rand( 0, 1 );
+					$how = rand( 0, 1 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.rand_rand
 					switch ( $how ) {
 						case 0:
 							$order = 'ASC';
@@ -552,8 +552,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				'order'            => $order,
 				'orderby'          => $orderby,
 				'posts_per_page'   => intval( $number ),
-				'meta_key'         => 'discount_type',
-				'meta_value'       => $types,
+				'meta_key'         => 'discount_type', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+				'meta_value'       => $types, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 				'meta_compare'     => 'IN'
 			) );
 		}
@@ -763,8 +763,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				'order'            => $order,
 				'orderby'          => $orderby,
 				'posts_per_page'   => intval( $number ),
-				'meta_key'         => 'discount_type',
-				'meta_value'       => $types,
+				'meta_key'         => 'discount_type', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+				'meta_value'       => $types, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 				'meta_compare'     => 'IN'
 			) );
 		}
@@ -832,8 +832,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				'order'            => $order,
 				'orderby'          => $orderby,
 				'posts_per_page'   => intval( $number ),
-				'meta_key'         => 'discount_type',
-				'meta_value'       => $types,
+				'meta_key'         => 'discount_type', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+				'meta_value'       => $types, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 				'meta_compare'     => 'IN'
 			) );
 		}
@@ -901,8 +901,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				'order'            => $order,
 				'orderby'          => $orderby,
 				'posts_per_page'   => intval( $number ),
-				'meta_key'         => 'discount_type',
-				'meta_value'       => $types,
+				'meta_key'         => 'discount_type', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+				'meta_value'       => $types, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 				'meta_compare'     => 'IN'
 			) );
 		}
@@ -1949,23 +1949,29 @@ class WooCommerce_Coupon_Shortcodes_Views {
 			case 'percent_product' :
 				if ( sizeof( $coupon->get_product_ids() ) > 0 ) {
 					if ( count( $products ) > 0 ) {
-						$result = sprintf( __( '%s%s Discount on %s', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, implode( $product_delimiter, $products ) );
+						/* translators: amout, amount suffix, products */
+						$result = sprintf( __( '%1$s%2$s Discount on %3$s', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, implode( $product_delimiter, $products ) );
 					} else {
-						$result = sprintf( __( '%s%s Discount on selected products', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix );
+						/* translators: amount, amount suffix */
+						$result = sprintf( __( '%1$s%2$s Discount on selected products', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix );
 					}
 				} else if ( sizeof( $coupon->get_product_categories() ) > 0 ) {
-					$result = sprintf( __( '%s%s Discount in %s', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, implode( $category_delimiter, $categories ) );
+					/* translators: amount, amount suffix, categoryies */
+					$result = sprintf( __( '%1$s%2$s Discount in %3$s', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, implode( $category_delimiter, $categories ) );
 				} else if ( sizeof( $coupon->get_exclude_product_ids() ) > 0 || sizeof( $coupon->get_exclude_product_categories() ) > 0 ) { // @phpstan-ignore method.notFound, method.notFound
-					$result = sprintf( __( '%s%s Discount on selected products', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix );
+					/* translators: amount, amount suffix */
+					$result = sprintf( __( '%1$s%2$s Discount on selected products', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix );
 				} else {
-					$result = sprintf( __( '%s%s Discount', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix );
+					/* translators: amount, amount suffix */
+					$result = sprintf( __( '%1$s%2$s Discount', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix );
 				}
 
 				break;
 
 			case 'fixed_cart' :
 			case 'percent' :
-				$result = sprintf( __( '%s%s Discount', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix );
+				/* translators: amount, amount suffix */
+				$result = sprintf( __( '%1$s%2$s Discount', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix );
 				break;
 
 			case 'sign_up_fee' :
@@ -1978,16 +1984,21 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				}
 				if ( sizeof( $coupon->get_product_ids() ) > 0 ) {
 					if ( count( $products ) > 0 ) {
-						$result = sprintf( __( '%s%s %s on %s', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, $discount_name, implode( $product_delimiter, $products ) );
+						/* translators: amount, amount suffix, discount name, products */
+						$result = sprintf( __( '%1$s%2$s %3$s on %4$s', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, $discount_name, implode( $product_delimiter, $products ) );
 					} else {
-						$result = sprintf( __( '%s%s %s on selected products', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, $discount_name );
+						/* translators: amount, amount suffix, discount name */
+						$result = sprintf( __( '%1$s%2$s %3$s on selected products', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, $discount_name );
 					}
 				} else if ( sizeof( $coupon->get_product_categories() ) > 0 ) {
-					$result = sprintf( __( '%s%s %s in %s', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, $discount_name, implode( $category_delimiter, $categories ) );
+					/* translators: amount, amount suffix, discount name, categories */
+					$result = sprintf( __( '%1$s%2$s %3$s in %4$s', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, $discount_name, implode( $category_delimiter, $categories ) );
 				} else if ( sizeof( $coupon->get_exclude_product_ids() ) > 0 || sizeof( $coupon->get_exclude_product_categories() ) > 0 ) { // @phpstan-ignore method.notFound, method.notFound
-					$result = sprintf( __( '%s%s %s on selected products', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, $discount_name );
+					/* translators: amount, amount suffix, discount name */
+					$result = sprintf( __( '%1$s%2$s %3$s on selected products', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, $discount_name );
 				} else {
-					$result = sprintf( __( '%s%s %s', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, $discount_name );
+					/* translators: amount, amount suffix, discount name */
+					$result = sprintf( __( '%1$s%2$s %3$s', 'woocommerce-coupon-shortcodes' ), $amount, $amount_suffix, $discount_name );
 				}
 				break;
 		}

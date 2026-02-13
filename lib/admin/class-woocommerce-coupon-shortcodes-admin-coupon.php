@@ -101,7 +101,8 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 
 		echo '<p>';
 		printf(
-			esc_html__( 'You can support the development of this extension by purchasing tools from the %s and %s for WooCommerce.', 'woocommerce-coupon-shortcodes' ),
+			/* translators: link, link */
+			esc_html__( 'You can support the development of this extension by purchasing tools from the %1$s and %2$s for WooCommerce.', 'woocommerce-coupon-shortcodes' ),
 			sprintf( '<a href="https://www.itthinx.com/shop/">%s</a>', esc_html__( 'Shop', 'woocommerce-coupon-shortcodes' ) ),
 			sprintf( '<a href="https://woocommerce.com/vendor/itthinx/">%s</a>', esc_html__( 'Extensions', 'woocommerce-coupon-shortcodes' ) )
 		);

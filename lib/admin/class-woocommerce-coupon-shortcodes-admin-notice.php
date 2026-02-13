@@ -76,10 +76,18 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 	public static function admin_init() {
 		if ( current_user_can( 'activate_plugins' ) ) {
 			$user_id = get_current_user_id();
-			if ( !empty( $_GET[self::HIDE_REVIEW_NOTICE] ) && wp_verify_nonce( sanitize_text_field( $_GET['woocommerce-coupon-shortcodes_notice'] ), 'hide' ) ) {
+			if (
+				!empty( $_GET[self::HIDE_REVIEW_NOTICE] ) &&
+				!empty( $_GET['woocommerce-coupon-shortcodes_notice'] ) &&
+				wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['woocommerce-coupon-shortcodes_notice'] ) ), 'hide' )
+			) {
 				add_user_meta( $user_id, self::HIDE_REVIEW_NOTICE, true );
 			}
-			if ( !empty( $_GET[self::REMIND_LATER_NOTICE] ) && wp_verify_nonce( sanitize_text_field( $_GET['woocommerce-coupon-shortcodes_notice'] ), 'later' ) ) {
+			if (
+				!empty( $_GET[self::REMIND_LATER_NOTICE] ) &&
+				!empty( $_GET['woocommerce-coupon-shortcodes_notice'] ) &&
+				wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['woocommerce-coupon-shortcodes_notice'] ) ), 'later' )
+			) {
 				update_user_meta( $user_id, self::REMIND_LATER_NOTICE, time() + self::REMIND_LAPSE );
 			}
 			$hide_review_notice = get_user_meta( $user_id, self::HIDE_REVIEW_NOTICE, true );
@@ -112,7 +120,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 	 */
 	public static function admin_notices() {
 
-		$current_url = sanitize_url( ( is_ssl() ? 'https://' : 'http://' ) . ( $_SERVER['HTTP_HOST'] ?? '' ) . ( $_SERVER['REQUEST_URI'] ?? '' ) );
+		$current_url = WooCommerce_Coupon_Shortcodes::get_current_url();
 		$hide_url    = wp_nonce_url( add_query_arg( self::HIDE_REVIEW_NOTICE, true, $current_url ), 'hide', 'woocommerce-coupon-shortcodes_notice' );
 		$remind_url  = wp_nonce_url( add_query_arg( self::REMIND_LATER_NOTICE, true, $current_url ), 'later', 'woocommerce-coupon-shortcodes_notice' );
 

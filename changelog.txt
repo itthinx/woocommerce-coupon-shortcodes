@@ -1,5 +1,20 @@
 == Coupon Shortcodes for WooCommerce by itthinx                   Changelog ==
 
+= 4.0.0 =
+* WordPress 6.9 compatible.
+* WooCommerce 10.5 compatible.
+* Fix - Corrected mismatched text domain on some translatable strings.
+* Update - Added missing translators comments.
+* Update - Using enumerated placeholders in translatable strings.
+* Update - Replaced parameters with deprecated argument type.
+* Dev - Validation hint for PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound.
+* Dev - Validation hints for WordPress.WP.AlternativeFunctions.rand_rand.
+* Dev - Validation hints for WordPress.DB.SlowDBQuery.slow_db_query_meta_key.
+* Dev - Validation hints for WordPress.DB.SlowDBQuery.slow_db_query_meta_value.
+* Dev - Revised nonce processing.
+* Dev - Added to internal API.
+* Update - Updated the translation template.
+
 = 3.2.0 =
 * Update - WordPress 6.9 compatible.
 * Update - WooCommerce 10.4 compatible.
