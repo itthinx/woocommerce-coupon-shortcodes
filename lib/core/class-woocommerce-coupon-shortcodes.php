@@ -78,7 +78,7 @@ class WooCommerce_Coupon_Shortcodes {
 	 * Loads translations and shortcode handler.
 	 */
 	public static function wp_init() {
-		load_plugin_textdomain( 'woocommerce-coupon-shortcodes', null, 'woocommerce-coupon-shortcodes/languages' );
+		load_plugin_textdomain( 'woocommerce-coupon-shortcodes', false, 'woocommerce-coupon-shortcodes/languages' ); // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
 		if ( self::check_dependencies() ) {
 			require_once( WOO_CODES_VIEWS_LIB . '/class-woocommerce-coupon-shortcodes-views.php' ); // @phpstan-ignore requireOnce.fileNotFound
 			// notice
