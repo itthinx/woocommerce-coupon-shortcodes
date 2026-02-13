@@ -552,8 +552,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				'order'            => $order,
 				'orderby'          => $orderby,
 				'posts_per_page'   => intval( $number ),
-				'meta_key'         => 'discount_type',
-				'meta_value'       => $types,
+				'meta_key'         => 'discount_type', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+				'meta_value'       => $types, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 				'meta_compare'     => 'IN'
 			) );
 		}
@@ -763,8 +763,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				'order'            => $order,
 				'orderby'          => $orderby,
 				'posts_per_page'   => intval( $number ),
-				'meta_key'         => 'discount_type',
-				'meta_value'       => $types,
+				'meta_key'         => 'discount_type', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+				'meta_value'       => $types, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 				'meta_compare'     => 'IN'
 			) );
 		}
@@ -832,8 +832,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				'order'            => $order,
 				'orderby'          => $orderby,
 				'posts_per_page'   => intval( $number ),
-				'meta_key'         => 'discount_type',
-				'meta_value'       => $types,
+				'meta_key'         => 'discount_type', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+				'meta_value'       => $types, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 				'meta_compare'     => 'IN'
 			) );
 		}
@@ -901,8 +901,8 @@ class WooCommerce_Coupon_Shortcodes_Views {
 				'order'            => $order,
 				'orderby'          => $orderby,
 				'posts_per_page'   => intval( $number ),
-				'meta_key'         => 'discount_type',
-				'meta_value'       => $types,
+				'meta_key'         => 'discount_type', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+				'meta_value'       => $types, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 				'meta_compare'     => 'IN'
 			) );
 		}

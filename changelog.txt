@@ -9,6 +9,10 @@
 * Update - Replaced parameters with deprecated argument type.
 * Dev - Validation hint for PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound.
 * Dev - Validation hints for WordPress.WP.AlternativeFunctions.rand_rand.
+* Dev - Validation hints for WordPress.DB.SlowDBQuery.slow_db_query_meta_key.
+* Dev - Validation hints for WordPress.DB.SlowDBQuery.slow_db_query_meta_value.
+* Dev - Revised nonce processing.
+* Dev - Added to internal API.
 
 = 3.2.0 =
 * Update - WordPress 6.9 compatible.
