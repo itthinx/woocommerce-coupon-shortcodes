@@ -154,6 +154,20 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 		$output .= 'border-left-color: #cc99c2 !important;';
 		$output .= '}';
 
+		$output .= '.woocommerce-coupon-shortcodes-rating a.notice-dismiss {';
+		$output .= 'text-decoration: none;';
+		$output .= '}';
+
+		$output .= '.woocommerce-coupon-shortcodes-rating a.notice-dismiss::before {';
+		$output .= 'color: #e99;';
+		$output .= '-webkit-transition: all .1s ease-in-out;';
+		$output .= 'transition: all .1s ease-in-out;';
+		$output .= '}';
+
+		$output .= '.woocommerce-coupon-shortcodes-rating a.notice-dismiss:hover::before {';
+		$output .= 'color: #f11;';
+		$output .= '}';
+
 		$output .= 'div.woocommerce-coupon-shortcodes-rating {';
 		$output .= sprintf( 'background: url(%s) #fff no-repeat 8px 8px;', WOO_CODES_PLUGIN_URL . '/images/icon-256x256.png' ); // @phpstan-ignore constant.notFound
 		$output .= 'padding-left: 84px ! important;';
@@ -164,7 +178,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 		$output .= '<div class="updated woocommerce-message woocommerce-coupon-shortcodes-rating">';
 
 		$output .= sprintf(
-			'<a class="woocommerce-message-close notice-dismiss" href="%s">%s</a>',
+			'<a class="notice-dismiss" href="%s" title="%s"></a>',
 			esc_url( $hide_url ),
 			esc_html__( 'Dismiss', 'woocommerce-coupon-shortcodes' )
 		);
@@ -202,9 +216,11 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 		$output .= '<p style="font-size: 19px; text-align: center;">';
 		$output .= sprintf(
 			/* translators: 1: link 2: link */
-			__( 'Follow %1$s for related news and information. Visit %2$s where you can find more free and premium extensions.', 'woocommerce-coupon-shortcodes' ),
-			'<a href="https://x.com/itthinx">@itthinx</a>',
-			'<a href="https://www.itthinx.com" target="_blank">itthinx.com</a>'
+			__( 'Join %1$s, follow us on %2$s or on %3$s for related news and information. Visit %4$s where you can find more free and premium extensions.', 'woocommerce-coupon-shortcodes' ),
+			'<a style="text-decoration:none" href="https://www.reddit.com/r/itthinx/">r/itthinx</a>',
+			'<a style="text-decoration:none" href="https://mastodon.social/@itthinx">Mastodon</a>',
+			'<a style="text-decoration:none" href="https://x.com/itthinx">X</a>',
+			'<a style="text-decoration:none" href="https://www.itthinx.com" target="_blank">itthinx.com</a>'
 		);
 		$output .= '</p>';
 

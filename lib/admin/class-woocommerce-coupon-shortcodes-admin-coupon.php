@@ -253,16 +253,19 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 			$output .= 'flex: 2 0 30%;';
 			$output .= '}';
 			$output .= '.woocommerce-coupon-shortcodes-extension-container a {';
-			$output .= 'padding: 1em; margin: 0.62em; display: block; border: 1px solid #ccc; text-align: center; border-radius: 4px; text-decoration: none; color: #666;';
+			$output .= 'padding: 1em; margin: 0.62em; display: block; border: 1px solid #ccc; text-align: center; border-radius: 4px; text-decoration: none !important; color: #666;';
 			$output .= '}';
-			$output .= 'div.woocommerce-coupon-shortcodes-extension-container .extension-title {';
-			$output .= 'color: #873eff; display: block; font-size: 20px; font-weight: 700; line-height: 1.22em;';
+			$output .= '.woocommerce-coupon-shortcodes-extension-container a div {';
+			$output .= 'text-decoration: none; color: #666;';
 			$output .= '}';
-			$output .= 'div.woocommerce-coupon-shortcodes-extension-container.featured .extension-title {';
-			$output .= 'color: #873eff; display: block; font-size: 24px; font-weight: 900; line-height: 1.62em;';
+			$output .= 'div.woocommerce-coupon-shortcodes-extension-container div.extension-title {';
+			$output .= 'text-decoration: none;color: #873eff; display: block; font-size: 20px; font-weight: 700; line-height: 1.22em;';
 			$output .= '}';
-			$output .= 'div.woocommerce-coupon-shortcodes-extension-container .extension-description {';
-			$output .= 'display: block; padding: 0.6em; font-size: 14px;';
+			$output .= 'div.woocommerce-coupon-shortcodes-extension-container.featured div.extension-title {';
+			$output .= 'text-decoration: none;color: #873eff; display: block; font-size: 24px; font-weight: 900; line-height: 1.62em;';
+			$output .= '}';
+			$output .= 'div.woocommerce-coupon-shortcodes-extension-container div.extension-description {';
+			$output .= 'text-decoration: none;display: block; padding: 0.6em; font-size: 14px;';
 			$output .= '}';
 			$output .= '</style>';
 

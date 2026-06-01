@@ -124,6 +124,9 @@ Full usage instructions and help is provided on these pages:
 - Questions, feedback and suggestions can be posted on the [Coupon Shortcodes](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/) page.
 - You can contact [WooCommerce Support](https://woocommerce.com/contact-us/) with your questions related to this extension.
 
+= Connect =
+
+Join [r/itthinx](https://www.reddit.com/r/itthinx/), follow us on [Mastodon](https://mastodon.social/@itthinx) or on [X](https://x.com/itthinx) for related news and information. Visit [itthinx.com](https://www.itthinx.com) where you can find more free and premium extensions.
 
 == Installation ==
 

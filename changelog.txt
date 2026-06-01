@@ -3,6 +3,8 @@
 = 4.2.0 =
 * WordPress 7.0 compatible.
 * WooCommerce 10.8 compatible.
+* Revised styles.
+* Updated socials.
 
 = 4.1.0 =
 * WordPress 6.9 compatible.
