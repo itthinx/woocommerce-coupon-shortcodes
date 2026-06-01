@@ -4,8 +4,8 @@ Donate link: https://www.itthinx.com/shop/
 Tags: woocommerce, shortcode, coupon, discount, marketing
 Requires at least: 6.5
 Requires PHP: 7.4
-Tested up to: 6.9
-Stable tag: 4.1.0
+Tested up to: 7.0
+Stable tag: 4.2.0
 License: GPLv3
 
 Show coupon discount info using shortcodes. Allows to render coupon information and content conditionally, based on the validity of coupons.
@@ -124,6 +124,9 @@ Full usage instructions and help is provided on these pages:
 - Questions, feedback and suggestions can be posted on the [Coupon Shortcodes](https://www.itthinx.com/plugins/woocommerce-coupon-shortcodes/) page.
 - You can contact [WooCommerce Support](https://woocommerce.com/contact-us/) with your questions related to this extension.
 
+= Connect =
+
+Join [r/itthinx](https://www.reddit.com/r/itthinx/), follow us on [Mastodon](https://mastodon.social/@itthinx) or on [X](https://x.com/itthinx) for related news and information. Visit [itthinx.com](https://www.itthinx.com) where you can find more free and premium extensions.
 
 == Installation ==
 
