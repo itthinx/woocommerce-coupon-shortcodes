@@ -83,6 +83,18 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 		echo 'color: #333;';
 		echo 'border: 1px solid #999';
 		echo '}';
+		echo '#custom_coupon_shortcodes p {';
+		echo 'margin: 0;';
+		echo 'padding: 2px;';
+		echo '}';
+		echo '#custom_coupon_shortcodes p.description {';
+		echo 'margin: 0;';
+		echo 'padding: 0;';
+		echo '}';
+		echo '#custom_coupon_shortcodes p.cta {';
+		echo 'margin: 8px;';
+		echo 'padding: 0;';
+		echo '}';
 		echo '</style>';
 
 		echo '<div id="custom_coupon_shortcodes" class="panel woocommerce_options_panel">';
@@ -99,7 +111,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 		);
 		echo '</p>';
 
-		echo '<p>';
+		echo '<p class="cta">';
 		printf(
 			/* translators: link, link */
 			esc_html__( 'You can support the development of this extension by purchasing tools from the %1$s and %2$s for WooCommerce.', 'woocommerce-coupon-shortcodes' ),
