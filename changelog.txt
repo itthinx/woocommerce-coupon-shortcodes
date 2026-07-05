@@ -1,5 +1,9 @@
 == Coupon Shortcodes for WooCommerce by itthinx                   Changelog ==
 
+= 4.3.0 =
+* WordPress 7.0 compatible.
+* WooCommerce 10.9 compatible.
+
 = 4.2.0 =
 * WordPress 7.0 compatible.
 * WooCommerce 10.8 compatible.
