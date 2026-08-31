@@ -29,7 +29,6 @@
  * Requires PHP: 7.4
  * WC requires at least: 9.0
  * WC tested up to: 11.1
- * Woo: 244762:d9f372bcea062d4a9eedccb2a80eb49d
  * License: GPLv3
  */
 
