@@ -151,7 +151,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 		$output .= 'div.woocommerce-message {';
 		$output .= 'overflow: hidden;';
 		$output .= 'position: relative;';
-		$output .= 'border-left-color: #cc99c2 !important;';
+		$output .= 'border-left-color: #720eec !important;';
 		$output .= '}';
 
 		$output .= '.woocommerce-coupon-shortcodes-rating a.notice-dismiss {';
