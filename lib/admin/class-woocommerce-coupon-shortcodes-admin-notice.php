@@ -186,27 +186,27 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 		$output .= '<h2 style="font-size: 2.1em; font-weight: 600; margin: 18px 0 24px 0; line-height:36px; padding-bottom: 24px; border-bottom: 2px solid #eee;">';
 		$output .= sprintf(
 			/* translators: link */
-			__( 'Many thanks for using %s!', 'woocommerce-coupon-shortcodes' ),
+			esc_html__( 'Many thanks for using %s!', 'woocommerce-coupon-shortcodes' ),
 			'<a style="text-decoration: none; color: #873eff;" target="_blank" href="https://wordpress.org/plugins/woocommerce-coupon-shortcodes/">Coupon Shortcodes for WooCommerce</a>'
 		);
 		$output .= '</h2>';
 
 		$output .= '<div style="margin-bottom:24px">';
 		$output .= '<p style="font-size: 15px">';
-		$output .= __( 'Could you please spare a minute and give it a review over at WordPress.org?', 'woocommerce-coupon-shortcodes' );
+		$output .= esc_html__( 'Could you please spare a minute and give it a review over at WordPress.org?', 'woocommerce-coupon-shortcodes' );
 		$output .= '</p>';
 
 		$output .= '<p>';
 		$output .= sprintf(
 			'<a class="button button-primary" href="%s" target="_blank">%s</a>',
 			esc_url( 'https://wordpress.org/support/view/plugin-reviews/woocommerce-coupon-shortcodes?filter=5#postform' ),
-			__( 'Yes, here we go!', 'woocommerce-coupon-shortcodes' )
+			esc_html__( 'Yes, here we go!', 'woocommerce-coupon-shortcodes' )
 		);
 		$output .= '&emsp;';
 		$output .= sprintf(
 			'<a class="button" href="%s">%s</a>',
 			esc_url( $remind_url ),
-			esc_html( __( 'Remind me later', 'woocommerce-coupon-shortcodes' ) )
+			esc_html__( 'Remind me later', 'woocommerce-coupon-shortcodes' )
 		);
 		$output .= '</p>';
 		$output .= '</div>';
@@ -216,7 +216,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Notice {
 		$output .= '<p style="font-size: 19px; text-align: center;">';
 		$output .= sprintf(
 			/* translators: 1: link 2: link */
-			__( 'Join %1$s, follow us on %2$s or on %3$s for related news and information. Visit %4$s where you can find more free and premium extensions.', 'woocommerce-coupon-shortcodes' ),
+			esc_html__( 'Join %1$s, follow us on %2$s or on %3$s for related news and information. Visit %4$s where you can find more free and premium extensions.', 'woocommerce-coupon-shortcodes' ),
 			'<a style="text-decoration:none" href="https://www.reddit.com/r/itthinx/">r/itthinx</a>',
 			'<a style="text-decoration:none" href="https://mastodon.social/@itthinx">Mastodon</a>',
 			'<a style="text-decoration:none" href="https://x.com/itthinx">X</a>',

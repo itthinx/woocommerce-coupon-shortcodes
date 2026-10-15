@@ -51,7 +51,7 @@ class WooCommerce_Coupon_Shortcodes_Admin_Coupon {
 	 */
 	public static function woocommerce_coupon_data_tabs( $tabs ) {
 		$tabs['shortcodes'] = array(
-			'label'  => __( 'Shortcodes', 'woocommerce-coupon-shortcodes' ),
+			'label'  => __( 'Shortcodes', 'woocommerce-coupon-shortcodes' ), // does not need to be escaped here as WC_Meta_Box_Coupon_Data applies esc_html() to the label
 			'target' => 'custom_coupon_shortcodes',
 			'class'  => 'coupon-shortcodes'
 		);
