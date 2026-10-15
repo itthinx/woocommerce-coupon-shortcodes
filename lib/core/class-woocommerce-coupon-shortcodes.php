@@ -163,7 +163,7 @@ class WooCommerce_Coupon_Shortcodes {
 	public static function admin_notices() {
 		if ( !empty( self::$admin_messages ) ) {
 			foreach ( self::$admin_messages as $msg ) {
-				echo $msg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo wp_kses_post( $msg );
 			}
 		}
 	}
@@ -201,11 +201,11 @@ class WooCommerce_Coupon_Shortcodes {
 			$msg = '<div class="error">';
 			/* translators: 1: immutable name 2: link reference */
 			$msg .= sprintf(
-					/* translators: plugin name, link */
-					esc_html__( '%1$s requires %2$s. Please install and activate it.', 'woocommerce-coupon-shortcodes' ),
-					'<strong>Coupon Shortcodes for WooCommerce</strong>',
-					'<a href="https://woocommerce.com" target="_blank">WooCommerce</a>'
-				);
+				/* translators: plugin name, link */
+				esc_html__( '%1$s requires %2$s. Please install and activate it.', 'woocommerce-coupon-shortcodes' ),
+				'<strong>Coupon Shortcodes for WooCommerce</strong>',
+				'<a href="https://woocommerce.com" target="_blank">WooCommerce</a>'
+			);
 			$msg .= '</div>';
 			self::$admin_messages[] = $msg;
 		}
