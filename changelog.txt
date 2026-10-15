@@ -4,6 +4,10 @@
 * WordPress 7.1 compatible.
 * WooCommerce 11.2 compatible.
 * Fix - Revised instances of missing output escaping.
+* Fix - Fatal errors caused by misspelled method calls.
+* Dev - Replaced use of alias functions.
+* Update - Improved evaluation logic for discount info rendering.
+* Fix - Products restricting coupon are now correctly displayed when rendering the [coupon_discount] shortcode.
 
 = 4.4.0 =
 * Update - WordPress 7.1 compatible.
